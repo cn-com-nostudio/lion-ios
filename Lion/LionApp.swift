@@ -34,7 +34,7 @@ struct LionApp: App {
         return .init(
             initialState: state,
             reducer: Root()
-                .caching( using: rootStateCache )
+                .caching(using: rootStateCache)
                 .signpost()
                 ._printChanges()
         )

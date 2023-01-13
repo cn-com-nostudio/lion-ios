@@ -86,7 +86,6 @@
 		86E1DA9E295E9BB400839256 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E1DA9D295E9BB400839256 /* Color+Hex.swift */; };
 		86E1DAA0295EA16300839256 /* ModeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E1DA9F295EA16300839256 /* ModeHeaderView.swift */; };
 		86E1EC95295B47D500AD690C /* Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E1EC94295B47D500AD690C /* Alignment.swift */; };
-		86EC997E2956F75800F09DFE /* ModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC997D2956F75800F09DFE /* ModeView.swift */; };
 		86EC99802956F7CB00F09DFE /* ModeSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC997F2956F7CB00F09DFE /* ModeSettingsView.swift */; };
 		86EE7D17296B291200089C2D /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE7D16296B291200089C2D /* TestView.swift */; };
 		86EE7D1B296C409600089C2D /* TimeSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE7D1A296C409600089C2D /* TimeSelection.swift */; };
@@ -218,7 +217,6 @@
 		86E1DA9D295E9BB400839256 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		86E1DA9F295EA16300839256 /* ModeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeHeaderView.swift; sourceTree = "<group>"; };
 		86E1EC94295B47D500AD690C /* Alignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alignment.swift; sourceTree = "<group>"; };
-		86EC997D2956F75800F09DFE /* ModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeView.swift; sourceTree = "<group>"; };
 		86EC997F2956F7CB00F09DFE /* ModeSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSettingsView.swift; sourceTree = "<group>"; };
 		86EE7D16296B291200089C2D /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		86EE7D1A296C409600089C2D /* TimeSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelection.swift; sourceTree = "<group>"; };
@@ -430,7 +428,6 @@
 				86B7A04529519BDB00D3D34A /* Lion.entitlements */,
 				86B7A01B295197BA00D3D34A /* LionApp.swift */,
 				86B7A01D295197BA00D3D34A /* RootView.swift */,
-				86EC997D2956F75800F09DFE /* ModeView.swift */,
 			);
 			path = Lion;
 			sourceTree = "<group>";
@@ -845,7 +842,6 @@
 				864AEE3129585D1600AB1379 /* Directory.swift in Sources */,
 				866C763C296873F2008C6E1E /* WeekdayPicker.swift in Sources */,
 				8607DB84295D2DD900FD213E /* UserDefaultsCache.swift in Sources */,
-				86EC997E2956F75800F09DFE /* ModeView.swift in Sources */,
 				864AEE2729580B8000AB1379 /* ModeSettings.swift in Sources */,
 				86C77C5C296274EE0046221B /* ModeItem.swift in Sources */,
 				86B7A01E295197BA00D3D34A /* RootView.swift in Sources */,

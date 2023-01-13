@@ -20,7 +20,7 @@ struct SettingButton_Previews: PreviewProvider {
         Button {
             UIImpactFeedbackGenerator(style: .soft).impactOccurred()
         } label: {
-            Text("设置")
+            Text(.settings)
                 .frame(maxWidth: .infinity)
                 .padding()
         }

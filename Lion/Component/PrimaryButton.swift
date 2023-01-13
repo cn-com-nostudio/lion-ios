@@ -20,7 +20,7 @@ struct PrimaryButton_Previews: PreviewProvider {
         Button {
             UIImpactFeedbackGenerator(style: .soft).impactOccurred()
         } label: {
-            Text("保存")
+            Text(.done)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical)
         }

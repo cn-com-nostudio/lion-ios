@@ -20,7 +20,7 @@ struct DeleteButton_Previews: PreviewProvider {
         Button {
             UIImpactFeedbackGenerator(style: .soft).impactOccurred()
         } label: {
-            Text("删除")
+            Text(.delete)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical)
         }

@@ -1,0 +1,64 @@
+/* 
+  Localizable.strings
+  Lion
+
+  Created by Jerrywang on 2022/12/26.
+  
+*/
+
+"child mode" = "带娃模式";
+"loan mode" = "出借模式";
+
+"deny app removal" = "禁止删除";
+"deny app installation" = "禁止安装 App";
+"block apps" = "隐藏 App";
+"shield apps" = "游戏防沉迷";
+"block webs" = "恶意网站拦截";
+
+"block apps settings" = "隐藏设置";
+"shiled apps settings" = "限制设置";
+"block webs settings" = "拦截设置";
+
+"deny app removal tip" = "防止误删微信，丢失珍贵的聊天记录";
+"deny app installation tip" = "隐藏 App Store 来阻止安装新 App";
+"block apps tip" = "隐藏不愿意给别人看到的应用";
+"shield apps tip" = "限制打开指定 App，防止沉迷游戏、短视频";
+"block webs tip" = "过滤成人网站、恶意网站";
+
+"start" = "开启";
+"stop" = "停止";
+
+"child mode tip" = "家长必备";
+"loan mode tip" = "职场必备";
+
+"settings" = "设置";
+
+"suggesion mode settings" = "建议配置";
+
+"every day" = "每天";
+"every workday" = "每个工作日";
+"every weekend" = "每个周末";
+
+"limit apps open" = "限制打开 App";
+"limit apps open tip" = "给孩子设定合理的玩游戏、看短视频的时间";
+"time interval to limit apps open" = "以下时段限制App的打开";
+
+"add" = "添加";
+"time" = "时间";
+"from" = "从";
+"to" = "到";
+"cancel" = "取消";
+"done" = "完成";
+"delete" = "删除";
+"repeat" = "重复";
+
+"limit apps" = "限制 App";
+"limit apps tip" = "设定合理的游戏、抖音或者社交App设定合理的游戏、抖音或者社交App设定合理的游戏、抖音或者社交App";
+
+"select apps" = "选择 App";
+
+"%lld apps" = "%lld个App";
+"%lld blocked apps" = "%lld个隐藏应用";
+
+"apps selected amount: %lld" = "您已经选中%lld个应用";
+"apps selected amount: %lld (exceeds max select amount %lld)" = "您已经选中%lld个应用(超出最大可选择数量%lld)";

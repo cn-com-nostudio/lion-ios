@@ -1,0 +1,65 @@
+/* 
+  Localizable.strings
+  Lion
+
+  Created by Jerrywang on 2022/12/26.
+  
+*/
+
+"child mode" = "Child Mode";
+"loan mode" = "Loan Mode";
+
+"deny app removal" = "Deny App removal";
+"deny app installation" = "Deny App installation";
+"block apps" = "Hide Apps";
+"shield apps" = "Anti-addiction games";
+"block webs" = "Block webs";
+
+"block apps settings" = "Settings";
+"shiled apps settings" = "Settings";
+"block webs settings" = "Settings";
+
+"deny app removal tip" = "Prevent accidental deletion of Apps";
+"deny app installation tip" = "Hide AppStore to prevent installation of new Apps";
+"block apps tip" = "Hide Apps you don't want others to see";
+"shield apps tip" = "Restrict opening of designated Apps to prevent addiction to games and short videos";
+"block webs tip" = "Filter adult websites, malicious websites";
+
+
+"start" = "Start";
+"stop" = "Stop";
+
+"child mode tip" = "家长必备";
+"loan mode tip" = "职场必备";
+
+"settings" = "Settings";
+
+"suggesion mode settings" = "Suggesion";
+
+"every day" = "Every day";
+"every workday" = "Every workday";
+"every weekend" = "Every weekend";
+
+"limit apps open" = "Limit Apps Open";
+"limit apps open tip" = "Setting reasonable time interval for child to play games, watch TV, etc.";
+"time interval to limit apps open" = "Time Interval to limit Apps open";
+
+"add" = "Add";
+"time" = "Time";
+"from" = "Trom";
+"to" = "To";
+"cancel" = "Cancel";
+"done" = "Done";
+"delete" = "Delete";
+"repeat" = "Repeat";
+
+"limit apps" = "Limit Apps";
+"limit apps tip" = "Setting Games or Apps you need to limit to open";
+
+"select apps" = "Select Apps";
+
+"%lld apps" = "%lld Apps";
+"%lld blocked apps" = "%lld blocked Apps";
+
+"apps selected amount: %lld" = "App selected amount: %lld";
+"apps selected amount: %lld (exceeds max select amount %lld)" = "App selected amount: %lld (Exceeds max select amount %lld)";

@@ -1,0 +1,32 @@
+{
+    "childMode": {
+        "modeName": "child mode",
+        "isOn": false,
+        "isDenyAppRemoval": true,
+        "isDenyAppInstallation": true,
+        "isBlockApps": true,
+        "blockAppsSettings": {
+            "appTokens": [],
+            "categoryTokens": []
+        },
+        "isShieldApps": false,
+        "shieldAppsSettings": {
+            "items": []
+        }
+    },
+    "loanMode": {
+        "modeName": "loan mode",
+        "isOn": false,
+        "isDenyAppRemoval": false,
+        "isDenyAppInstallation": true,
+        "isBlockApps": true,
+        "blockAppsSettings": {
+            "appTokens": [],
+            "categoryTokens": []
+        },
+        "isShieldApps": false,
+        "shieldAppsSettings": {
+            "items": []
+        }
+    }
+}

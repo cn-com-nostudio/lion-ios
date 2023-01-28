@@ -50,10 +50,31 @@ extension LocalizedStringKey {
     static let limitApps: Self = "limit apps"
     static let limitAppsTip: Self = "limit apps tip"
     static let selectApps: Self = "select apps"
+<<<<<<< HEAD
 
     static let aboutChildMode: Self = "about child mode"
     static let aboutLoanMode: Self = "about loan mode"
 
+=======
+    
+    static let becomeSeniorMember: Self = "become senior member";
+    static let unlockAllFunctions: Self = "unlock all functions, protect your privacy";
+    static let twelveMonths: Self = "12 months";
+    static let twoCupsOfCoffee: Self = "2 cups of coffee";
+    static let lifeMember: Self = "life member";
+    static let payOnceAvailableForLife: Self = "pay once, available for life";
+    static let unlockImmediately: Self = "unlock immediately";
+    static let quickHelp: Self = "quick help";
+    static let feedbacksAndSuggestions: Self = "feedbacks and suggesctions";
+    static let passwordLock = "password lock";
+    static let userLisence = "user lisence";
+    static let privacyPolicy = "privacy policy";
+    static let shareToFriends = "share to friends";
+    static let specialThanks = "special thanks";
+    static let appStoreReviews = "app store reviews";
+    static let giveUsAFiveStarComment = "give us a five-star comment on appstore"
+     
+>>>>>>> daab707ac3d133dd742a840fd477185103c7f637
     static func nOfApps(_ number: Int) -> Self {
         "\(number) apps"
     }
@@ -69,4 +90,15 @@ extension LocalizedStringKey {
     static func nOfAppsSelected(_ number: Int, exceeds maxAmount: Int) -> Self {
         "apps selected amount: \(number) (exceeds max select amount \(maxAmount))"
     }
+
+    static func limitTimeOffer(_ percentage: Int) -> Self {
+        "limit time offer \(percentage)%"
+    }
+    
+    static func version(_ version: String, buildVersion: String) -> Self {
+        "version \(version)(\(buildVersion)"
+    }
+    
+
+
 }

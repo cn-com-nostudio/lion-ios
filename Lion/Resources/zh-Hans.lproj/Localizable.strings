@@ -63,5 +63,30 @@
 "apps selected amount: %lld" = "您已经选中%lld个应用";
 "apps selected amount: %lld (exceeds max select amount %lld)" = "您已经选中%lld个应用(超出最大可选择数量%lld)";
 
+<<<<<<< HEAD
 "about child mode" = "关于带娃模式";
 "about loan mode" = "关于出借模式";
+=======
+"become senior member" = "成为高级会员";
+"unlock all functions, protect your privacy" = "解锁所有功能，全力守护你的隐私";
+
+"12 months" = "12个月";
+"2 cups of coffee" = "2杯咖啡";
+"limit time offer %lld%" = "限时%lld%优惠";
+"life member" = "终身会员";
+"pay once, available for life" = "一次付费，终身可用";
+"unlock immediately" = "立刻解锁";
+
+"quick help" = "快速上手";
+"feedbacks and suggesctions" = "反馈建议";
+"password lock" = "密码锁";
+"user lisence" = "用户协议";
+"privacy policy" = "隐私政策";
+"share to friends" = "分享给朋友";
+"special thanks" = "特别感谢";
+
+"app store reviews" = "App Store 评价";
+"give us a five-star comment on appstore" = "请帮我们写个好评，非常感谢😊";
+
+"version %@(%@)" = "版本 %@(%@)";
+>>>>>>> daab707ac3d133dd742a840fd477185103c7f637

@@ -74,6 +74,7 @@
 		86CF0C5C296DA51C002276E5 /* HourMinute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CF0C5B296DA51C002276E5 /* HourMinute.swift */; };
 		86CF90AC295AAB1400AC517D /* ImageSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CF90AB295AAB1400AC517D /* ImageSet.swift */; };
 		86D88D5E2966D1480051D80F /* ShieldAppsMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D88D5D2966D1480051D80F /* ShieldAppsMonitor.swift */; };
+		86DDA76F2984D78D002EDE60 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DDA76E2984D78D002EDE60 /* MoreView.swift */; };
 		86E1DA8C295D3D9A00839256 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E1DA8B295D3D9A00839256 /* Serializer.swift */; };
 		86E1DA8E295D3DBE00839256 /* CodableSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E1DA8D295D3DBE00839256 /* CodableSerializer.swift */; };
 		86E1DA94295D421800839256 /* StringSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E1DA93295D421800839256 /* StringSerializer.swift */; };
@@ -226,6 +227,7 @@
 		86CF0C5B296DA51C002276E5 /* HourMinute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourMinute.swift; sourceTree = "<group>"; };
 		86CF90AB295AAB1400AC517D /* ImageSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSet.swift; sourceTree = "<group>"; };
 		86D88D5D2966D1480051D80F /* ShieldAppsMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldAppsMonitor.swift; sourceTree = "<group>"; };
+		86DDA76E2984D78D002EDE60 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
 		86E1DA8B295D3D9A00839256 /* Serializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializer.swift; sourceTree = "<group>"; };
 		86E1DA8D295D3DBE00839256 /* CodableSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableSerializer.swift; sourceTree = "<group>"; };
 		86E1DA93295D421800839256 /* StringSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringSerializer.swift; sourceTree = "<group>"; };
@@ -530,6 +532,7 @@
 				8660B7112965B0DB00C77E72 /* ShieldAppsSettings */,
 				86C5412F295C831A001D5481 /* ModeSelection */,
 				86E1DA9F295EA16300839256 /* ModeHeaderView.swift */,
+				86DDA76E2984D78D002EDE60 /* MoreView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1010,6 +1013,7 @@
 				8660B7132965B12500C77E72 /* ShieldAppsSettingsView.swift in Sources */,
 				865497A82959F02000183C47 /* SystemIcon.swift in Sources */,
 				86E1DA9E295E9BB400839256 /* Color+Hex.swift in Sources */,
+				86DDA76F2984D78D002EDE60 /* MoreView.swift in Sources */,
 				8646AC30295B25FA00AEADC4 /* RoundedCornerStyle.swift in Sources */,
 				862E8164295C9E3F0098F1D6 /* PrimaryButton.swift in Sources */,
 				8607DB7B295CB59700FD213E /* Caching.swift in Sources */,

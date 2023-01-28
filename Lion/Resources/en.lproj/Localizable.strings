@@ -63,3 +63,27 @@
 
 "apps selected amount: %lld" = "App selected amount: %lld";
 "apps selected amount: %lld (exceeds max select amount %lld)" = "App selected amount: %lld (Exceeds max select amount %lld)";
+
+"become senior member" = "Become senior member";
+"unlock all functions, protect your privacy" = "Unlock all functions, Protect your privacy";
+
+"12 months" = "12 months";
+"2 cups of coffee" = "2 cups of coffee";
+"limit time offer %lld%" = "Limit time offer %lld%";
+"life member" = "Life Memeber";
+"pay once, available for life" = "Pay once, Available for life";
+"unlock immediately" = "Unlock Immediately";
+
+"quick help" = "Quick Help";
+"feedbacks and suggesctions" = "Feedbacks and Suggesctions";
+"password lock" = "Password Lock";
+"user lisence" = "User Lisence";
+"privacy policy" = "Privacy Policy";
+"share to friends" = "Share to friends";
+"special thanks" = "Special Thanks";
+
+"app store reviews" = "App Store Reviews";
+"give us a five-star comment on appstore" = "Give us a five-star comment on appstore";
+
+"version %@(%@)" = "Version %@(%@)";
+

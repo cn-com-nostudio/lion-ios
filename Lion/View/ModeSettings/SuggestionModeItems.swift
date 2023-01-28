@@ -1,6 +1,6 @@
 // SuggestionModeItems.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2023/1/4.
+// Created by Jerry X T Wang on 2023/1/28.
 
 import SwiftUI
 
@@ -8,36 +8,69 @@ struct SuggestionModeItems: View {
     let mode: ModeSettings.State
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text(.suggesionModeSettings)
-            HStack {
-                ForEach(mode.itemsOn.indices, id: \.self) { index in
-                    let item = mode.itemsOn[index]
-                    VStack(spacing: 8) {
-                        Image(systemIcon: item.icon)
-                            .foregroundColor(.gray)
-                        Text(item.name)
+        VStack {
+            Text(LocalizedStringKey(mode.modeName))
+                .font(.lion.title2)
+                .foregroundColor(.lion.primary)
+            VStack {
+                Text(.suggesionModeSettings)
+                    .font(.lion.caption1)
+                    .foregroundColor(.lion.secondary)
+                List {
+                    HStack(spacing: 32) {
+                        Image(systemIcon: .hourglass)
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(.denyAppInstallation)
+                                .foregroundColor(.lion.primary)
+                                .font(.lion.headline)
+                            Text(.denyAppInstallationTip)
+                                .foregroundColor(.lion.secondary)
+                                .font(.lion.caption1)
+                        }
                     }
-                    .frame(maxWidth: .infinity)
+                    HStack(spacing: 32) {
+                        Image(systemIcon: .hourglass)
+                            .font(.lion.largeTitle)
+                            .foregroundColor(.blue)
 
-                    if index < mode.itemsOn.count - 1 {
-                        Divider()
-                            .frame(height: 50)
-                    }
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(.denyAppInstallation)
+                                .foregroundColor(.lion.primary)
+                                .font(.lion.headline)
+                            Text(.denyAppRemovalTip)
+                                .foregroundColor(.lion.secondary)
+                                .font(.lion.caption1)
+                        }
+                    }.padding()
                 }
             }
-            .foregroundColor(.secondary)
-            .font(.callout.weight(.regular))
         }
-        .foregroundColor(.primary)
-        .font(.title3.weight(.medium))
+    }
+}
+
+private struct DenyAppInstallationItem: View {
+    var body: some View {
+        HStack(spacing: 32) {
+            Image(systemIcon: .hourglass)
+                .font(.lion.largeTitle)
+                .foregroundColor(.blue)
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text(.denyAppInstallation)
+                    .foregroundColor(.lion.primary)
+                    .font(.lion.headline)
+                Text(.denyAppRemovalTip)
+                    .foregroundColor(.lion.secondary)
+                    .font(.lion.caption1)
+            }
+        }
     }
 }
 
 struct SuggestionModeItems_Previews: PreviewProvider {
     static var previews: some View {
         SuggestionModeItems(mode: .child)
-            .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro Max"))
+            .previewDevice(PreviewDevice(rawValue: "iPhone 14"))
             .previewDisplayName("\(Self.self)")
             .environment(\.locale, .init(identifier: "zh_CN"))
     }

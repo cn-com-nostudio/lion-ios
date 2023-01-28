@@ -1,6 +1,6 @@
 // LocalizedStringKey.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2023/1/8.
+// Created by Jerry X T Wang on 2023/1/28.
 
 import SwiftUI
 
@@ -9,6 +9,8 @@ extension LocalizedStringKey {
     static let loanMode: Self = "loan mode"
     static let childModeTip: Self = "child mode tip"
     static let loanModeTip: Self = "loan mode tip"
+    static let aboutChildMode: Self = "about child mode"
+    static let aboutLoanMode: Self = "about loan mode"
     static let denyAppRemoval: Self = "deny app removal"
     static let denyAppRemovalTip: Self = "deny app removal tip"
     static let denyAppInstallation: Self = "deny app installation"

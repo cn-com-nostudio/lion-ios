@@ -1,6 +1,6 @@
 // ModePreview.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2023/1/3.
+// Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
 import SwiftUI
@@ -20,7 +20,7 @@ struct ModePreview: View {
                     VStack(alignment: .leading) {
                         Spacer()
                         Text(LocalizedStringKey(viewStore.modeName))
-                            .font(.largeTitle.weight(.semibold))
+                            .font(.lion.title1)
                             .foregroundColor(header.primaryColor)
                         Spacer()
                         CheckListView(store: store)

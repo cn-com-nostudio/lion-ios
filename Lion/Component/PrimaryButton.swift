@@ -1,6 +1,6 @@
 // PrimaryButton.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2023/1/1.
+// Created by Jerry X T Wang on 2023/1/28.
 
 import SwiftUI
 
@@ -8,7 +8,7 @@ struct PrimaryButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration
             .label
-            .font(.body.weight(.bold))
+            .font(.lion.title3)
             .foregroundColor(.black)
             .background(Color(ColorSet.lightYellow))
             .cornerRadius(16)

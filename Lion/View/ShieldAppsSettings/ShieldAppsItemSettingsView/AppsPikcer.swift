@@ -1,6 +1,6 @@
 // AppsPikcer.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2023/1/7.
+// Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
 import FamilyControls
@@ -30,7 +30,7 @@ struct AppsPicker: View {
                         maxSelectedAmount: viewStore.maxSelectAmount
                     )
                 )
-                .font(.footnote.weight(.semibold))
+                .font(.lion.caption2Bold)
                 .foregroundColor(
                     tipColor(
                         selectedAmount: viewStore.appTokens.count,

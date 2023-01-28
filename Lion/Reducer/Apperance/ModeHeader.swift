@@ -1,12 +1,13 @@
 // ModeHeader.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2023/1/4.
+// Created by Jerry X T Wang on 2023/1/28.
 
 import SwiftUI
 
 struct ModeHeader: Equatable {
     let modeName: LocalizedStringKey
     let modeTip: LocalizedStringKey
+    let aboutTip: LocalizedStringKey
     let headImage: Image
     let colors: [Color]
 }
@@ -25,6 +26,7 @@ enum ModeHeaders {
     static let child = ModeHeader(
         modeName: .childMode,
         modeTip: .childModeTip,
+        aboutTip: .aboutChildMode,
         headImage: Image(.child),
         colors: [Color(.darkIndigo), Color(.lightIndigo)]
     )
@@ -32,6 +34,7 @@ enum ModeHeaders {
     static let loan = ModeHeader(
         modeName: .loanMode,
         modeTip: .loanModeTip,
+        aboutTip: .aboutLoanMode,
         headImage: Image(.loan),
         colors: [Color(.darkBlue), Color(.lightBlue)]
     )

@@ -1,6 +1,6 @@
 // CodableSerializer.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2022/12/29.
+// Created by Jerry X T Wang on 2023/1/28.
 
 import Foundation
 
@@ -10,7 +10,7 @@ typealias Decode<T: Decodable> = (Data) throws -> T
 final class EncodableSerializer<Input>: Serializer where Input: Encodable {
     private let encode: Encode<Input>
 
-    init(encode: @escaping Encode<Input>) {
+    init(encode: @escaping Encode<Input> = JSONEncoder().encode) {
         self.encode = encode
     }
 

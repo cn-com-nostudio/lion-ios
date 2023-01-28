@@ -1,6 +1,6 @@
 // AppsSelection.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2023/1/9.
+// Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
 import FamilyControls
@@ -23,7 +23,7 @@ struct AppsSelection: ReducerProtocol {
         var maxSelectAmount: Int { 50 }
 
         var selection: FamilyActivitySelection {
-            var selection = FamilyActivitySelection(includeEntireCategory: false)
+            var selection = FamilyActivitySelection(includeEntireCategory: true)
             selection.applicationTokens = appTokens
             selection.categoryTokens = categoryTokens
             return selection

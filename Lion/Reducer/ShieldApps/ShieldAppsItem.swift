@@ -1,6 +1,6 @@
 // ShieldAppsItem.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2023/1/9.
+// Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
 import Foundation
@@ -46,8 +46,6 @@ struct ShieldAppsItem: ReducerProtocol {
             switch action {
             case let .toggleIsOn(isOn):
                 state.isOn = isOn
-                print(LocalizedStringKey.nOfApps(3))
-
                 return .none
 
             case let .weekday(.addWeekday(weekday)):

@@ -1,6 +1,6 @@
 // SystemIcon.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2023/1/2.
+// Created by Jerry X T Wang on 2023/1/28.
 
 import SwiftUI
 
@@ -21,6 +21,8 @@ enum SystemIcon: String, Codable {
     case gamecontrollerFill
     case handRaisedFill
     case chevronForward
+    case questionmarkCircle
+    case plus
 
     var name: String {
         var result = ""

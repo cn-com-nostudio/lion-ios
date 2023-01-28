@@ -1,6 +1,6 @@
 // ModeSettings.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2023/1/6.
+// Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
 import Foundation
@@ -137,6 +137,33 @@ struct ModeSettings: ReducerProtocol {
                     shieldAppsMonitor.stopMonitoringAll()
                 }, onlyWhen: state.isOn)
 
+            case .blockAppsSettings(.update):
+                return .fireAndForget({ [state] in
+                    modeManager.setBlockAppTokens(state.blockAppsSettings.appTokens)
+                }, onlyWhen: state.isOn && state.isBlockApps)
+
+            case let .shieldAppsSettings(.updateItem(item)):
+                return .fireAndForget({
+                    shieldAppsMonitor.stopMonitoringItem(item)
+                    try shieldAppsMonitor.startMonitoringItem(item)
+                }, onlyWhen: state.isOn && state.isShieldApps)
+
+            case let .shieldAppsSettings(.deleteItem(item)):
+                return .fireAndForget({
+                    shieldAppsMonitor.stopMonitoringItem(item)
+                }, onlyWhen: state.isOn && state.isShieldApps)
+
+            case let .shieldAppsSettings(.items(id: id, action: .toggleIsOn(isOn))):
+                return .fireAndForget({ [state] in
+                    if let item = state.shieldAppsSettings.items[id: id] {
+                        if isOn {
+                            try shieldAppsMonitor.startMonitoringItem(item)
+                        } else {
+                            shieldAppsMonitor.stopMonitoringItem(item)
+                        }
+                    }
+                }, onlyWhen: state.isOn && state.isShieldApps)
+
             default:
                 return .none
             }
@@ -148,13 +175,6 @@ struct ModeSettings: ReducerProtocol {
 
         Scope(state: \.shieldAppsSettings, action: /Action.shieldAppsSettings) {
             ShieldAppsSettings()
-        }
-
-        Reduce { _, action in
-            switch action {
-            default:
-                return .none
-            }
         }
     }
 }

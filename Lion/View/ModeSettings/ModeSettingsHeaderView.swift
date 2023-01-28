@@ -1,6 +1,6 @@
 // ModeSettingsHeaderView.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2023/1/4.
+// Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
 import SwiftUI
@@ -36,10 +36,10 @@ struct ModeSettingsHeaderView: View {
                     VStack(alignment: .leading, spacing: 5) {
                         Spacer()
                         Text(header.modeTip)
-                            .font(.body.weight(.semibold))
+                            .font(.lion.title3)
                             .foregroundColor(.white.opacity(0.5))
                         Text(header.modeName)
-                            .font(.title.weight(.semibold))
+                            .font(.lion.largeTitle)
                             .foregroundColor(.white)
                         Spacer()
                         Spacer()

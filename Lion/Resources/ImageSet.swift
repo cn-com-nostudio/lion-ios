@@ -11,6 +11,7 @@ enum ImageSet: String {
     case games
     case selector
     case starts
+    case blue
 }
 
 extension Image {

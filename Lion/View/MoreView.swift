@@ -30,5 +30,6 @@ struct MoreHeader: View {
 //            Text(.becomeSeniorMember)
 //                .font(.lion)
         }
+        .background(Image(.blue))
     }
 }

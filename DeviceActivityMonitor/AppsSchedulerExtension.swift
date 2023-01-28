@@ -1,6 +1,6 @@
 // AppsSchedulerExtension.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2023/1/13.
+// Created by Jerry X T Wang on 2023/1/14.
 
 import DeviceActivity
 import Foundation
@@ -9,17 +9,18 @@ import ManagedSettings
 class AppsSchedulerExtension: DeviceActivityMonitor {
     private let store: ManagedSettingsStore = .init()
     private var appScheduler: AppsScheduler = .init()
-    private let userDefault: UserDefaults = .standard
 
     override func intervalDidStart(for activity: DeviceActivityName) {
         super.intervalDidStart(for: activity)
         appScheduler.intervalDidStart(for: activity)
-        store.shield.applications = appScheduler.shield.applications
+        let applications = appScheduler.shield.applications
+        store.shield.applications = applications
     }
 
     override func intervalDidEnd(for activity: DeviceActivityName) {
         super.intervalDidEnd(for: activity)
         appScheduler.intervalDidEnd(for: activity)
-        store.shield.applications = appScheduler.shield.applications
+        let applications = appScheduler.shield.applications
+        store.shield.applications = applications
     }
 }

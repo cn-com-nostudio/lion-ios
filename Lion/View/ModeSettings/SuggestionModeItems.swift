@@ -1,6 +1,6 @@
 // SuggestionModeItems.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2023/1/4.
+// Created by Jerry X T Wang on 2023/1/14.
 
 import SwiftUI
 
@@ -8,29 +8,19 @@ struct SuggestionModeItems: View {
     let mode: ModeSettings.State
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text(.suggesionModeSettings)
-            HStack {
-                ForEach(mode.itemsOn.indices, id: \.self) { index in
-                    let item = mode.itemsOn[index]
-                    VStack(spacing: 8) {
-                        Image(systemIcon: item.icon)
-                            .foregroundColor(.gray)
-                        Text(item.name)
-                    }
-                    .frame(maxWidth: .infinity)
-
-                    if index < mode.itemsOn.count - 1 {
-                        Divider()
-                            .frame(height: 50)
-                    }
+        VStack {
+            Text(LocalizedStringKey(mode.modeName))
+                .font(.lion.title2)
+                .foregroundColor(.lion.primary)
+            VStack {
+                Text(.suggesionModeSettings)
+                    .font(.lion.caption1)
+                    .foregroundColor(.lion.secondary)
+                List {
+                    <#code#>
                 }
             }
-            .foregroundColor(.secondary)
-            .font(.callout.weight(.regular))
         }
-        .foregroundColor(.primary)
-        .font(.title3.weight(.medium))
     }
 }
 

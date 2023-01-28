@@ -1,6 +1,6 @@
 // LocalizedStringKey.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2023/1/8.
+// Created by Jerry X T Wang on 2023/1/14.
 
 import SwiftUI
 
@@ -50,6 +50,9 @@ extension LocalizedStringKey {
     static let limitApps: Self = "limit apps"
     static let limitAppsTip: Self = "limit apps tip"
     static let selectApps: Self = "select apps"
+
+    static let aboutChildMode: Self = "about child mode"
+    static let aboutLoanMode: Self = "about loan mode"
 
     static func nOfApps(_ number: Int) -> Self {
         "\(number) apps"

@@ -1,6 +1,6 @@
 // ShieldAppsItemSettingsView.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2023/1/8.
+// Created by Jerry X T Wang on 2023/1/14.
 
 import ComposableArchitecture
 import FamilyControls
@@ -10,7 +10,7 @@ struct ShieldAppsItemSettingsView: View {
     let store: StoreOf<ShieldAppsItem>
     var cancel: () -> Void
     var done: (ShieldAppsItem.State) -> Void
-    var delete: (UUID) -> Void
+    var delete: (ShieldAppsItem.State) -> Void
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -41,7 +41,7 @@ struct ShieldAppsItemSettingsView: View {
 
                     VStack(spacing: 16) {
                         doneButton { done(viewStore.state) }
-                        deleteButton { delete(viewStore.id) }
+                        deleteButton { delete(viewStore.state) }
                     }
                 }
                 .navigationBarTitle(.limitAppsOpen, displayMode: .inline)

@@ -1,8 +1,15 @@
 // ColorSet.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2023/1/1.
+// Created by Jerry X T Wang on 2023/1/14.
 
 import SwiftUI
+
+extension LionNamespacing where Base == Color {
+    static let primary = Color(hex: 0x191A1C)
+    static let secondary = Color(hex: 0x191A1C).opacity(0.5)
+}
+
+extension Color: LionNamespacingCompatible {}
 
 enum ColorSet: String {
     case darkCyan

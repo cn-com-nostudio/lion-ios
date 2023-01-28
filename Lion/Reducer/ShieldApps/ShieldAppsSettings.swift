@@ -1,6 +1,6 @@
 // ShieldAppsSettings.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2023/1/11.
+// Created by Jerry X T Wang on 2023/1/14.
 
 import ComposableArchitecture
 import Foundation
@@ -21,12 +21,12 @@ struct ShieldAppsSettings: ReducerProtocol {
 
         case addItem
         case updateItem(ShieldAppsItem.State)
-        case deleteItem(UUID)
+        case deleteItem(ShieldAppsItem.State)
+
+        case items(id: ShieldAppsItem.State.ID, action: ShieldAppsItem.Action)
 
         case selectedItem(UUID)
         case deselectedItem
-
-        case items(id: ShieldAppsItem.State.ID, action: ShieldAppsItem.Action)
         case item(ShieldAppsItem.Action)
     }
 
@@ -50,8 +50,8 @@ struct ShieldAppsSettings: ReducerProtocol {
                 }
                 return .none
 
-            case let .deleteItem(id):
-                state.items[id: id] = nil
+            case let .deleteItem(item):
+                state.items[id: item.id] = nil
                 return .none
 
             case let .selectedItem(id):

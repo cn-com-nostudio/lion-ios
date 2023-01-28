@@ -62,3 +62,6 @@
 
 "apps selected amount: %lld" = "您已经选中%lld个应用";
 "apps selected amount: %lld (exceeds max select amount %lld)" = "您已经选中%lld个应用(超出最大可选择数量%lld)";
+
+"about child mode" = "关于带娃模式";
+"about loan mode" = "关于出借模式";

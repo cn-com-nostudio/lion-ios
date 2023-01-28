@@ -63,3 +63,6 @@
 
 "apps selected amount: %lld" = "App selected amount: %lld";
 "apps selected amount: %lld (exceeds max select amount %lld)" = "App selected amount: %lld (Exceeds max select amount %lld)";
+
+"about child mode" = "about child mode";
+"about loan mode" = "about loan mode";

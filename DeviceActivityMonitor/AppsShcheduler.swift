@@ -1,8 +1,9 @@
 // AppsShcheduler.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2023/1/13.
+// Created by Jerry X T Wang on 2023/1/14.
 
 import DeviceActivity
+import Foundation
 import ManagedSettings
 
 // These name should align with container app.
@@ -17,7 +18,7 @@ extension DeviceActivityName {
 
 struct Settings: Codable {
     // String is DeviceActivityName.rawValue
-    private var appTokens: [String: [ApplicationToken]] = [:]
+    private(set) var appTokens: [String: [ApplicationToken]] = [:]
 
     var applications: Set<ApplicationToken> {
         Set(appTokens.values.flatMap { $0 })
@@ -38,8 +39,24 @@ struct Settings: Codable {
 
 struct AppsScheduler {
     private let center: DeviceActivityCenter = .init()
-    private(set) var shield: Settings = .init()
+    private let cache: UserDefaultCache<Settings>
+
     private let shieldEventKey: DeviceActivityEvent.Name = .shieldSettings
+    private let shieldSettingsCacheKey = CacheKey<Settings>("shield_settings")
+    private(set) var shield: Settings {
+        didSet {
+            try? cache.save(shield, for: shieldSettingsCacheKey)
+        }
+    }
+
+    init(cache: UserDefaultCache<Settings> = .init()) {
+        self.cache = cache
+        if let shield = try? cache.load(from: shieldSettingsCacheKey) {
+            self.shield = shield
+        } else {
+            shield = .init()
+        }
+    }
 
     mutating func intervalDidStart(for activity: DeviceActivityName) {
         guard let shieldEvent = center.events(for: activity)[shieldEventKey] else { return }

@@ -1,6 +1,6 @@
 // Alignment.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2022/12/28.
+// Created by Jerry X T Wang on 2023/1/14.
 
 // The SwiftUI Lab
 // Website: https://swiftui-lab.com

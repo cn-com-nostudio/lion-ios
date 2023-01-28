@@ -1,6 +1,6 @@
 // ModeItemView.swift
 // Copyright (c) 2023 Soda Studio
-// Created by Jerry X T Wang on 2023/1/3.
+// Created by Jerry X T Wang on 2023/1/14.
 
 import ComposableArchitecture
 import FamilyControls
@@ -37,12 +37,12 @@ struct ModeItemView: View {
                     VStack(alignment: .leading) {
                         Toggle(item.name, isOn: $isOn)
                             .foregroundColor(.white)
-                            .font(.title2.weight(.semibold))
+                            .font(.lion.title2)
                             .alignmentGuide(.hAlignment) { $0[VerticalAlignment.center] }
                         Text(item.tip)
                             .lineLimit(1)
                             .foregroundColor(.white.opacity(0.8))
-                            .font(.callout.weight(.regular))
+                            .font(.lion.caption1)
                     }
                     Spacer()
                     if item.hasSubSettings {
@@ -50,7 +50,7 @@ struct ModeItemView: View {
                             Text(item.subSettingsTip)
                                 .lineLimit(1)
                                 .foregroundColor(.white.opacity(0.8))
-                                .font(.callout.weight(.regular))
+                                .font(.lion.caption1)
                             Spacer()
 
                             Button(

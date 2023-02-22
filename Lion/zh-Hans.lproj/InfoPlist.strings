@@ -7,3 +7,5 @@
 */
 
 "CFBundleDisplayName" = "躲猫猫";
+
+"NSFaceIDUsageDescription" = "需要FaceID权限";

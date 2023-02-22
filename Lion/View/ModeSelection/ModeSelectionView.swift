@@ -17,6 +17,7 @@ struct ModeSelectionView: View {
                     Image(.background)
                         .resizable()
                         .ignoresSafeArea()
+
                     PagingView(config: .init(margin: 50, spacing: 30)) {
                         Group {
                             ModePreview(
@@ -26,6 +27,7 @@ struct ModeSelectionView: View {
                                 ),
                                 header: ModeHeaders[viewStore.childMode],
                                 action: {
+                                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
                                     if viewStore.loanMode.isOn {
                                         viewStore.send(.loanMode(.toggleIsOn(false)))
                                     }
@@ -40,6 +42,7 @@ struct ModeSelectionView: View {
                                 ),
                                 header: ModeHeaders[viewStore.loanMode],
                                 action: {
+                                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
                                     if viewStore.childMode.isOn {
                                         viewStore.send(.childMode(.toggleIsOn(false)))
                                     }
@@ -49,66 +52,19 @@ struct ModeSelectionView: View {
                         }
                         .aspectRatio(0.6, contentMode: .fit)
                     }
-                    .toolbar {
-                        ToolbarItem(placement: .principal) {
-                            HStack {
-                                Image(.cat)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height: 60)
 
-                                Spacer()
-
-                                if !viewStore.member.isMember {
-                                    Button {
-                                        viewStore.send(.member(.toggleIsMemberPurchasePresented(true)))
-                                    } label: {
-                                        HStack {
-                                            Image(.beMember)
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fit)
-
-                                            Image(.pro)
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fit)
-                                        }
-                                        .frame(height: 24)
-                                    }
-                                }
-                            }
+                    VStack {
+                        topBar(isMember: viewStore.member.isMember) {
+                            viewStore.send(.member(.toggleIsMemberPurchasePresented(true)))
                         }
+                        .padding(.horizontal, 20)
+                        Spacer()
+                        bottomBar {
+                            viewStore.send(.toggleIsMorePageShow(true))
+                        }
+                        .padding(.horizontal, 32)
                     }
                 }
-
-                HStack {
-                    NavigationLink {
-                        WebView(url: MoreItem.quickHelp().link)
-                            .navigationTitle(.quickHelp)
-                    } label: {
-                        VStack {
-                            Image(.boat)
-                                .resizable()
-                                .frame(width: 24, height: 24)
-                            Text(.quickHelp)
-                        }
-                    }
-
-                    Spacer()
-
-                    Button {
-                        viewStore.send(.toggleIsMorePageShow(true))
-                    } label: {
-                        VStack {
-                            Image(.settings)
-                                .resizable()
-                                .frame(width: 24, height: 24)
-                            Text(.settings)
-                        }
-                    }
-                }
-                .font(.lion.caption2)
-                .foregroundColor(.lion.secondary)
-                .padding(.horizontal, .two)
             }
             .fullScreenCover(
                 isPresented: viewStore.binding(
@@ -120,6 +76,68 @@ struct ModeSelectionView: View {
                     )
             }
         }
+    }
+
+    func topBar(isMember: Bool, beAMemberAction: @escaping () -> Void) -> some View {
+        HStack {
+            Image(.cat)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 60)
+
+            Spacer()
+
+            if !isMember {
+                Button {
+                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    beAMemberAction()
+                } label: {
+                    HStack {
+                        Image(.beAMember)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+
+                        Image(.pro)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }
+                    .frame(height: 24)
+                }
+            }
+        }
+    }
+
+    func bottomBar(settingsAction: @escaping () -> Void) -> some View {
+        HStack {
+            NavigationLink {
+                WebView(url: MoreItem.quickHelp().link)
+                    .navigationTitle(.quickHelp)
+            } label: {
+                VStack {
+                    Image(.boat)
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                    Text(.quickHelp)
+                }
+                .hapticFeedback(style: .light)
+            }
+
+            Spacer()
+
+            Button {
+                UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                settingsAction()
+            } label: {
+                VStack {
+                    Image(.settings)
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                    Text(.settings)
+                }
+            }
+        }
+        .font(.lion.caption2)
+        .foregroundColor(.lion.secondary)
     }
 }
 

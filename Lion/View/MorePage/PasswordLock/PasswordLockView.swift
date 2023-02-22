@@ -28,6 +28,7 @@ struct PasswordLockView: View {
                 "",
                 isOn: isOn
             )
+            .hapticFeedback(style: .light)
         }
     }
 
@@ -39,6 +40,7 @@ struct PasswordLockView: View {
                 "",
                 isOn: isOn
             )
+            .hapticFeedback(style: .light)
         }
     }
 

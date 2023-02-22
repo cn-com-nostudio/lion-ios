@@ -258,6 +258,7 @@
 		86B7A038295197BE00D3D34A /* LionUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LionUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		86CB364929A6363E002F434B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		86CB364B29A63640002F434B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		86CB364C29A67C66002F434B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A41DAE522977D65200361AE1 /* UserDefaultCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultCache.swift; sourceTree = "<group>"; };
 		A469FC5629793AEE006E47D3 /* ShieldActionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShieldActionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A469FC5929793AEE006E47D3 /* ShieldActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldActionExtension.swift; sourceTree = "<group>"; };
@@ -334,6 +335,7 @@
 		865E014D29A61AA100B8DE82 /* Lion */ = {
 			isa = PBXGroup;
 			children = (
+				86CB364C29A67C66002F434B /* Info.plist */,
 				865E01DC29A61AA100B8DE82 /* Lion.entitlements */,
 				86CB364A29A6363E002F434B /* InfoPlist.strings */,
 				865E015029A61AA100B8DE82 /* LionApp.swift */,
@@ -1012,6 +1014,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		865E028F29A61FFC00B8DE82 /* Run Scripts */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1026,7 +1029,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n./scripts/runSwiftlint.sh\n./scripts/runSwiftFormat.sh\n./scripts/autoIncreaseBuildVersion.sh\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n./scripts/runSwiftlint.sh\n./scripts/runSwiftFormat.sh\n# ./scripts/autoIncreaseBuildVersion.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1219,12 +1222,13 @@
 				CODE_SIGN_ENTITLEMENTS = Lion/Lion.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_ASSET_PATHS = "\"Lion/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = G32N9Q2G5M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Lion/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1259,12 +1263,13 @@
 				CODE_SIGN_ENTITLEMENTS = Lion/Lion.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_ASSET_PATHS = "\"Lion/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = G32N9Q2G5M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Lion/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

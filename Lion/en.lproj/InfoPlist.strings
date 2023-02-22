@@ -7,3 +7,5 @@
 */
 
 "CFBundleDisplayName" = "Hidding Cat111";
+
+"NSFaceIDUsageDescription" = "Grant FaceID access";

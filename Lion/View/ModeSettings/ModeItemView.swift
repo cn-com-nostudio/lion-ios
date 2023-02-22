@@ -55,6 +55,7 @@ struct ModeItemView: View {
 
                             Button(
                                 action: {
+                                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
                                     settingsAction?()
                                 },
                                 label: {

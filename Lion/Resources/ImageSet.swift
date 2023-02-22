@@ -38,7 +38,7 @@ enum ImageSet: String {
     case boat
     case settings
 
-    case beMember
+    case beAMember
     case discount
 
     case threeDots

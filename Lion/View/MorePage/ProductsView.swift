@@ -54,12 +54,12 @@ struct ProductsView: View {
                 }
 
                 Button {
+                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
                     if selected == .lifetimeMember {
                         viewStore.send(.lifetimeMember(.purchase))
                     } else {
                         viewStore.send(.yearlyMember(.purchase))
                     }
-
                 } label: {
                     if selected == .lifetimeMember {
                         Text(.unlockImmediately)

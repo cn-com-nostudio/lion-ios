@@ -79,6 +79,7 @@ struct PasscodeField<Label>: View, KeyboardNotifiable where Label: View {
             get: { pin.concat },
             set: { newValue in
                 guard newValue != pin.concat else { return }
+                UIImpactFeedbackGenerator(style: .light).impactOccurred()
                 guard !isAttemptsAnimating else { return }
                 pin = .init(digits: newValue.map { $0 }, upTo: maxDigits)
 

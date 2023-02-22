@@ -35,6 +35,7 @@ import Foundation
 }
 
 extension SortedSet where Element == Weekday {
-    static var workdays: SortedSet<Weekday> = [.monday, .tuesday, .wednesday, .thursday, .friday]
+    static let workdays: SortedSet<Weekday> = [.monday, .tuesday, .wednesday, .thursday, .friday]
     static let weekend: SortedSet<Weekday> = [.saturday, .sunday]
+    static let everyDay: SortedSet<Weekday> = SortedSet(Weekday.allCases)
 }

@@ -50,6 +50,7 @@ struct Root: ReducerProtocol {
         case loanMode(ModeSettings.Action)
         case passwordLock(PasswordLock.Action)
         case member(Member.Action)
+        case syncScreenTimeAuthorizationStatus
         case requestScreenTimeAccessPermission
         case updateIsScreenTimeAccessGranted(Bool)
         case toggleIsMorePageShow(Bool)
@@ -68,14 +69,22 @@ struct Root: ReducerProtocol {
                 state.appInfo.name = appInfo.name()
                 state.appInfo.version = appInfo.version()
                 state.appInfo.buildVersion = appInfo.buildVersion()
-                return .task { @MainActor in
-                    let isAccessGranted = await screenTimeAuth.isAccessGranted()
-                    return .updateIsScreenTimeAccessGranted(isAccessGranted)
+                return .run { [state] send in
+                    if state.passwordLock.isOn {
+                        await send(.passwordLock(.toggleIsPasswordUnlockPresented(true)))
+                    }
+                    await send(.syncScreenTimeAuthorizationStatus)
                 }
 
             case .rateApp:
                 return .fireAndForget {
                     await application.rate()
+                }
+
+            case .syncScreenTimeAuthorizationStatus:
+                return .task {
+                    let isAccessGranted = await screenTimeAuth.isAccessGranted()
+                    return .updateIsScreenTimeAccessGranted(isAccessGranted)
                 }
 
             case .requestScreenTimeAccessPermission:

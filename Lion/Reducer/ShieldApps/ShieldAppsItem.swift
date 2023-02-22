@@ -24,7 +24,7 @@ struct ShieldAppsItem: ReducerProtocol {
             id: UUID,
             isOn: Bool = false,
             timeInterval: TimeInterval.State = .default,
-            weekdays: SortedSet<Weekday> = .workdays,
+            weekdays: SortedSet<Weekday> = .everyDay,
             selectedApps: AppsSelection.State = .none
         ) {
             self.id = id

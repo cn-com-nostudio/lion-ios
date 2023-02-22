@@ -84,6 +84,7 @@ struct PasswordLockView: View {
                                     )
                                 )
                                 Divider()
+                                    .opacity(0.5)
                             }
                             resetPasswordRow(action: {
                                 viewStore.send(.toggleIsPasswordSetupPresented(true))

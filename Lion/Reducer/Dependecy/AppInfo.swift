@@ -24,10 +24,10 @@ extension AppInfo: DependencyKey {
             (bundle.localizedInfoDictionary?["CFBundleDisplayName"] as? String) ?? ""
         },
         version: {
-            (bundle.localizedInfoDictionary?["CFBundleShortVersionString"] as? String) ?? ""
+            (bundle.infoDictionary?["CFBundleShortVersionString"] as? String) ?? ""
         },
         buildVersion: {
-            (bundle.localizedInfoDictionary?["CFBundleVersion"] as? String) ?? ""
+            (bundle.infoDictionary?["CFBundleVersion"] as? String) ?? ""
         }
     )
 

@@ -4,29 +4,26 @@
 
 import SwiftUI
 
-struct PostActions: OptionSet {
-    let rawValue: Int
-}
-
-extension PostActions {
-    static let reset: Self = .init(rawValue: 1 << 0)
-    static let shake: Self = .init(rawValue: 1 << 1)
+enum PostAction {
+    case reset(delay: Double)
+    case shake(delay: Double)
+    case unfocus(delay: Double)
 }
 
 struct PasscodeField<Label>: View, KeyboardNotifiable where Label: View {
     private let maxDigits: Int
-    private let action: (DigitGroup) -> PostActions
+    private let submit: (DigitGroup) -> [PostAction]
     private let label: () -> Label
 
     init(
         input: Binding<String> = .constant(""),
         maxDigits: Int = 4,
-        action: @escaping (DigitGroup) -> PostActions,
+        submit: @escaping (DigitGroup) -> [PostAction],
         @ViewBuilder label: @escaping () -> Label
     ) {
         _input = input
         self.maxDigits = maxDigits
-        self.action = action
+        self.submit = submit
 
         self.label = label
         pin = .blank(upTo: maxDigits)
@@ -126,22 +123,31 @@ struct PasscodeField<Label>: View, KeyboardNotifiable where Label: View {
             hidesPin = true
             return
         }
-        let deadline: DispatchTime = .now() + 0.4
-        DispatchQueue.main.asyncAfter(deadline: deadline) {
-            let postActions = action(pin)
-            excutePostActions(postActions)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            let postActions = submit(pin)
+            executePostActions(postActions)
         }
     }
 
-    private func excutePostActions(_ actions: PostActions) {
-        if actions.contains(.shake) {
-            shake()
-        }
-
-        let deadline: DispatchTime = .now() + (actions.contains(.shake) ? 0.4 : 0)
-        DispatchQueue.main.asyncAfter(deadline: deadline) {
-            if actions.contains(.reset) {
-                reset()
+    private func executePostActions(_ postActions: [PostAction]) {
+        postActions.forEach { action in
+            switch action {
+            case let .reset(delay):
+                let deadline: DispatchTime = .now() + delay
+                DispatchQueue.main.asyncAfter(deadline: deadline) {
+                    reset()
+                }
+            case let .shake(delay):
+                let deadline: DispatchTime = .now() + delay
+                DispatchQueue.main.asyncAfter(deadline: deadline) {
+                    shake()
+                }
+            case let .unfocus(delay):
+                let deadline: DispatchTime = .now() + delay
+                DispatchQueue.main.asyncAfter(deadline: deadline) {
+                    unfocus()
+                }
             }
         }
     }
@@ -153,15 +159,19 @@ struct PasscodeField<Label>: View, KeyboardNotifiable where Label: View {
     private func shake() {
         attempts += 1
     }
+
+    private func unfocus() {
+        isFocused = false
+    }
 }
 
 extension PasscodeField where Label == Text {
     init(
         _ title: some StringProtocol,
         maxDigits: Int = 4,
-        action: @escaping (DigitGroup) -> PostActions
+        action: @escaping (DigitGroup) -> [PostAction]
     ) {
-        self.init(maxDigits: maxDigits, action: action) {
+        self.init(maxDigits: maxDigits, submit: action) {
             Text(title)
                 .font(.title)
         }
@@ -172,9 +182,9 @@ struct PasscodeField_Previews: PreviewProvider {
     static var previews: some View {
         PasscodeField("Please Enter Passcode") { digits in
             if digits.concat == "1234" {
-                return .shake
+                return [.shake(delay: 0)]
             } else {
-                return .reset
+                return [.reset(delay: 0)]
             }
         }
     }

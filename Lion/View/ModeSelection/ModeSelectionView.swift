@@ -52,19 +52,14 @@ struct ModeSelectionView: View {
                     .toolbar {
                         ToolbarItem(placement: .principal) {
                             HStack {
-                                Image(.hiddingCat)
+                                Image(.cat)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-                                    .frame(height: 24)
+                                    .frame(height: 60)
 
                                 Spacer()
 
-                                if viewStore.member.isMember {
-                                    Image(.pro)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(height: 24)
-                                } else {
+                                if !viewStore.member.isMember {
                                     Button {
                                         viewStore.send(.member(.toggleIsMemberPurchasePresented(true)))
                                     } label: {

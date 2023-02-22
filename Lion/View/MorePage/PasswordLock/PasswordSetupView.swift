@@ -36,18 +36,18 @@ struct PasswordSetupView: View {
 
                 PasscodeField(
                     maxDigits: viewStore.passwordLength,
-                    action: { digits in
+                    submit: { digits in
                         if hasNewPasswordInputDone(passwordLength: viewStore.passwordLength) {
                             let confirmNewPassword = digits.concat
                             if confirmNewPassword == newPassword {
                                 viewStore.send(.updatePassword(newPassword))
                                 return []
                             } else {
-                                return [.reset, .shake]
+                                return [.reset(delay: 0.3), .shake(delay: 0.3)]
                             }
                         } else {
                             newPassword = digits.concat
-                            return .reset
+                            return [.reset(delay: 0)]
                         }
                     },
                     label: { head(passwordLength: viewStore.passwordLength) }

@@ -49,8 +49,8 @@ struct PasswordLock: ReducerProtocol {
         @NotCoded var isFaceIDSupported: Bool = false
 
         @NotCoded var isPasswordSetupPresented: Bool = false
-
         @NotCoded var isPasswordUnlockPresented: Bool = false
+
         @NotCoded var biometricPassword: String = ""
 
         @NotCoded var alert: AlertState<Action>?
@@ -164,6 +164,10 @@ struct PasswordLock: ReducerProtocol {
                 state.isPasswordSetupPresented = isOn
                 return .none
 
+            case let .toggleIsPasswordUnlockPresented(isOn):
+                state.isPasswordUnlockPresented = isOn
+                return .none
+
             case let .showAlert(alert):
                 state.alert = alert
                 return .none
@@ -181,10 +185,6 @@ struct PasswordLock: ReducerProtocol {
                 return .fireAndForget {
                     // TO DO: Tell user how to set device password and how to enroll faceID.
                 }
-
-            case let .toggleIsPasswordUnlockPresented(isOn):
-                state.isPasswordUnlockPresented = isOn
-                return .none
 
             case .readBiometricPassword:
                 return .task {

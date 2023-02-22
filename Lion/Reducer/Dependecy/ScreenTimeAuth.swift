@@ -20,7 +20,7 @@ struct ScreenTimeAuth {
 
 extension ScreenTimeAuth: DependencyKey {
     static let center = AuthorizationCenter.shared
-    static let globalQueue = DispatchQueue.main
+    static let mainQueue = DispatchQueue.main
 
     static var liveValue: Self = .init(
         requestAuthorization: {
@@ -36,8 +36,10 @@ extension ScreenTimeAuth: DependencyKey {
             return status == .approved
         },
         isAccessGranted: {
+            // 该方法只在app启动的时候获取有效，如果app启动后，去app设置里开关权限，则这个获取结果不准。
             await withCheckedContinuation { continuation in
-                globalQueue.asyncAfter(deadline: .now() + 0.5) {
+                _ = center.authorizationStatus
+                mainQueue.asyncAfter(deadline: .now()) {
                     let isGranted = center.authorizationStatus == .approved
                     continuation.resume(returning: isGranted)
                 }

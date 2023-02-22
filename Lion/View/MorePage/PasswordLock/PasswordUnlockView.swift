@@ -37,13 +37,13 @@ struct PasswordUnlockView: View {
                             send: { _ in .none }
                         ),
                         maxDigits: viewStore.password.passwordLength,
-                        action: { digits in
+                        submit: { digits in
                             if digits.concat == viewStore.password() {
                                 viewStore.send(.toggleIsPasswordUnlockPresented(false))
                                 return []
                             } else {
                                 isPasswordWrong = true
-                                return [.shake, .reset]
+                                return [.shake(delay: 0), .reset(delay: 0.3)]
                             }
                         },
                         label: { head() }

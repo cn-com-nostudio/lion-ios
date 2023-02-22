@@ -26,6 +26,7 @@ struct TimeIntervalPicker: View {
                     )
 
                     Divider()
+                        .opacity(0.5)
 
                     TimePicker(
                         name: .to,

@@ -13,7 +13,7 @@ struct RootView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             Group {
-                if viewStore.passwordLock.isOn {
+                if viewStore.passwordLock.isPasswordUnlockPresented {
                     PasswordUnlockView(
                         store: store.scope(
                             state: \.passwordLock,
@@ -31,6 +31,34 @@ struct RootView: View {
             .onAppear {
                 viewStore.send(.appLaunched)
             }
+
+//            appMainView
+//                .fullScreenCover(
+//                    isPresented: viewStore.binding(
+//                        get: \.passwordLock.isPasswordUnlockPresented,
+//                        send: Root.Action.none
+//                    )
+//                ) {
+//                }
+//                .fullScreenCover(
+//                    isPresented: viewStore.binding(
+//                        get: { _ in !viewStore.isIntroduceRead },
+//                        send: Root.Action.none
+//                    )
+//                ) {
+//                    IntroduceView(store: store)
+//                }
+//                .fullScreenCover(
+//                    isPresented: viewStore.binding(
+//                        get: \.needRequestScreenTimeAccessPermission,
+//                        send: Root.Action.none
+//                    )
+//                ) {
+//                    GrantAccessView(store: store)
+//                }
+//                .onAppear {
+//                    viewStore.send(.appLaunched)
+//                }
         }
     }
 

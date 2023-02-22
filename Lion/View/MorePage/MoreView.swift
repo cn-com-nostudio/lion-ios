@@ -265,29 +265,37 @@ struct MoreItemView: View {
     }
 
     var body: some View {
-        HStack {
-            Image(item().icon)
-                .resizable()
-                .frame(width: 28, height: 28)
-            Text(item().title)
-                .font(.lion.headline)
-                .foregroundColor(.lion.primary)
-            if item().isMemberItem {
-                Image(.pro)
+        VStack(spacing: 0) {
+            HStack(spacing: 16) {
+                Image(item().icon)
                     .resizable()
-                    .frame(width: 37, height: 16)
-            }
-            Spacer()
-            if let subTitle {
-                Text(subTitle)
-                    .font(.lion.caption1)
+                    .frame(width: 28, height: 28)
+
+                Text(item().title)
+                    .font(.lion.headline)
+                    .foregroundColor(.lion.primary)
+
+                if item().isMemberItem {
+                    Image(.pro)
+                        .resizable()
+                        .frame(width: 37, height: 16)
+                }
+                Spacer()
+                if let subTitle {
+                    Text(subTitle)
+                        .font(.lion.caption1)
+                        .foregroundColor(.secondary)
+                }
+
+                Image(systemIcon: .chevronForward)
                     .foregroundColor(.secondary)
             }
+            .padding()
 
-            Image(systemIcon: .chevronForward)
-                .foregroundColor(.secondary)
+            Divider()
+                .opacity(0.5)
+                .padding(.horizontal)
         }
-        .padding()
         .background(Color.white)
     }
 }

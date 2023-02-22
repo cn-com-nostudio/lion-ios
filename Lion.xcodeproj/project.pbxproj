@@ -81,7 +81,6 @@
 		865E022529A61AA100B8DE82 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01A929A61AA100B8DE82 /* Member.swift */; };
 		865E022629A61AA100B8DE82 /* InAppPurchaseProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01AA29A61AA100B8DE82 /* InAppPurchaseProduct.swift */; };
 		865E022729A61AA100B8DE82 /* TimeSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01AC29A61AA100B8DE82 /* TimeSelection.swift */; };
-		865E022829A61AA100B8DE82 /* ShieldAppsItemSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01AD29A61AA100B8DE82 /* ShieldAppsItemSettings.swift */; };
 		865E022929A61AA100B8DE82 /* HourMinute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01AE29A61AA100B8DE82 /* HourMinute.swift */; };
 		865E022A29A61AA100B8DE82 /* ShieldAppsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01AF29A61AA100B8DE82 /* ShieldAppsSettings.swift */; };
 		865E022B29A61AA100B8DE82 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01B029A61AA100B8DE82 /* TimeInterval.swift */; };
@@ -208,7 +207,6 @@
 		865E01A929A61AA100B8DE82 /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		865E01AA29A61AA100B8DE82 /* InAppPurchaseProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppPurchaseProduct.swift; sourceTree = "<group>"; };
 		865E01AC29A61AA100B8DE82 /* TimeSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSelection.swift; sourceTree = "<group>"; };
-		865E01AD29A61AA100B8DE82 /* ShieldAppsItemSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShieldAppsItemSettings.swift; sourceTree = "<group>"; };
 		865E01AE29A61AA100B8DE82 /* HourMinute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourMinute.swift; sourceTree = "<group>"; };
 		865E01AF29A61AA100B8DE82 /* ShieldAppsSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShieldAppsSettings.swift; sourceTree = "<group>"; };
 		865E01B029A61AA100B8DE82 /* TimeInterval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
@@ -581,7 +579,6 @@
 			isa = PBXGroup;
 			children = (
 				865E01AC29A61AA100B8DE82 /* TimeSelection.swift */,
-				865E01AD29A61AA100B8DE82 /* ShieldAppsItemSettings.swift */,
 				865E01AE29A61AA100B8DE82 /* HourMinute.swift */,
 				865E01AF29A61AA100B8DE82 /* ShieldAppsSettings.swift */,
 				865E01B029A61AA100B8DE82 /* TimeInterval.swift */,
@@ -1107,7 +1104,6 @@
 				865E021E29A61AA100B8DE82 /* RootStoreInitial.swift in Sources */,
 				865E024229A61AA100B8DE82 /* AppsPickerButton.swift in Sources */,
 				865E020B29A61AA100B8DE82 /* PinSquare.swift in Sources */,
-				865E022829A61AA100B8DE82 /* ShieldAppsItemSettings.swift in Sources */,
 				865E024C29A61AA100B8DE82 /* PasswordSetupView.swift in Sources */,
 				865E024A29A61AA100B8DE82 /* PasswordLockView.swift in Sources */,
 				865E020029A61AA100B8DE82 /* CachingReducer.swift in Sources */,

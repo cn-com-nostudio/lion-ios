@@ -1,6 +1,6 @@
 // CheckListView.swift
-// Copyright (c) 2023 Nostudio
-// Created by Jerry X T Wang on 2023/1/28.
+// Copyright (c) 2023 Soda Studio
+// Created by Jerry X T Wang on 2023/1/29.
 
 import ComposableArchitecture
 import SwiftUI

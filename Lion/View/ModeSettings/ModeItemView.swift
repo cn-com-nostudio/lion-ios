@@ -1,5 +1,5 @@
 // ModeItemView.swift
-// Copyright (c) 2023 Soda Studio
+// Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
@@ -58,7 +58,7 @@ struct ModeItemView: View {
                                     settingsAction?()
                                 },
                                 label: {
-                                    Text(.settings)
+                                    Text(item.subSettingsName)
                                         .padding(12)
                                 }
                             )
@@ -67,7 +67,9 @@ struct ModeItemView: View {
                     }
                 }
             }
-            .padding(20)
+            .padding(.horizontal, 20)
+            .padding(.top, 20)
+            .padding(.bottom, 12)
         }
         .cornerRadius(16)
         .aspectRatio(2.4, contentMode: .fit)

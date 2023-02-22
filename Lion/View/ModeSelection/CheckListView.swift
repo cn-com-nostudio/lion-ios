@@ -1,5 +1,5 @@
 // CheckListView.swift
-// Copyright (c) 2023 Soda Studio
+// Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
@@ -9,31 +9,31 @@ struct CheckListView: View {
     let store: StoreOf<ModeSettings>
 
     var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewSotre in
+        WithViewStore(store) { viewStore in
             HStack(alignment: .top, spacing: 50) {
-                VStack(alignment: .leading, spacing: 5) {
+                VStack(alignment: .leading, spacing: 6) {
                     CheckListRow(
                         name: .denyAppRemoval,
-                        isChecked: viewSotre.isDenyAppRemoval
+                        isChecked: viewStore.isDenyAppRemoval
                     )
                     CheckListRow(
                         name: .denyAppInstallation,
-                        isChecked: viewSotre.isDenyAppInstallation
+                        isChecked: viewStore.isDenyAppInstallation
                     )
                     CheckListRow(
                         name: .blockWebs,
-                        isChecked: viewSotre.isBlockApps
+                        isChecked: false
                     )
                 }
 
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading, spacing: 6) {
                     CheckListRow(
                         name: .shieldApps,
-                        isChecked: false // viewSotre.isAntiAddictionSystemOn
+                        isChecked: viewStore.isShieldApps
                     )
                     CheckListRow(
                         name: .blockApps,
-                        isChecked: false // viewSotre.isBlockWebs
+                        isChecked: viewStore.isBlockApps
                     )
                 }
             }
@@ -44,8 +44,8 @@ struct CheckListView: View {
 }
 
 struct CheckListRow: View {
-    @State var name: LocalizedStringKey
-    @State var isChecked: Bool
+    let name: LocalizedStringKey
+    let isChecked: Bool
 
     var body: some View {
         HStack {

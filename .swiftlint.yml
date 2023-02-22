@@ -22,5 +22,5 @@ identifier_name:
 
 line_length: 
   ignores_comments: true
-  warning: 150
+  warning: 180
   error: 300

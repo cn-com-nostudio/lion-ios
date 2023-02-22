@@ -1,5 +1,5 @@
 // ModeSelectionView.swift
-// Copyright (c) 2023 Soda Studio
+// Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
@@ -12,56 +12,117 @@ struct ModeSelectionView: View {
 
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-            VStack {
-                PagingView(config: .init(margin: 50, spacing: 30)) {
-                    Group {
-                        VStack(spacing: 50) {
+            NavigationStack {
+                ZStack {
+                    Image(.background)
+                        .resizable()
+                        .ignoresSafeArea()
+                    PagingView(config: .init(margin: 50, spacing: 30)) {
+                        Group {
                             ModePreview(
                                 store: store.scope(
                                     state: \.childMode,
                                     action: Root.Action.childMode
                                 ),
-                                header: ModeHeaders[.child]
+                                header: ModeHeaders[viewStore.childMode],
+                                action: {
+                                    if viewStore.loanMode.isOn {
+                                        viewStore.send(.loanMode(.toggleIsOn(false)))
+                                    }
+                                    viewStore.send(.childMode(.toggleIsOn(!viewStore.childMode.isOn)))
+                                }
                             )
 
-                            Button {
-                                if viewStore.childMode.isOn {
-                                    viewStore.send(.childMode(.toggleIsOn(false)))
-                                } else {
-                                    viewStore.send(.loanMode(.toggleIsOn(false)))
-                                    viewStore.send(.childMode(.toggleIsOn(true)))
-                                }
-                            } label: {
-                                Text(viewStore.childMode.isOn ? .stop : .start)
-                                    .frame(maxWidth: .infinity)
-                                    .padding()
-                            }
-                            .buttonStyle(PrimaryButton())
-                            .frame(width: 230)
-                        }
-                        VStack(spacing: 50) {
                             ModePreview(
-                                store: store.scope(state: \.loanMode, action: Root.Action.loanMode),
-                                header: ModeHeaders[.loan]
-                            )
-                            Button {
-                                if viewStore.loanMode.isOn {
-                                    viewStore.send(.loanMode(.toggleIsOn(false)))
-                                } else {
-                                    viewStore.send(.childMode(.toggleIsOn(false)))
-                                    viewStore.send(.loanMode(.toggleIsOn(true)))
+                                store: store.scope(
+                                    state: \.loanMode,
+                                    action: Root.Action.loanMode
+                                ),
+                                header: ModeHeaders[viewStore.loanMode],
+                                action: {
+                                    if viewStore.childMode.isOn {
+                                        viewStore.send(.childMode(.toggleIsOn(false)))
+                                    }
+                                    viewStore.send(.loanMode(.toggleIsOn(!viewStore.loanMode.isOn)))
                                 }
-                            } label: {
-                                Text(viewStore.loanMode.isOn ? .stop : .start)
-                                    .frame(maxWidth: .infinity)
-                                    .padding()
+                            )
+                        }
+                        .aspectRatio(0.6, contentMode: .fit)
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .principal) {
+                            HStack {
+                                Image(.hiddingCat)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: 24)
+
+                                Spacer()
+
+                                if viewStore.member.isMember {
+                                    Image(.pro)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(height: 24)
+                                } else {
+                                    Button {
+                                        viewStore.send(.member(.toggleIsMemberPurchasePresented(true)))
+                                    } label: {
+                                        HStack {
+                                            Image(.beMember)
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+
+                                            Image(.pro)
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                        }
+                                        .frame(height: 24)
+                                    }
+                                }
                             }
-                            .buttonStyle(PrimaryButton())
-                            .frame(width: 230)
                         }
                     }
-                    .aspectRatio(0.6, contentMode: .fit)
                 }
+
+                HStack {
+                    NavigationLink {
+                        WebView(url: MoreItem.quickHelp().link)
+                            .navigationTitle(.quickHelp)
+                    } label: {
+                        VStack {
+                            Image(.boat)
+                                .resizable()
+                                .frame(width: 24, height: 24)
+                            Text(.quickHelp)
+                        }
+                    }
+
+                    Spacer()
+
+                    Button {
+                        viewStore.send(.toggleIsMorePageShow(true))
+                    } label: {
+                        VStack {
+                            Image(.settings)
+                                .resizable()
+                                .frame(width: 24, height: 24)
+                            Text(.settings)
+                        }
+                    }
+                }
+                .font(.lion.caption2)
+                .foregroundColor(.lion.secondary)
+                .padding(.horizontal, .two)
+            }
+            .fullScreenCover(
+                isPresented: viewStore.binding(
+                    get: \.isMorePageShow,
+                    send: Root.Action.toggleIsMorePageShow
+                )) {
+                    MoreView(
+                        store: store
+                    )
             }
         }
     }

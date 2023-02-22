@@ -1,52 +1,31 @@
 // ShieldAppsItemPlaceholder.swift
-// Copyright (c) 2023 Soda Studio
+// Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/1/28.
 
 import SwiftUI
 
 struct ShieldAppsItemPlaceholder: View {
-    var add: () -> Void
-    var header: some View {
-        VStack(spacing: 8) {
-            Text(.limitAppsOpen)
-                .foregroundColor(.primary)
-                .font(.title.weight(.semibold))
-            Text(.limitAppsOpenTip)
-                .foregroundColor(.secondary)
-                .font(.callout.weight(.semibold))
-        }
-    }
+    var addAction: () -> Void
 
-    @ViewBuilder
-    func itemPlaceholder(addAction _: () -> Void) -> some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 5) {
-                Text("9:00 - 18:00")
+    var body: some View {
+        VStack(spacing: 45) {
+            VStack(spacing: 8) {
+                Text(.shieldApps)
                     .foregroundColor(.primary)
-                    .font(.title3.weight(.semibold))
-                Text(.nOfApps(0))
-                    .foregroundColor(.secondary.opacity(0.7))
-                    .font(.callout.weight(.regular))
+                    .font(.lion.title2)
+                Text(.limitAppsOpenTip)
+                    .foregroundColor(.secondary)
+                    .font(.lion.caption1)
             }
-            Spacer()
+
             Button(
-                action: add,
+                action: addAction,
                 label: {
-                    Text(.add)
-                        .frame(width: 80, height: 40)
+                    Text(.startSetting)
+                        .frame(width: 230, height: 60)
                 }
             )
             .buttonStyle(PrimaryButton())
-        }
-        .padding()
-        .background(Color(.systemBackground))
-        .cornerRadius(16)
-    }
-
-    var body: some View {
-        VStack(spacing: 36) {
-            header
-            itemPlaceholder {}
         }
     }
 }
@@ -54,7 +33,7 @@ struct ShieldAppsItemPlaceholder: View {
 struct ShieldAppsItemPlaceholder_Previews: PreviewProvider {
     static var previews: some View {
         ShieldAppsItemPlaceholder(
-            add: {}
+            addAction: {}
         )
         .previewDevice(PreviewDevice(rawValue: "iPhone 14"))
         .previewDisplayName("\(Self.self)")

@@ -1,14 +1,19 @@
 // ModeSettings.swift
-// Copyright (c) 2023 Soda Studio
+// Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
 import Foundation
 import ManagedSettings
 
+extension String {
+    static let child: Self = "child mode"
+    static let loan: Self = "loan mode"
+}
+
 extension ModeSettings.State {
     static let child: Self = .init(
-        modeName: "child mode",
+        modeName: .child,
         isOn: false,
         isPresented: false,
         isDenyAppRemoval: true,
@@ -20,7 +25,7 @@ extension ModeSettings.State {
     )
 
     static let loan: Self = .init(
-        modeName: "loan mode",
+        modeName: .loan,
         isOn: false,
         isPresented: false,
         isDenyAppRemoval: false,

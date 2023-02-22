@@ -1,5 +1,5 @@
 // ShieldAppsItemsView.swift
-// Copyright (c) 2023 Soda Studio
+// Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
@@ -10,61 +10,23 @@ struct ShieldAppsItemsView: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            ScrollView {
-                VStack(alignment: .leading) {
-                    Text(.timeIntervalToLimitAppsOpen)
-                        .foregroundColor(.secondary)
-                        .font(.footnote.weight(.semibold))
-                    VStack(spacing: 16) {
-                        ForEachStore(
-                            store.scope(
-                                state: \.items,
-                                action: ShieldAppsSettings.Action.items(id:action:)
-                            )
-                        ) { itemStore in
-                            WithViewStore(itemStore) { itemViewStore in
-                                ShieldAppsItemView(
-                                    store: itemStore
-                                )
-                                .onTapGesture {
-                                    viewStore.send(.selectedItem(itemViewStore.id))
-                                }
+            VStack(spacing: 16) {
+                ForEachStore(
+                    store.scope(
+                        state: \.items,
+                        action: ShieldAppsSettings.Action.items(id:action:)
+                    )
+                ) { itemStore in
+                    WithViewStore(itemStore) { itemViewStore in
+                        ShieldAppsItemView(
+                            store: itemStore,
+                            tapAction: {
+                                viewStore.send(.selectedItem(itemViewStore.id))
                             }
-                        }
+                        )
                     }
                 }
             }
-            .sheet(
-                isPresented:
-                viewStore.binding(
-                    get: { $0.selectedItem != nil },
-                    send: .deselectedItem
-                ),
-                content: {
-                    IfLetStore(
-                        store.scope(
-                            state: \.selectedItem,
-                            action: ShieldAppsSettings.Action.item
-                        ),
-                        then: {
-                            ShieldAppsItemSettingsView(
-                                store: $0,
-                                cancel: {
-                                    viewStore.send(.deselectedItem)
-                                },
-                                done: {
-                                    viewStore.send(.deselectedItem)
-                                    viewStore.send(.updateItem($0))
-                                },
-                                delete: {
-                                    viewStore.send(.deselectedItem)
-                                    viewStore.send(.deleteItem($0))
-                                }
-                            )
-                        }
-                    )
-                }
-            )
         }
     }
 }

@@ -1,5 +1,5 @@
 // ShieldAppsSettingsView.swift
-// Copyright (c) 2023 Soda Studio
+// Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
@@ -8,47 +8,98 @@ import SwiftUI
 struct ShieldAppsSettingsView: View {
     let store: StoreOf<ShieldAppsSettings>
 
-    var header: some View {
-        Image(.games)
-            .resizable()
-            .frame(width: 128, height: 184)
-            .cornerRadius(300)
-            .background(
-                RoundedRectangle(cornerRadius: 300)
-                    .stroke(.white, lineWidth: 6)
-                    .shadow(radius: 5, x: 0, y: 3.0)
-            )
+    func startSettingButton(_ action: @escaping () -> Void) -> some View {
+        Button(
+            action: action,
+            label: {
+                Text(.startSetting)
+                    .frame(width: 230, height: 60)
+            }
+        )
+        .buttonStyle(PrimaryButton())
     }
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            VStack(spacing: 60) {
-                header
-                if viewStore.items.count > 0 {
-                    ShieldAppsItemsView(store: store)
-                } else {
-                    ShieldAppsItemPlaceholder(
-                        add: {
-                            viewStore.send(.addItem)
+            ScrollView {
+                VStack {
+                    Image(.games)
+                        .resizable()
+                        .frame(width: 230, height: 230)
+                        .frame(maxWidth: .infinity)
+
+                    VStack(spacing: 8) {
+                        Text(.shieldApps)
+                            .foregroundColor(.primary)
+                            .font(.lion.title2)
+                        Text(.limitAppsOpenTip)
+                            .foregroundColor(.secondary)
+                            .font(.lion.caption1)
+                    }
+
+                    if viewStore.items.count > 0 {
+                        ShieldAppsItemsView(
+                            store: store
+                        )
+                        .padding(.top)
+                        .padding(.horizontal)
+                    } else {
+                        startSettingButton {
+                            viewStore.send(.willAddItem)
+                        }
+                        .padding(.top, .two)
+                    }
+                    Spacer()
+                }
+            }
+            .sheet(
+                isPresented:
+                viewStore.binding(
+                    get: { $0.selectedItem != nil },
+                    send: .deselectedItem
+                ),
+                content: {
+                    IfLetStore(
+                        store.scope(
+                            state: \.selectedItem,
+                            action: ShieldAppsSettings.Action.item
+                        ),
+                        then: {
+                            ShieldAppsItemSettingsView(
+                                store: $0,
+                                isNewItem: viewStore.isSelectedItemANewItem,
+                                cancel: {
+                                    viewStore.send(.deselectedItem)
+                                },
+                                done: {
+                                    viewStore.send(.deselectedItem)
+                                    if viewStore.isSelectedItemANewItem {
+                                        viewStore.send(.addItem($0))
+                                    } else {
+                                        viewStore.send(.updateItem($0))
+                                    }
+                                },
+                                delete: {
+                                    viewStore.send(.deselectedItem)
+                                    viewStore.send(.deleteItem($0))
+                                }
+                            )
                         }
                     )
                 }
-                Spacer()
-            }
-            .padding()
-            .padding(.top, 48)
-            .background(Color(.veryLightGreen))
+            )
             .toolbar {
                 ToolbarItem(
                     placement: .navigationBarTrailing)
                 {
                     Button {
-                        viewStore.send(.addItem)
+                        viewStore.send(.willAddItem)
                     } label: {
                         Image(systemIcon: .plus)
                     }
                 }
             }
+            .background(Color(.veryLightGreen))
         }
     }
 }
@@ -57,7 +108,7 @@ struct ShieldAppsSettingsView_Previews: PreviewProvider {
     static var previews: some View {
         ShieldAppsSettingsView(
             store: Store(
-                initialState: .default,
+                initialState: .init(isPresented: false, items: [.default, .default, .default]),
                 reducer: ShieldAppsSettings()
             )
         )

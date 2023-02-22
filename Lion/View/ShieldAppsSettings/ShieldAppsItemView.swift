@@ -1,5 +1,5 @@
 // ShieldAppsItemView.swift
-// Copyright (c) 2023 Soda Studio
+// Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
@@ -7,24 +7,29 @@ import SwiftUI
 
 struct ShieldAppsItemView: View {
     let store: StoreOf<ShieldAppsItem>
+    let tapAction: () -> Void
 
     var body: some View {
         WithViewStore(store) { viewStore in
             HStack {
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("\(viewStore.timeInterval.start.time.display) - \(viewStore.timeInterval.end.time.display)")
-                        .foregroundColor(.primary)
-                        .font(.title3.weight(.semibold))
-                    HStack(spacing: 0) {
-                        Text(.nOfApps(viewStore.selectedApps.appTokens.count))
-                        if let weekdaysDescriptions = viewStore.weekdays.shortDescriptions() {
-                            Text(", ")
-                            Text(weekdaysDescriptions)
-                                .lineLimit(1)
+                Button {
+                    tapAction()
+                } label: {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("\(viewStore.timeInterval.start.time.display) - \(viewStore.timeInterval.end.time.display)")
+                            .foregroundColor(.lion.primary)
+                            .font(.lion.title3)
+                        HStack(spacing: 0) {
+                            Text(.nOfApps(viewStore.selectedApps.appTokens.count))
+                            if let weekdaysDescriptions = viewStore.weekdays.shortDescriptions() {
+                                Text(", ")
+                                Text(weekdaysDescriptions)
+                                    .lineLimit(1)
+                            }
                         }
+                        .foregroundColor(.lion.primary.opacity(0.3))
+                        .font(.lion.caption1)
                     }
-                    .foregroundColor(.secondary.opacity(0.7))
-                    .font(.callout.weight(.regular))
                 }
                 Spacer()
                 Toggle(
@@ -34,10 +39,10 @@ struct ShieldAppsItemView: View {
                         send: ShieldAppsItem.Action.toggleIsOn
                     )
                 )
-                .frame(width: 50)
+                .labelsHidden()
             }
             .padding()
-            .background(Color(.systemBackground))
+            .background(Color.lion.white)
             .cornerRadius(16)
         }
     }
@@ -49,8 +54,10 @@ struct ShieldAppsItemView_Previews: PreviewProvider {
             store: Store(
                 initialState: .init(id: UUID()),
                 reducer: ShieldAppsItem()
-            )
+            ),
+            tapAction: {}
         )
+        .background(Color.red)
         .previewDevice(PreviewDevice(rawValue: "iPhone 14"))
         .previewDisplayName("\(Self.self)")
         .environment(\.locale, .init(identifier: "zh_CN"))

@@ -1,30 +1,32 @@
 // ShieldAppsSettings.swift
-// Copyright (c) 2023 Soda Studio
+// Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
 import Foundation
 
 extension ShieldAppsSettings.State {
-    static let `default`: Self = .init(isPresented: false, items: [])
+    static let `default`: Self = .init(items: [])
 }
 
 struct ShieldAppsSettings: ReducerProtocol {
     struct State: Equatable, Codable {
-        @NotCoded var isPresented: Bool
+        @NotCoded var isPresented: Bool = false
         var items: IdentifiedArrayOf<ShieldAppsItem.State>
+        var isSelectedItemANewItem: Bool = false
         @NotCoded var selectedItem: ShieldAppsItem.State?
     }
 
     enum Action: Equatable {
         case toggleIsPresented(Bool)
 
-        case addItem
+        case addItem(ShieldAppsItem.State)
         case updateItem(ShieldAppsItem.State)
         case deleteItem(ShieldAppsItem.State)
 
         case items(id: ShieldAppsItem.State.ID, action: ShieldAppsItem.Action)
 
+        case willAddItem
         case selectedItem(UUID)
         case deselectedItem
         case item(ShieldAppsItem.Action)
@@ -39,9 +41,10 @@ struct ShieldAppsSettings: ReducerProtocol {
                 state.isPresented = isPresented
                 return .none
 
-            case .addItem:
-                let item: ShieldAppsItem.State = .init(id: uuid())
-                state.items.insert(item, at: 0)
+            case let .addItem(item):
+                if !state.items.contains(item) {
+                    state.items.insert(item, at: 0)
+                }
                 return .none
 
             case let .updateItem(item):
@@ -54,9 +57,15 @@ struct ShieldAppsSettings: ReducerProtocol {
                 state.items[id: item.id] = nil
                 return .none
 
+            case .willAddItem:
+                state.selectedItem = .default
+                state.isSelectedItemANewItem = true
+                return .none
+
             case let .selectedItem(id):
                 guard let item = state.items[id: id] else { return .none }
                 state.selectedItem = item
+                state.isSelectedItemANewItem = false
                 return .none
 
             case .deselectedItem:

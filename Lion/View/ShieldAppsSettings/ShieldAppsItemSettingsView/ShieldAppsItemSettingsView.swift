@@ -1,5 +1,5 @@
 // ShieldAppsItemSettingsView.swift
-// Copyright (c) 2023 Soda Studio
+// Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
@@ -8,6 +8,7 @@ import SwiftUI
 
 struct ShieldAppsItemSettingsView: View {
     let store: StoreOf<ShieldAppsItem>
+    var isNewItem: Bool
     var cancel: () -> Void
     var done: (ShieldAppsItem.State) -> Void
     var delete: (ShieldAppsItem.State) -> Void
@@ -41,11 +42,12 @@ struct ShieldAppsItemSettingsView: View {
 
                     VStack(spacing: 16) {
                         doneButton { done(viewStore.state) }
-                        deleteButton { delete(viewStore.state) }
+                        if !isNewItem {
+                            deleteButton { delete(viewStore.state) }
+                        }
                     }
                 }
                 .navigationBarTitle(.limitAppsOpen, displayMode: .inline)
-                .navigationBarTitle(.selectApps, displayMode: .inline)
                 .toolbar {
                     ToolbarItem(
                         placement: .navigationBarLeading)
@@ -56,6 +58,11 @@ struct ShieldAppsItemSettingsView: View {
                 .padding()
                 .background(Color(.veryLightGreen))
             }
+            .onAppear {
+                if isNewItem {
+                    viewStore.send(.selectApps(.toggleIsPresented(true)))
+                }
+            }
         }
     }
 
@@ -65,8 +72,9 @@ struct ShieldAppsItemSettingsView: View {
             action()
         } label: {
             Text(.done)
-                .padding()
+                .font(.lion.title3)
                 .frame(maxWidth: .infinity)
+                .frame(height: 60)
         }
         .buttonStyle(PrimaryButton())
     }
@@ -77,8 +85,9 @@ struct ShieldAppsItemSettingsView: View {
             action()
         } label: {
             Text(.delete)
-                .padding()
+                .font(.lion.title3)
                 .frame(maxWidth: .infinity)
+                .frame(height: 60)
         }
         .buttonStyle(DeleteButton())
     }
@@ -91,6 +100,7 @@ struct ShieldAppsItemSettingsView_Previews: PreviewProvider {
                 initialState: ShieldAppsItem.State(id: UUID()),
                 reducer: ShieldAppsItem()
             ),
+            isNewItem: false,
             cancel: {},
             done: { _ in },
             delete: { _ in }

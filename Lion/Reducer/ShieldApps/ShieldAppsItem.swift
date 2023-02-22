@@ -1,10 +1,16 @@
 // ShieldAppsItem.swift
-// Copyright (c) 2023 Soda Studio
+// Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
 import Foundation
 import SwiftUI
+
+extension ShieldAppsItem.State {
+    @Dependency(\.uuid) static var uuid
+
+    static let `default`: Self = .init(id: uuid())
+}
 
 struct ShieldAppsItem: ReducerProtocol {
     struct State: Equatable, Codable, Identifiable {
@@ -18,7 +24,7 @@ struct ShieldAppsItem: ReducerProtocol {
             id: UUID,
             isOn: Bool = false,
             timeInterval: TimeInterval.State = .default,
-            weekdays: SortedSet<Weekday> = .init(),
+            weekdays: SortedSet<Weekday> = .workdays,
             selectedApps: AppsSelection.State = .none
         ) {
             self.id = id

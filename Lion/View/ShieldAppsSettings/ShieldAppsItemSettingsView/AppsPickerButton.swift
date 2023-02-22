@@ -1,5 +1,5 @@
 // AppsPickerButton.swift
-// Copyright (c) 2023 Soda Studio
+// Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
@@ -10,12 +10,20 @@ struct AppsPickerButton: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
+
             VStack(alignment: .leading) {
                 Text("App")
+                    .foregroundColor(.lion.secondary)
+                    .font(.lion.caption1)
+                    .padding(.horizontal)
                 HStack {
                     Text(.limitApps)
+                        .font(.lion.headline)
+                        .foregroundColor(.lion.primary)
                     Spacer()
                     Text(.nOfApps(viewStore.appTokens.count))
+                        .font(.lion.headline)
+                        .foregroundColor(.lion.secondary)
                     Image(systemIcon: .chevronForward)
                         .foregroundColor(.secondary)
                 }
@@ -27,15 +35,14 @@ struct AppsPickerButton: View {
 
                 Text(.limitAppsTip)
                     .font(.lion.caption2)
-                    .foregroundColor(Color.secondary)
+                    .foregroundColor(.lion.primary.opacity(0.3))
+                    .lineSpacing(5)
                     .padding()
                     .background(Color(.veryLightGray))
                     .cornerRadius(16)
             }
             .onTapGesture {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) {
-                    viewStore.send(.toggleIsPresented(true))
-                }
+                viewStore.send(.toggleIsPresented(true))
             }
             .sheet(
                 isPresented: viewStore.binding(

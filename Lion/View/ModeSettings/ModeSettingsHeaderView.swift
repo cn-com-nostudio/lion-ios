@@ -1,15 +1,14 @@
 // ModeSettingsHeaderView.swift
-// Copyright (c) 2023 Soda Studio
+// Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
 import SwiftUI
 
-struct ModeSettingsHeaderView: View {
-    let header: ModeHeader
-    let store: StoreOf<ModeSettings>
+struct CloseButton: View {
+    let action: () -> Void
 
-    func closeButton(_ action: @escaping () -> Void) -> some View {
+    var body: some View {
         Button(
             action: action,
             label: {
@@ -27,9 +26,14 @@ struct ModeSettingsHeaderView: View {
             }
         )
     }
+}
+
+struct ModeSettingsHeaderView: View {
+    let header: ModeHeader
+    let store: StoreOf<ModeSettings>
 
     var body: some View {
-        WithViewStore(store) { viewStore in
+        WithViewStore(store) { _ in
             ZStack(alignment: .bottom) {
                 ModeHeaderView(model: header)
                 Color.clear.overlay(alignment: .leading) {
@@ -48,12 +52,12 @@ struct ModeSettingsHeaderView: View {
                     }
                 }.padding([.leading, .trailing], 32)
             }
-            .overlay(alignment: .topTrailing) {
-                closeButton {
-                    viewStore.send(.toggleIsPresented(false))
-                }
-                .padding([.top, .trailing], 20)
-            }
+//            .overlay(alignment: .topTrailing) {
+//                CloseButton {
+//                    viewStore.send(.toggleIsPresented(false))
+//                }
+//                .padding([.top, .trailing], 20)
+//            }
         }
     }
 }

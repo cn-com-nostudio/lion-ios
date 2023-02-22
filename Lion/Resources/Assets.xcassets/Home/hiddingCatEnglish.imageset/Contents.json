@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Hiding Cat.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

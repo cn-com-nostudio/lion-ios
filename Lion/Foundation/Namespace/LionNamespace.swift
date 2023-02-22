@@ -1,11 +1,11 @@
 // LionNamespace.swift
-// Copyright (c) 2023 Soda Studio
+// Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/1/28.
 
 import Foundation
 import SwiftUI
 
-struct LionNamespacing<Base> {
+struct Lion<Base> {
     let base: Base
 
     init(_ base: Base) {
@@ -13,18 +13,18 @@ struct LionNamespacing<Base> {
     }
 }
 
-protocol LionNamespacingCompatible {
-    associatedtype LionNamespacingCompatibleType
-    static var lion: LionNamespacingCompatibleType.Type { get }
-    var lion: LionNamespacingCompatibleType { get }
+protocol LionCompatible {
+    associatedtype LionCompatibleType
+    static var lion: LionCompatibleType.Type { get }
+    var lion: LionCompatibleType { get }
 }
 
-extension LionNamespacingCompatible {
-    static var lion: LionNamespacing<Self>.Type {
-        LionNamespacing<Self>.self
+extension LionCompatible {
+    static var lion: Lion<Self>.Type {
+        Lion<Self>.self
     }
 
-    var lion: LionNamespacing<Self> {
-        LionNamespacing(self)
+    var lion: Lion<Self> {
+        Lion(self)
     }
 }

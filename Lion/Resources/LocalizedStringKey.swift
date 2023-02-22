@@ -1,5 +1,5 @@
 // LocalizedStringKey.swift
-// Copyright (c) 2023 Soda Studio
+// Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/1/28.
 
 import SwiftUI
@@ -26,8 +26,8 @@ extension LocalizedStringKey {
     static let shiledAppsSettings: Self = "shiled apps settings"
     static let blockWebsSettings: Self = "block webs settings"
 
-    static let start: Self = "start"
-    static let stop: Self = "stop"
+    static let open: Self = "open"
+    static let close: Self = "close"
     static let settings: Self = "settings"
     static let suggesionModeSettings: Self = "suggesion mode settings"
 
@@ -40,6 +40,7 @@ extension LocalizedStringKey {
     static let timeIntervalToLimitAppsOpen: Self = "time interval to limit apps open"
 
     static let add: Self = "add"
+    static let startSetting: Self = "start setting"
     static let time: Self = "time"
     static let from: Self = "from"
     static let to: Self = "to"
@@ -55,20 +56,79 @@ extension LocalizedStringKey {
 
     static let becomeSeniorMember: Self = "become senior member"
     static let unlockAllFunctions: Self = "unlock all functions, protect your privacy"
-    static let twelveMonths: Self = "12 months"
-    static let twoCupsOfCoffee: Self = "2 cups of coffee"
-    static let lifeMember: Self = "life member"
-    static let payOnceAvailableForLife: Self = "pay once, available for life"
+    static let protectYourPrivacy: Self = "protect your privacy"
     static let unlockImmediately: Self = "unlock immediately"
+    static let subscribeImmediately: Self = "subscribe immediately"
+
     static let quickHelp: Self = "quick help"
     static let feedbacksAndSuggestions: Self = "feedbacks and suggesctions"
-    static let passwordLock = "password lock"
-    static let userLisence = "user lisence"
-    static let privacyPolicy = "privacy policy"
-    static let shareToFriends = "share to friends"
-    static let specialThanks = "special thanks"
-    static let appStoreReviews = "app store reviews"
-    static let giveUsAFiveStarComment = "give us a five-star comment on appstore"
+    static let passwordLock: Self = "password lock"
+    static let userLisence: Self = "user lisence"
+    static let privacyPolicy: Self = "privacy policy"
+    static let shareToFriends: Self = "share to friends"
+    static let specialThanks: Self = "special thanks"
+    static let appStoreReviews: Self = "app store reviews"
+    static let giveUsAFiveStarComment: Self = "give us a five-star comment on appstore"
+
+    static let resetPassword: Self = "reset password"
+    static let useFaceIDToUnlock: Self = "use faceID to unlock"
+
+    static let inputNewPassword: Self = "input new password"
+    static let inputNewPasswordOnceAgain: Self = "input new password once again"
+    static let inputPasswordToUnlock: Self = "input password to unlock"
+    static let faceID: Self = "faceID"
+    static let wrongPassword: Self = "wrong password"
+
+    static let faceIDAccessNotGranted: Self = "faceID access not granted"
+    static let grantFaceIDAccessToUseFaceIDToUnlock: Self = "grant faceID access to use faceID to unlock"
+    static let grantFaceIDAccess: Self = "grant faceID access"
+
+    static let faceIDNotEnrolled: Self = "faceID not enrolled"
+    static let enrollFaceIDToUseFaceIDToUnlock: Self = "enroll faceID to use faceID to unlock"
+    static let enrollFaceID: Self = "enroll faceID"
+
+    static let devicePasscodeNotSet: Self = "device passcode not set"
+    static let setDevicePasscodeToUseFaceIDToUnlock: Self = "set device passcode to use faceID to unlock"
+    static let setDevicePasscode: Self = "set device passcode"
+
+    static let twelveMonths: Self = "12 months"
+    static let twoCupsOfCoffee: Self = "2 cups of coffee"
+    static let lifetimeMember: Self = "lifetime member"
+    static let payOnceAvailableForLife: Self = "pay once, available for life"
+
+    static let currencySymbol: Self = "currency symbol"
+
+    static let oneClickSwitch: Self = "one-click to switch"
+    static let switchUlimitly: Self = "switch unlimitly"
+    static let hideAppsUnlimited: Self = "hide apps unlimitly"
+    static let unlockUsingFaceID: Self = "unlock using faceID"
+
+    static let alreadyTurnOn: Self = "already turn on"
+    static let notTurnOnYet: Self = "not turn on yet"
+
+    static let thanksForYourSupport: Self = "thanks for your support"
+
+    static let temporaryLoanOfMobilePhoneToOthers: Self = "temporary loan of mobile phone to others"
+    static let preventPeepingPrivacy: Self = "prevent peeping privacy"
+    static let turnOnTheHiddenApp: Self = "turn on the hidden app, so you don't panic when you check your phone"
+
+    static let deleteTheAppByMistake: Self = "delete the app by mistake"
+    static let preventLossOfImportantData: Self = "prevent loss of important data"
+    static let turnOnTheProhibitionOfDeletingApps: Self = "turn on the prohibition of deleting apps to avoid losing important data that cannot be retrieved"
+
+    static let temporaryLoanOfMobilePhoneToChildren: Self = "bring baby mobile phone for children to play"
+    static let preventGameAddiction: Self = "prevent game addiction"
+    static let limitTheDurationOfGamesAndWatchingVideos: Self = "limit the duration of games and watching videos to prevent children from having too much fun"
+
+    static let nextPage: Self = "next page"
+
+    static let start: Self = "start"
+    static let stop: Self = "stop"
+
+    static let weRespectYourDataPrivacyAndSecurity: Self = "we respect your data privacy and security, and this feature will work entirely locally and offline."
+    static let youCanCancelThisAuthorizationAtAnyTime: Self = "you can cancel this authorization at any time in the system's \"Settings\" > \"Screen Time\"."
+
+    static let allowAccess: Self = "allow access"
 
     static func nOfApps(_ number: Int) -> Self {
         "\(number) apps"
@@ -91,6 +151,20 @@ extension LocalizedStringKey {
     }
 
     static func version(_ version: String, buildVersion: String) -> Self {
-        "version \(version)(\(buildVersion)"
+        "version \(version)(\(buildVersion))"
+    }
+
+    static func yearlyMember(purchaseDate: Date, expiredDate _: Date) -> Self {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return "yearly member(\(dateFormatter.string(from: purchaseDate)) - \(dateFormatter.string(from: purchaseDate))"
+    }
+
+    static func allowAppToManageAccessLimit(appName: String) -> Self {
+        "allow \(appName) to manage access limit of this device"
+    }
+
+    static func useScreenTimeLimitToManageAccessLimit(appName: String) -> Self {
+        "\(appName) use screen time limit to manage access limit of the device."
     }
 }

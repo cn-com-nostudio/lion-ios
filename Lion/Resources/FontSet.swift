@@ -1,10 +1,10 @@
 // FontSet.swift
-// Copyright (c) 2023 Soda Studio
+// Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/1/28.
 
 import SwiftUI
 
-extension LionNamespacing where Base == Font {
+extension Lion where Base == Font {
     static let largeTitle: Font = .system(size: 32).weight(.semibold)
     static let title1: Font = .system(size: 28).weight(.semibold)
     static let title2: Font = .system(size: 24).weight(.semibold)
@@ -19,6 +19,4 @@ extension LionNamespacing where Base == Font {
     static let caption3: Font = .system(size: 10).weight(.regular)
 }
 
-extension Font: LionNamespacingCompatible {}
-//
-// extension LionNamespacing where Base == Font {}
+extension Font: LionCompatible {}

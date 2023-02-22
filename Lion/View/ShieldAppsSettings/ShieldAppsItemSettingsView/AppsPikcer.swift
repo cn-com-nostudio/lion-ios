@@ -1,5 +1,5 @@
 // AppsPikcer.swift
-// Copyright (c) 2023 Soda Studio
+// Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
@@ -8,6 +8,8 @@ import SwiftUI
 
 struct AppsPicker: View {
     let store: StoreOf<AppsSelection>
+
+    @State private var selection: FamilyActivitySelection = .init(includeEntireCategory: true)
 
     func selectionTip(selectedAmount: Int, maxSelectedAmount: Int) -> LocalizedStringKey {
         selectedAmount <= maxSelectedAmount
@@ -26,24 +28,21 @@ struct AppsPicker: View {
             NavigationStack {
                 Text(
                     selectionTip(
-                        selectedAmount: viewStore.appTokens.count,
+                        selectedAmount: selection.applicationTokens.count,
                         maxSelectedAmount: viewStore.maxSelectAmount
                     )
                 )
                 .font(.lion.caption2Bold)
                 .foregroundColor(
                     tipColor(
-                        selectedAmount: viewStore.appTokens.count,
+                        selectedAmount: selection.applicationTokens.count,
                         maxSelectedAmount: viewStore.maxSelectAmount
                     )
                 )
                 .padding([.top, .horizontal])
                 .frame(maxWidth: .infinity, alignment: .leading)
                 FamilyActivityPicker(
-                    selection: viewStore.binding(
-                        get: { $0.selection },
-                        send: AppsSelection.Action.update
-                    )
+                    selection: $selection
                 )
                 .ignoresSafeArea()
                 .navigationBarTitle(
@@ -60,11 +59,16 @@ struct AppsPicker: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(.done) {
                             viewStore.send(.toggleIsPresented(false))
+                            viewStore.send(.update(selection))
                         }
                         .fontWeight(.semibold)
-                        .disabled(viewStore.appTokens.count > viewStore.maxSelectAmount)
+                        .disabled(selection.applicationTokens.count > viewStore.maxSelectAmount)
                     }
                 }
+            }
+            .onAppear {
+                selection.applicationTokens = viewStore.appTokens
+                selection.categoryTokens = viewStore.categoryTokens
             }
         }
     }

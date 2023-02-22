@@ -1,5 +1,5 @@
 // AppsSelection.swift
-// Copyright (c) 2023 Soda Studio
+// Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
@@ -21,13 +21,6 @@ struct AppsSelection: ReducerProtocol {
         var categoryTokens: Set<ActivityCategoryToken>
 
         var maxSelectAmount: Int { 50 }
-
-        var selection: FamilyActivitySelection {
-            var selection = FamilyActivitySelection(includeEntireCategory: true)
-            selection.applicationTokens = appTokens
-            selection.categoryTokens = categoryTokens
-            return selection
-        }
     }
 
     enum Action: Equatable {
@@ -43,8 +36,8 @@ struct AppsSelection: ReducerProtocol {
                 return .none
 
             case let .update(selection):
-                state.appTokens = selection.applicationTokens
                 state.categoryTokens = selection.categoryTokens
+                state.appTokens = selection.applicationTokens
                 return .none
             }
         }

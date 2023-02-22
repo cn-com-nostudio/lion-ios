@@ -15,7 +15,7 @@
 "shield apps" = "游戏防沉迷";
 "block webs" = "恶意网站拦截";
 
-"block apps settings" = "隐藏设置";
+"block apps settings" = "选择应用";
 "shiled apps settings" = "限制设置";
 "block webs settings" = "拦截设置";
 
@@ -25,8 +25,8 @@
 "shield apps tip" = "限制打开指定 App，防止沉迷游戏、短视频";
 "block webs tip" = "过滤成人网站、恶意网站";
 
-"start" = "开启";
-"stop" = "停止";
+"open" = "开启";
+"close" = "关闭";
 
 "child mode tip" = "家长必备";
 "loan mode tip" = "职场必备";
@@ -44,6 +44,7 @@
 "time interval to limit apps open" = "以下时段限制App的打开";
 
 "add" = "添加";
+"start setting" = "开始设置";
 "time" = "时间";
 "from" = "从";
 "to" = "到";
@@ -68,13 +69,15 @@
 
 "become senior member" = "成为高级会员";
 "unlock all functions, protect your privacy" = "解锁所有功能，全力守护你的隐私";
+"protect your privacy" = "全力守护你的隐私";
 
 "12 months" = "12个月";
 "2 cups of coffee" = "2杯咖啡";
 "limit time offer %lld%" = "限时%lld%优惠";
-"life member" = "终身会员";
+"lifetime member" = "终身会员";
 "pay once, available for life" = "一次付费，终身可用";
 "unlock immediately" = "立刻解锁";
+"subscribe immediately" = "开始订阅";
 
 "quick help" = "快速上手";
 "feedbacks and suggesctions" = "反馈建议";
@@ -88,3 +91,65 @@
 "give us a five-star comment on appstore" = "请帮我们写个好评，非常感谢😊";
 
 "version %@(%@)" = "版本 %@(%@)";
+
+"reset password" = "重设密码";
+"use faceID to unlock" = "使用面容 ID 解锁";
+
+"input new password" = "设置新密码";
+"input new password once again" = "请再次输入密码";
+"input password to unlock" = "输入密码解锁";
+"faceID" = "面容 ID";
+"wrong password" = "密码错误";
+
+"faceID access not granted" = "未开启面容ID权限";
+"grant faceID access to use faceID to unlock" = "开启面容ID权限后才能使用面容ID解锁哦";
+"grant faceID access" = "去开启面容ID";
+
+"faceID not enrolled" = "未设置面容ID";
+"enroll faceID to use faceID to unlock" = "设置面容ID后才能使用面容ID解锁哦";
+"enroll faceID" = "去设置面容ID";
+
+"device passcode not set" = "未设置设备密码";
+"set device passcode to use faceID to unlock" = "设置设备密码后才能使用面容ID解锁哦";
+"set device passcode" = "去设置设备密码";
+"currency symbol" = "¥";
+
+"one-click to switch" = "一键切换";
+"switch unlimitly" = "无限开启次数";
+"hide apps unlimitly" = "无限隐藏 App";
+"unlock using faceID" = "面容ID解锁";
+
+"already turn on" = "已开启";
+"not turn on yet" = "未开启";
+
+"yearly member(%@ - %@)" = "年度会员(%@ - %@)";
+"thanks for your support" = "谢谢你的支持";
+
+"temporary loan of mobile phone to others" = "手机临时借给别人";
+"prevent peeping privacy" = "防止偷看隐私";
+"turn on the hidden app, so you don't panic when you check your phone" = "开启隐藏 App，遇到检查手机的时候不慌不乱";
+
+"delete the app by mistake" = "手抖误删 App";
+"prevent loss of important data" = "防止丢失重要数据";
+"turn on the prohibition of deleting apps to avoid losing important data that cannot be retrieved" = "开启禁止删除 App，避免丢失重要数据无法找回";
+
+"bring baby mobile phone for children to play" = "带娃手机给孩子玩";
+"prevent game addiction" = "防止沉迷游戏";
+"limit the duration of games and watching videos to prevent children from having too much fun" = "限制游戏和看视频时长，免得小朋友玩的太嗨了";
+
+"next page" = "下一页";
+"start" = "开始";
+"stop" = "停止";
+
+"allow %@ to manage access limit of this device" = "允许 %@ 管理这台设备的访问限制";
+"%@ use screen time limit to manage access limit of the device." = "%@ 使用“屏幕时间限制”来管理设备的访问限制。";
+"we respect your data privacy and security, and this feature will work entirely locally and offline." = "我们尊重你的数据隐私和安全，这项功能将完全在本地离线运行。";
+"you can cancel this authorization at any time in the system's \"Settings\" > \"Screen Time\"." = "你可以随时在系统的“设置”＞“屏幕使用时间”中取消这项授权。";
+
+"allow access" = "允许访问";
+
+"continue" = "继续";
+"not allow" = "不允许";
+
+"oh no, authorize canceled" = "Oh No... 授权被取消了";
+"reauthorize" = "重新授权";

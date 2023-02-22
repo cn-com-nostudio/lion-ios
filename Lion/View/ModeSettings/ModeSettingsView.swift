@@ -1,5 +1,5 @@
 // ModeSettingsView.swift
-// Copyright (c) 2023 Soda Studio
+// Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/1/28.
 
 import ComposableArchitecture
@@ -11,31 +11,47 @@ struct ModeSettingsView: View {
     let header: ModeHeader
 
     var body: some View {
-        WithViewStore(store) { _ in
+        WithViewStore(store) { viewStore in
             NavigationStack {
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 0) {
-                        ModeSettingsHeaderView(
-                            header: header,
-                            store: store
-                        )
-                        .aspectRatio(0.975, contentMode: .fit)
+                ZStack(alignment: .topTrailing) {
+                    ScrollView {
+                        VStack(spacing: 0) {
+                            ModeSettingsHeaderView(
+                                header: header,
+                                store: store
+                            )
+                            .aspectRatio(1, contentMode: .fit)
 
-                        HStack {
-                            Text(header.aboutTip)
-                                .font(.lion.caption1)
-                            Image(systemIcon: .questionmarkCircle)
+                            VStack(alignment: .leading) {
+                                NavigationLink {
+                                    WebView(url: MoreItem.quickHelp().link)
+                                        .navigationTitle(.quickHelp)
+                                } label: {
+                                    HStack {
+                                        Text(header.aboutTip)
+                                            .font(.lion.caption1)
+                                        Image(systemIcon: .questionmarkCircle)
+                                    }
+                                    .foregroundColor(.secondary)
+                                }
+
+                                ModeItemsView(
+                                    store: store
+                                )
+                            }
+                            .padding(.horizontal, 24)
+                            .padding(.vertical)
                         }
-                        .foregroundColor(.secondary)
-                        .padding([.top, .leading])
-
-                        ModeItemsView(
-                            store: store
-                        )
-                        .padding()
                     }
+                    .ignoresSafeArea(edges: .top)
+
+                    CloseButton {
+                        viewStore.send(.toggleIsPresented(false))
+                    }
+                    .padding(.trailing)
                 }
             }
+            .statusBar(hidden: true)
         }
     }
 }

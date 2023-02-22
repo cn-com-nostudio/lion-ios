@@ -15,9 +15,9 @@
 "shield apps" = "Anti-addiction games";
 "block webs" = "Block webs";
 
-"block apps settings" = "Settings";
-"shiled apps settings" = "Settings";
-"block webs settings" = "Settings";
+"block apps settings" = "Select Apps";
+"shiled apps settings" = "Shield Settings";
+"block webs settings" = "Webs Settings";
 
 "deny app removal tip" = "Prevent accidental deletion of Apps";
 "deny app installation tip" = "Hide AppStore to prevent installation of new Apps";
@@ -26,11 +26,11 @@
 "block webs tip" = "Filter adult websites, malicious websites";
 
 
-"start" = "Start";
-"stop" = "Stop";
+"open" = "Open";
+"close" = "Close";
 
-"child mode tip" = "家长必备";
-"loan mode tip" = "职场必备";
+"child mode tip" = "Parent Must";
+"loan mode tip" = "Workplace Must";
 
 "settings" = "Settings";
 
@@ -45,6 +45,7 @@
 "time interval to limit apps open" = "Time Interval to limit Apps open";
 
 "add" = "Add";
+"start setting" = "Start Setting";
 "time" = "Time";
 "from" = "Trom";
 "to" = "To";
@@ -69,13 +70,15 @@
 
 "become senior member" = "Become senior member";
 "unlock all functions, protect your privacy" = "Unlock all functions, Protect your privacy";
+"protect your privacy" = "Protect your privacy";
 
 "12 months" = "12 months";
 "2 cups of coffee" = "2 cups of coffee";
 "limit time offer %lld%" = "Limit time offer %lld%";
-"life member" = "Life Memeber";
+"lifetime member" = "Lifetime Memeber";
 "pay once, available for life" = "Pay once, Available for life";
-"unlock immediately" = "Unlock Immediately";
+"unlock immediately" = "Unlock";
+"subscribe immediately" = "Subscribe";
 
 "quick help" = "Quick Help";
 "feedbacks and suggesctions" = "Feedbacks and Suggesctions";
@@ -90,3 +93,65 @@
 
 "version %@(%@)" = "Version %@(%@)";
 
+"reset password" = "Reset password";
+"use faceID to unlock" = "Use faceID to unlock";
+
+"input new password" = "Input new password";
+"input new password once again" = "Input new password once again";
+"input password to unlock" = "Input password to unlock";
+"faceID" = "Face ID";
+"wrong password" = "Wrong password";
+
+"faceID access not granted" = "FaceID access not granted";
+"grant faceID access to use faceID to unlock" = "Grant faceID access to use faceID to unlock";
+"grant faceID access" = "Grant faceID access";
+
+"faceID not enrolled" = "FaceID not enrolled";
+"enroll faceID to use faceID to unlock" = "Enroll faceID to use faceID to unlock";
+"enroll faceID" = "Enroll faceID";
+
+"device passcode not set" = "Device passcode not set";
+"set device passcode to use faceID to unlock" = "Set device passcode to use faceID to unlock";
+"set device passcode" = "Set device passcode";
+
+"currency symbol" = "$";
+
+"one-click to switch" = "One-click to switch";
+"switch unlimitly" = "Switch unlimitly";
+"hide apps unlimitly" = "Hide apps unlimitly";
+"unlock using faceID" = "Unlock using faceID";
+
+"already turn on" = "On";
+"not turn on yet" = "Off";
+
+"yearly member(%@ - %@)" = "Yearly Member(%@ - %@)";
+"thanks for your support" = "Thanks for your support";
+
+"temporary loan of mobile phone to others" = "Temporary loan of mobile phone to others";
+"prevent peeping privacy" = "Prevent peeping privacy";
+"turn on the hidden app, so you don't panic when you check your phone" = "Turn on the hidden app, so you don't panic when you check your phone";
+
+"delete the app by mistake" = "Delete the app by mistake";
+"prevent loss of important data" = "Prevent loss of important data";
+"turn on the prohibition of deleting apps to avoid losing important data that cannot be retrieved" = "Turn on the prohibition of deleting apps to avoid losing important data that cannot be retrieved";
+
+"bring baby mobile phone for children to play" = "Bring baby mobile phone for children to play";
+"prevent game addiction" = "Prevent game addiction";
+"limit the duration of games and watching videos to prevent children from having too much fun" = "Limit the duration of games and watching videos to prevent children from having too much fun";
+
+"next page" = "Next";
+"start" = "Start";
+"stop" = "Stop";
+
+"allow %@ to manage access limit of this device" = "Allow %@ to manage access limit of this device";
+"%@ use screen time limit to manage access limit of the device." = "%@ use screen time limit to manage access limit of the device.";
+"we respect your data privacy and security, and this feature will work entirely locally and offline." = "We respect your data privacy and security, and this feature will work entirely locally and offline.";
+"you can cancel this authorization at any time in the system's \"Settings\" > \"Screen Time\"." = "You can cancel this authorization at any time in the system's \"Settings\" > \"Screen Time\".";
+
+"allow access" = "Allow";
+
+"continue" = "Continue";
+"not allow" = "Not Allow";
+
+"oh no, authorize canceled" = "Oh No... Authorize canceled";
+"reauthorize" = "Reauthorize";

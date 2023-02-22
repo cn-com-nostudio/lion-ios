@@ -123,6 +123,7 @@
 		86966DA62971170700AAB1C7 /* AppsShcheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86966DA52971170700AAB1C7 /* AppsShcheduler.swift */; };
 		86B7A037295197BE00D3D34A /* LionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A036295197BE00D3D34A /* LionUITests.swift */; };
 		86B7A039295197BE00D3D34A /* LionUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A038295197BE00D3D34A /* LionUITestsLaunchTests.swift */; };
+		86CB364829A6363E002F434B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86CB364A29A6363E002F434B /* InfoPlist.strings */; };
 		A41DAE532977D65200361AE1 /* UserDefaultCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41DAE522977D65200361AE1 /* UserDefaultCache.swift */; };
 		A469FC5729793AEE006E47D3 /* ManagedSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A49445922978F668004BCE9A /* ManagedSettings.framework */; };
 		A469FC5A29793AEE006E47D3 /* ShieldActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A469FC5929793AEE006E47D3 /* ShieldActionExtension.swift */; };
@@ -244,7 +245,6 @@
 		865E01DA29A61AA100B8DE82 /* PasswordSetupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordSetupView.swift; sourceTree = "<group>"; };
 		865E01DB29A61AA100B8DE82 /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		865E01DC29A61AA100B8DE82 /* Lion.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Lion.entitlements; sourceTree = "<group>"; };
-		865E01DD29A61AA100B8DE82 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8689BA2929706DD200268A64 /* DeviceActivityMonitor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeviceActivityMonitor.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8689BA2D29706DD200268A64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8689BA3529706E7200268A64 /* AppsSchedulerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsSchedulerExtension.swift; sourceTree = "<group>"; };
@@ -256,6 +256,8 @@
 		86B7A032295197BE00D3D34A /* LionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B7A036295197BE00D3D34A /* LionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LionUITests.swift; sourceTree = "<group>"; };
 		86B7A038295197BE00D3D34A /* LionUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LionUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		86CB364929A6363E002F434B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		86CB364B29A63640002F434B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A41DAE522977D65200361AE1 /* UserDefaultCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultCache.swift; sourceTree = "<group>"; };
 		A469FC5629793AEE006E47D3 /* ShieldActionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShieldActionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A469FC5929793AEE006E47D3 /* ShieldActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldActionExtension.swift; sourceTree = "<group>"; };
@@ -332,17 +334,17 @@
 		865E014D29A61AA100B8DE82 /* Lion */ = {
 			isa = PBXGroup;
 			children = (
-				865E014E29A61AA100B8DE82 /* Study */,
+				865E01DC29A61AA100B8DE82 /* Lion.entitlements */,
+				86CB364A29A6363E002F434B /* InfoPlist.strings */,
 				865E015029A61AA100B8DE82 /* LionApp.swift */,
+				865E01B429A61AA100B8DE82 /* RootView.swift */,
+				865E014E29A61AA100B8DE82 /* Study */,
 				865E015129A61AA100B8DE82 /* Resources */,
 				865E015D29A61AA100B8DE82 /* Foundation */,
 				865E018029A61AA100B8DE82 /* Component */,
 				865E019029A61AA100B8DE82 /* Reducer */,
-				865E01B429A61AA100B8DE82 /* RootView.swift */,
 				865E01B529A61AA100B8DE82 /* Preview Content */,
 				865E01B729A61AA100B8DE82 /* View */,
-				865E01DC29A61AA100B8DE82 /* Lion.entitlements */,
-				865E01DD29A61AA100B8DE82 /* Info.plist */,
 			);
 			path = Lion;
 			sourceTree = "<group>";
@@ -964,6 +966,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				865E01E729A61AA100B8DE82 /* Assets.xcassets in Resources */,
+				86CB364829A6363E002F434B /* InfoPlist.strings in Resources */,
 				865E023029A61AA100B8DE82 /* Preview Assets.xcassets in Resources */,
 				865E01E329A61AA100B8DE82 /* Localizable.strings in Resources */,
 			);
@@ -1196,6 +1199,15 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
+		86CB364A29A6363E002F434B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				86CB364929A6363E002F434B /* zh-Hans */,
+				86CB364B29A63640002F434B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -1204,6 +1216,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Lion/Lion.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1218,6 +1231,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1242,6 +1256,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Lion/Lion.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1256,6 +1271,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

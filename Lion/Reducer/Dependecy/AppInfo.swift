@@ -21,13 +21,13 @@ extension AppInfo: DependencyKey {
 
     static var liveValue: Self = .init(
         name: {
-            (bundle.infoDictionary?["BundleDisplayName"] as? String) ?? ""
+            (bundle.localizedInfoDictionary?["CFBundleDisplayName"] as? String) ?? ""
         },
         version: {
-            (bundle.infoDictionary?["CFBundleShortVersionString"] as? String) ?? ""
+            (bundle.localizedInfoDictionary?["CFBundleShortVersionString"] as? String) ?? ""
         },
         buildVersion: {
-            (bundle.infoDictionary?["CFBundleVersion"] as? String) ?? ""
+            (bundle.localizedInfoDictionary?["CFBundleVersion"] as? String) ?? ""
         }
     )
 

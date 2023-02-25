@@ -39,7 +39,7 @@ extension ScreenTimeAuth: DependencyKey {
             await withCheckedContinuation { continuation in
                 _ = center.authorizationStatus
                 // 授权状态需要延迟一点获取才准确。
-                mainQueue.asyncAfter(deadline: .now() + 0.5) {
+                mainQueue.asyncAfter(deadline: .now() + 1.0) {
                     let isGranted = center.authorizationStatus == .approved
                     continuation.resume(returning: isGranted)
                 }

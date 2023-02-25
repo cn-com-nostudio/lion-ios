@@ -20,6 +20,7 @@ extension DeviceActivityEvent.Name {
 
 struct ShieldAppsScheduler {
     private let center: DeviceActivityCenter
+    private let store: ManagedSettingsStore = .init()
 
     init(center: DeviceActivityCenter = .init()) {
         self.center = center
@@ -43,6 +44,7 @@ struct ShieldAppsScheduler {
 
     func stopMonitoringAll() {
         center.stopMonitoring()
+        store.shield.applications = nil
     }
 
     func stopMonitoring(item: ShieldAppsItem.State) {
@@ -68,7 +70,8 @@ extension ShieldAppsItem.State {
             let schedule = DeviceActivitySchedule(
                 intervalStart: start,
                 intervalEnd: end,
-                repeats: true
+                repeats: true,
+                warningTime: DateComponents(second: 30)
             )
             return ScheduleItem(
                 activity: activity,

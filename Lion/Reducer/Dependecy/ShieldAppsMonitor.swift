@@ -4,6 +4,7 @@
 
 import ComposableArchitecture
 import DeviceActivity
+import Foundation
 import XCTestDynamicOverlay
 
 extension DependencyValues {
@@ -11,10 +12,10 @@ extension DependencyValues {
 }
 
 struct ShieldAppsMonitor {
-    var startMonitoringItems: ([ShieldAppsItem.State]) throws -> Void
-    var stopMonitoringAll: () -> Void
-    var startMonitoringItem: (ShieldAppsItem.State) throws -> Void
-    var stopMonitoringItem: (ShieldAppsItem.State) -> Void
+    var startMonitoringItems: ([ShieldAppsItem.State]) async throws -> Void
+    var stopMonitoringAll: () async -> Void
+    var startMonitoringItem: (ShieldAppsItem.State) async throws -> Void
+    var stopMonitoringItem: (ShieldAppsItem.State) async -> Void
 }
 
 extension ShieldAppsMonitor: DependencyKey {

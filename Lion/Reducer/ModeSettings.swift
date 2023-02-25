@@ -79,13 +79,13 @@ struct ModeSettings: ReducerProtocol {
         }
         if state.isShieldApps {
             let aliveItems = state.shieldAppsSettings.items.elements // .filter(\.isOn)
-            try shieldAppsMonitor.startMonitoringItems(aliveItems)
+            try await shieldAppsMonitor.startMonitoringItems(aliveItems)
         }
     }
 
     func turnOff() async {
         await modeManager.clearAllSettings()
-        shieldAppsMonitor.stopMonitoringAll()
+        await shieldAppsMonitor.stopMonitoringAll()
     }
 
     var body: some ReducerProtocol<State, Action> {
@@ -101,8 +101,8 @@ struct ModeSettings: ReducerProtocol {
                 return .fireAndForget { [state] in
                     try await turnOn(state)
                 }
-                .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
-                .eraseToEffect()
+//                .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
+//                .eraseToEffect()
 
             case .toggleIsOn(false):
                 guard state.isOn == true else { return .none }
@@ -110,40 +110,40 @@ struct ModeSettings: ReducerProtocol {
                 return .fireAndForget {
                     await turnOff()
                 }
-                .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
-                .eraseToEffect()
+//                .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
+//                .eraseToEffect()
 
             case let .toggleIsDenyAppInstallation(isOn):
                 state.isDenyAppInstallation = isOn
                 return .fireAndForget({
                     await modeManager.denyAppInstallation(isOn)
                 }, onlyWhen: state.isOn)
-                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
-                    .eraseToEffect()
+//                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
+//                    .eraseToEffect()
 
             case let .toggleIsDenyAppRemoval(isOn):
                 state.isDenyAppRemoval = isOn
                 return .fireAndForget({
                     await modeManager.denyAppRemoval(isOn)
                 }, onlyWhen: state.isOn)
-                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
-                    .eraseToEffect()
+//                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
+//                    .eraseToEffect()
 
             case .toggleIsBlockApps(true):
                 state.isBlockApps = true
                 return .fireAndForget({ [state] in
                     await modeManager.setBlockAppTokens(state.blockAppsSettings.appTokens)
                 }, onlyWhen: state.isOn)
-                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
-                    .eraseToEffect()
+//                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
+//                    .eraseToEffect()
 
             case .toggleIsBlockApps(false):
                 state.isBlockApps = false
                 return .fireAndForget({
                     await modeManager.setBlockAppTokens(nil)
                 }, onlyWhen: state.isOn)
-                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
-                    .eraseToEffect()
+//                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
+//                    .eraseToEffect()
 
             case .blockAppsSettings(.update):
                 return .fireAndForget({ [state] in
@@ -165,22 +165,22 @@ struct ModeSettings: ReducerProtocol {
 
             case let .toggleIsShieldApps(isOn):
                 state.isShieldApps = isOn
+
                 return .fireAndForget({ [state] in
                     if isOn {
                         let aliveItems = state.shieldAppsSettings.items.elements // .filter(\.isOn)
-                        try shieldAppsMonitor.startMonitoringItems(aliveItems)
+                        try await shieldAppsMonitor.startMonitoringItems(aliveItems)
                     } else {
-                        shieldAppsMonitor.stopMonitoringAll()
+                        await shieldAppsMonitor.stopMonitoringAll()
                     }
                 }, onlyWhen: state.isOn)
-                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
-                    .eraseToEffect()
+//                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
+//                    .eraseToEffect()
 
             case let .shieldAppsSettings(.updateItem(item)),
                  let .shieldAppsSettings(.addItem(item)):
                 return .fireAndForget({
-                    shieldAppsMonitor.stopMonitoringItem(item)
-                    try shieldAppsMonitor.startMonitoringItem(item)
+                    try await shieldAppsMonitor.startMonitoringItem(item)
                 }, onlyWhen: state.isOn && state.isShieldApps)
 //                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.global())
 //                    .receive(on: DispatchQueue.main)
@@ -188,7 +188,7 @@ struct ModeSettings: ReducerProtocol {
 
             case let .shieldAppsSettings(.deleteItem(item)):
                 return .fireAndForget({
-                    shieldAppsMonitor.stopMonitoringItem(item)
+                    await shieldAppsMonitor.stopMonitoringItem(item)
                 }, onlyWhen: state.isOn && state.isShieldApps)
 //                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.global())
 //                    .receive(on: DispatchQueue.main)

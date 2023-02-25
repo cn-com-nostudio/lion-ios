@@ -29,7 +29,10 @@ struct Settings: Codable {
     }
 
     mutating func delete(for activity: DeviceActivityName) {
+        print("befor: \(appTokens)")
+        print("activity = \(activity.rawValue)")
         appTokens[activity.rawValue] = nil
+        print("after: \(appTokens)")
     }
 
     mutating func clearAll() {

@@ -44,17 +44,20 @@ struct ShieldAppsSettings: ReducerProtocol {
             case let .addItem(item):
                 if !state.items.contains(item) {
                     state.items.insert(item, at: 0)
+                    print("addItem")
                 }
                 return .none
 
             case let .updateItem(item):
                 if state.items.contains(item) {
                     state.items[id: item.id] = item
+                    print("updateItem")
                 }
                 return .none
 
             case let .deleteItem(item):
                 state.items[id: item.id] = nil
+                print("deleteItem")
                 return .none
 
             case .willAddItem:

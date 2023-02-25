@@ -35,11 +35,13 @@ struct ShieldAppsScheduler {
     }
 
     private func startMonitoring(item: ScheduleItem) throws {
-        let event = DeviceActivityEvent(
-            applications: item.applications,
-            threshold: DateComponents(hour: 0, second: 0)
-        )
-        try center.startMonitoring(item.activity, during: item.schedule, events: [.shieldSettings: event])
+        Task {
+            let event = DeviceActivityEvent(
+                applications: item.applications,
+                threshold: DateComponents(hour: 0, second: 0)
+            )
+            try center.startMonitoring(item.activity, during: item.schedule, events: [.shieldSettings: event])
+        }
     }
 
     func stopMonitoringAll() {

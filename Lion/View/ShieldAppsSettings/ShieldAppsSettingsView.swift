@@ -67,13 +67,12 @@ struct ShieldAppsSettingsView: View {
                         then: {
                             ShieldAppsItemSettingsView(
                                 store: $0,
-                                isNewItem: viewStore.isSelectedItemANewItem,
                                 cancel: {
                                     viewStore.send(.deselectedItem)
                                 },
                                 done: {
                                     viewStore.send(.deselectedItem)
-                                    if viewStore.isSelectedItemANewItem {
+                                    if $0.isNew {
                                         viewStore.send(.addItem($0))
                                     } else {
                                         viewStore.send(.updateItem($0))

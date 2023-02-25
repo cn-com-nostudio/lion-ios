@@ -28,7 +28,17 @@ extension RootStoreInitial: DependencyKey {
 
     static var liveValue: Self = .init(
         value: {
-            let state = (try? cache.load()) ?? .default
+            let state: Root.State
+            do {
+                if let cachedState = try cache.load() {
+                    state = cachedState
+                } else {
+                    state = .default
+                }
+            } catch {
+                state = .default
+                print("fuck data lost: \(error)")
+            }
 
             return .init(
                 initialState: state,

@@ -8,7 +8,6 @@ import SwiftUI
 
 struct ShieldAppsItemSettingsView: View {
     let store: StoreOf<ShieldAppsItem>
-    var isNewItem: Bool
     var cancel: () -> Void
     var done: (ShieldAppsItem.State) -> Void
     var delete: (ShieldAppsItem.State) -> Void
@@ -41,8 +40,10 @@ struct ShieldAppsItemSettingsView: View {
                     Spacer()
 
                     VStack(spacing: 16) {
-                        doneButton { done(viewStore.state) }
-                        if !isNewItem {
+                        doneButton {
+                            done(viewStore.state)
+                        }
+                        if !viewStore.isNew {
                             deleteButton { delete(viewStore.state) }
                         }
                     }
@@ -59,7 +60,7 @@ struct ShieldAppsItemSettingsView: View {
                 .background(Color(.veryLightGreen))
             }
             .onAppear {
-                if isNewItem {
+                if viewStore.isNew {
                     viewStore.send(.selectApps(.toggleIsPresented(true)))
                 }
             }
@@ -100,7 +101,6 @@ struct ShieldAppsItemSettingsView_Previews: PreviewProvider {
                 initialState: ShieldAppsItem.State(id: UUID()),
                 reducer: ShieldAppsItem()
             ),
-            isNewItem: false,
             cancel: {},
             done: { _ in },
             delete: { _ in }

@@ -20,6 +20,8 @@ struct ShieldAppsItem: ReducerProtocol {
         var weekdays: SortedSet<Weekday>
         var selectedApps: AppsSelection.State
 
+        @NotCoded var isNew: Bool
+
         init(
             id: UUID,
 //            isOn: Bool = false,
@@ -32,6 +34,7 @@ struct ShieldAppsItem: ReducerProtocol {
             self.timeDuration = timeDuration
             self.weekdays = weekdays
             self.selectedApps = selectedApps
+            isNew = true
         }
     }
 
@@ -40,6 +43,7 @@ struct ShieldAppsItem: ReducerProtocol {
         case timeDuration(TimeDuration.Action)
         case weekday(WeekdayAction)
         case selectApps(AppsSelection.Action)
+        case editDone
     }
 
     enum WeekdayAction: Equatable {

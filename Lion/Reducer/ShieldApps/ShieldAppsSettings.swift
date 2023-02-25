@@ -13,7 +13,6 @@ struct ShieldAppsSettings: ReducerProtocol {
     struct State: Equatable, Codable {
         @NotCoded var isPresented: Bool = false
         var items: IdentifiedArrayOf<ShieldAppsItem.State>
-        var isSelectedItemANewItem: Bool = false
         @NotCoded var selectedItem: ShieldAppsItem.State?
     }
 
@@ -43,7 +42,9 @@ struct ShieldAppsSettings: ReducerProtocol {
 
             case let .addItem(item):
                 if !state.items.contains(item) {
-                    state.items.insert(item, at: 0)
+                    var copiedItem = item
+                    copiedItem.isNew = false
+                    state.items.insert(copiedItem, at: 0)
                     print("addItem")
                 }
                 return .none
@@ -62,13 +63,11 @@ struct ShieldAppsSettings: ReducerProtocol {
 
             case .willAddItem:
                 state.selectedItem = .default
-                state.isSelectedItemANewItem = true
                 return .none
 
             case let .selectedItem(id):
                 guard let item = state.items[id: id] else { return .none }
                 state.selectedItem = item
-                state.isSelectedItemANewItem = false
                 return .none
 
             case .deselectedItem:

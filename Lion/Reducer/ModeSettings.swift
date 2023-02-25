@@ -210,16 +210,22 @@ struct ModeSettings: ReducerProtocol {
                     }
                 }, onlyWhen: state.isOn)
 
-            case let .shieldAppsSettings(.updateItem(item)),
-                 let .shieldAppsSettings(.addItem(item)),
-                 let .shieldAppsSettings(.deleteItem(item)):
-                return .fireAndForget({ [state] in
-                    Task {
-                        await shieldAppsMonitor.stopMonitoringAll()
-                        let aliveItems = state.shieldAppsSettings.items.elements // .filter(\.isOn)
-                        try await shieldAppsMonitor.startMonitoringItems(aliveItems)
-                    }
+            case let .shieldAppsSettings(.addItem(item)):
+                return .fireAndForget({
+                    try await shieldAppsMonitor.startMonitoringItem(item)
                 }, onlyWhen: state.isOn && state.isShieldApps)
+
+            case let .shieldAppsSettings(.updateItem(item)):
+                return .fireAndForget({
+                    await shieldAppsMonitor.stopMonitoringItem(item)
+                    try await shieldAppsMonitor.startMonitoringItem(item)
+                }, onlyWhen: state.isOn && state.isShieldApps)
+
+            case let .shieldAppsSettings(.deleteItem(item)):
+                return .fireAndForget({
+                    await shieldAppsMonitor.stopMonitoringItem(item)
+                }, onlyWhen: state.isOn && state.isShieldApps)
+
 //                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.global())
 //                    .receive(on: DispatchQueue.main)
 //                    .eraseToEffect()

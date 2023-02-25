@@ -69,20 +69,22 @@ struct ModeSettings: ReducerProtocol {
     @Dependency(\.modeManager) var modeManager
     @Dependency(\.shieldAppsMonitor) var shieldAppsMonitor
 
-    func turnOn(_ state: State) throws {
-        modeManager.denyAppInstallation(state.isDenyAppInstallation)
-        modeManager.denyAppRemoval(state.isDenyAppRemoval)
+    struct CancelToken: Hashable {}
+
+    func turnOn(_ state: State) async throws {
+        await modeManager.denyAppInstallation(state.isDenyAppInstallation)
+        await modeManager.denyAppRemoval(state.isDenyAppRemoval)
         if state.isBlockApps {
-            modeManager.setBlockAppTokens(state.blockAppsSettings.appTokens)
+            await modeManager.setBlockAppTokens(state.blockAppsSettings.appTokens)
         }
         if state.isShieldApps {
-            let aliveItems = state.shieldAppsSettings.items.elements.filter(\.isOn)
+            let aliveItems = state.shieldAppsSettings.items.elements // .filter(\.isOn)
             try shieldAppsMonitor.startMonitoringItems(aliveItems)
         }
     }
 
-    func turnOff() {
-        modeManager.clearAllSettings()
+    func turnOff() async {
+        await modeManager.clearAllSettings()
         shieldAppsMonitor.stopMonitoringAll()
     }
 
@@ -94,80 +96,117 @@ struct ModeSettings: ReducerProtocol {
                 return .none
 
             case .toggleIsOn(true):
+                guard state.isOn == false else { return .none }
                 state.isOn = true
                 return .fireAndForget { [state] in
-                    try turnOn(state)
+                    try await turnOn(state)
                 }
+                .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
+                .eraseToEffect()
 
             case .toggleIsOn(false):
+                guard state.isOn == true else { return .none }
                 state.isOn = false
                 return .fireAndForget {
-                    turnOff()
+                    await turnOff()
                 }
+                .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
+                .eraseToEffect()
 
             case let .toggleIsDenyAppInstallation(isOn):
                 state.isDenyAppInstallation = isOn
                 return .fireAndForget({
-                    modeManager.denyAppInstallation(isOn)
+                    await modeManager.denyAppInstallation(isOn)
                 }, onlyWhen: state.isOn)
+                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
+                    .eraseToEffect()
 
             case let .toggleIsDenyAppRemoval(isOn):
                 state.isDenyAppRemoval = isOn
                 return .fireAndForget({
-                    modeManager.denyAppRemoval(isOn)
+                    await modeManager.denyAppRemoval(isOn)
                 }, onlyWhen: state.isOn)
+                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
+                    .eraseToEffect()
 
             case .toggleIsBlockApps(true):
                 state.isBlockApps = true
                 return .fireAndForget({ [state] in
-                    modeManager.setBlockAppTokens(state.blockAppsSettings.appTokens)
+                    await modeManager.setBlockAppTokens(state.blockAppsSettings.appTokens)
                 }, onlyWhen: state.isOn)
+                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
+                    .eraseToEffect()
 
             case .toggleIsBlockApps(false):
                 state.isBlockApps = false
                 return .fireAndForget({
-                    modeManager.setBlockAppTokens(nil)
+                    await modeManager.setBlockAppTokens(nil)
                 }, onlyWhen: state.isOn)
-
-            case .toggleIsShieldApps(true):
-                state.isShieldApps = true
-                return .fireAndForget({ [state] in
-                    let aliveItems = state.shieldAppsSettings.items.elements.filter(\.isOn)
-                    try shieldAppsMonitor.startMonitoringItems(aliveItems)
-                }, onlyWhen: state.isOn)
-
-            case .toggleIsShieldApps(false):
-                state.isShieldApps = false
-                return .fireAndForget({
-                    shieldAppsMonitor.stopMonitoringAll()
-                }, onlyWhen: state.isOn)
+                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
+                    .eraseToEffect()
 
             case .blockAppsSettings(.update):
                 return .fireAndForget({ [state] in
-                    modeManager.setBlockAppTokens(state.blockAppsSettings.appTokens)
+                    await modeManager.setBlockAppTokens(state.blockAppsSettings.appTokens)
                 }, onlyWhen: state.isOn && state.isBlockApps)
+//                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.global())
+//                    .receive(on: DispatchQueue.main)
+//                    .eraseToEffect()
 
-            case let .shieldAppsSettings(.updateItem(item)):
+//            case .toggleIsShieldApps(true):
+//                state.isShieldApps = true
+//                return .fireAndForget({ [state] in
+//                    let aliveItems = state.shieldAppsSettings.items.elements // .filter(\.isOn)
+//                    try shieldAppsMonitor.startMonitoringItems(aliveItems)
+//                }, onlyWhen: state.isOn)
+//                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.global())
+//                    .receive(on: DispatchQueue.main)
+//                    .eraseToEffect()
+
+            case let .toggleIsShieldApps(isOn):
+                state.isShieldApps = isOn
+                return .fireAndForget({ [state] in
+                    if isOn {
+                        let aliveItems = state.shieldAppsSettings.items.elements // .filter(\.isOn)
+                        try shieldAppsMonitor.startMonitoringItems(aliveItems)
+                    } else {
+                        shieldAppsMonitor.stopMonitoringAll()
+                    }
+                }, onlyWhen: state.isOn)
+                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.main)
+                    .eraseToEffect()
+
+            case let .shieldAppsSettings(.updateItem(item)),
+                 let .shieldAppsSettings(.addItem(item)):
                 return .fireAndForget({
                     shieldAppsMonitor.stopMonitoringItem(item)
                     try shieldAppsMonitor.startMonitoringItem(item)
                 }, onlyWhen: state.isOn && state.isShieldApps)
+//                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.global())
+//                    .receive(on: DispatchQueue.main)
+//                    .eraseToEffect()
 
             case let .shieldAppsSettings(.deleteItem(item)):
                 return .fireAndForget({
                     shieldAppsMonitor.stopMonitoringItem(item)
                 }, onlyWhen: state.isOn && state.isShieldApps)
+//                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.global())
+//                    .receive(on: DispatchQueue.main)
+//                    .eraseToEffect()
 
-            case let .shieldAppsSettings(.items(id: id, action: .toggleIsOn(isOn))):
-                return .fireAndForget({ [state] in
-                    if let item = state.shieldAppsSettings.items[id: id] {
-                        if isOn {
-                            try shieldAppsMonitor.startMonitoringItem(item)
-                        } else {
-                            shieldAppsMonitor.stopMonitoringItem(item)
-                        }
-                    }
-                }, onlyWhen: state.isOn && state.isShieldApps)
+//            case let .shieldAppsSettings(.items(id: id, action: .toggleIsOn(isOn))):
+//                return .fireAndForget({ [state] in
+//                    if let item = state.shieldAppsSettings.items[id: id] {
+//                        if isOn {
+//                            try shieldAppsMonitor.startMonitoringItem(item)
+//                        } else {
+//                            shieldAppsMonitor.stopMonitoringItem(item)
+//                        }
+//                    }
+//                }, onlyWhen: state.isOn && state.isShieldApps)
+//                    .debounce(id: CancelToken(), for: .milliseconds(800), scheduler: DispatchQueue.global())
+//                    .receive(on: DispatchQueue.main)
+//                    .eraseToEffect()
 
             default:
                 return .none

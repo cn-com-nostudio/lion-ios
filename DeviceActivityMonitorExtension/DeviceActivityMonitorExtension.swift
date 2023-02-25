@@ -1,12 +1,12 @@
-// AppsSchedulerExtension.swift
+// DeviceActivityMonitorExtension.swift
 // Copyright (c) 2023 Nostudio
-// Created by Jerry X T Wang on 2023/2/22.
+// Created by Jerry X T Wang on 2023/2/24.
 
 import DeviceActivity
 import Foundation
 import ManagedSettings
 
-class AppsSchedulerExtension: DeviceActivityMonitor {
+class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     private let store: ManagedSettingsStore = .init()
     private var appScheduler: AppsScheduler = .init()
 

@@ -36,10 +36,10 @@ extension ScreenTimeAuth: DependencyKey {
             return status == .approved
         },
         isAccessGranted: {
-            // 该方法只在app启动的时候获取有效，如果app启动后，去app设置里开关权限，则这个获取结果不准。
             await withCheckedContinuation { continuation in
                 _ = center.authorizationStatus
-                mainQueue.asyncAfter(deadline: .now()) {
+                // 授权状态需要延迟一点获取才准确。
+                mainQueue.asyncAfter(deadline: .now() + 0.5) {
                     let isGranted = center.authorizationStatus == .approved
                     continuation.resume(returning: isGranted)
                 }

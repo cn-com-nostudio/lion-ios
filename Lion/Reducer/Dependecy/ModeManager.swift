@@ -11,10 +11,10 @@ extension DependencyValues {
 }
 
 struct ModeManager {
-    var clearAllSettings: () -> Void
-    var denyAppInstallation: (_ isDenied: Bool) -> Void
-    var denyAppRemoval: (_ isDenied: Bool) -> Void
-    var setBlockAppTokens: (_ applications: Set<ApplicationToken>?) -> Void
+    var clearAllSettings: () async -> Void
+    var denyAppInstallation: (_ isDenied: Bool) async -> Void
+    var denyAppRemoval: (_ isDenied: Bool) async -> Void
+    var setBlockAppTokens: (_ applications: Set<ApplicationToken>?) async -> Void
 }
 
 extension ModeManager: DependencyKey {

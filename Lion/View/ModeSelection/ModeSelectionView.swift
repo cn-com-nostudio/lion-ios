@@ -27,7 +27,7 @@ struct ModeSelectionView: View {
                                 ),
                                 header: ModeHeaders[viewStore.childMode],
                                 action: {
-                                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+//                                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
                                     if viewStore.loanMode.isOn {
                                         viewStore.send(.loanMode(.toggleIsOn(false)))
                                     }

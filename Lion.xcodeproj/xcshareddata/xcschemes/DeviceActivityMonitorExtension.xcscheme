@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8689BA2829706DD200268A64"
-               BuildableName = "DeviceActivityMonitor.appex"
-               BlueprintName = "DeviceActivityMonitor"
+               BlueprintIdentifier = "86EEA4A929A90BAC006D4D68"
+               BuildableName = "DeviceActivityMonitorExtension.appex"
+               BlueprintName = "DeviceActivityMonitorExtension"
                ReferencedContainer = "container:Lion.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,7 +29,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "86B7A017295197BA00D3D34A"
+               BlueprintIdentifier = "865E013E29A6190C00B8DE82"
                BuildableName = "Lion.app"
                BlueprintName = "Lion"
                ReferencedContainer = "container:Lion.xcodeproj">
@@ -61,7 +61,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "86B7A017295197BA00D3D34A"
+            BlueprintIdentifier = "865E013E29A6190C00B8DE82"
             BuildableName = "Lion.app"
             BlueprintName = "Lion"
             ReferencedContainer = "container:Lion.xcodeproj">
@@ -79,7 +79,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "86B7A017295197BA00D3D34A"
+            BlueprintIdentifier = "865E013E29A6190C00B8DE82"
             BuildableName = "Lion.app"
             BlueprintName = "Lion"
             ReferencedContainer = "container:Lion.xcodeproj">

@@ -15,3 +15,19 @@ extension EffectTask {
         }
     }
 }
+
+extension EffectPublisher where Failure == Never {
+    static func fireAndForget(
+        priority _: TaskPriority? = nil,
+        _ work: @escaping @Sendable () async throws -> Void,
+        onlyWhen condiction: @autoclosure () -> Bool
+    ) -> Self {
+        if condiction() {
+            return .fireAndForget {
+                try await work()
+            }
+        } else {
+            return .none
+        }
+    }
+}

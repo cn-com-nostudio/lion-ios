@@ -13,7 +13,7 @@ extension DeviceActivityEvent.Name {
 
 // incase that the data not consistence. we should reset all events and re-run.
 extension DeviceActivityName {
-    static let clearAll: Self = .init("clean all")
+    static let clearAllShieldSettings: Self = .init("clean all shield settings")
 }
 
 struct Settings: Codable {
@@ -29,11 +29,11 @@ struct Settings: Codable {
     }
 
     mutating func delete(for activity: DeviceActivityName) {
-        if activity == .clearAll {
-            appTokens = [:]
-        } else {
-            appTokens[activity.rawValue] = nil
-        }
+        appTokens[activity.rawValue] = nil
+    }
+
+    mutating func clearAll() {
+        appTokens = [:]
     }
 }
 
@@ -64,6 +64,10 @@ struct AppsScheduler {
     }
 
     mutating func intervalDidEnd(for activity: DeviceActivityName) {
-        shield.delete(for: activity)
+        if activity == .clearAllShieldSettings {
+            shield.clearAll()
+        } else {
+            shield.delete(for: activity)
+        }
     }
 }

@@ -1,11 +1,11 @@
-// TimeInterval.swift
+// TimeDuration.swift
 // Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/2/22.
 
 import ComposableArchitecture
 import Foundation
 
-extension TimeInterval.State {
+extension TimeDuration.State {
     static let `default`: Self = .init(
         start: .init(
             time: .init(hour: 9, minute: 0),
@@ -20,7 +20,7 @@ extension TimeInterval.State {
     )
 }
 
-struct TimeInterval: ReducerProtocol {
+struct TimeDuration: ReducerProtocol {
     struct State: Equatable, Codable {
         var start: TimeSelection.State
         var end: TimeSelection.State

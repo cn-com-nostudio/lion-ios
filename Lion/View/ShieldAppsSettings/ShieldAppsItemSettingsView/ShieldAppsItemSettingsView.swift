@@ -17,10 +17,10 @@ struct ShieldAppsItemSettingsView: View {
         WithViewStore(store) { viewStore in
             NavigationStack {
                 VStack(alignment: .leading, spacing: 30) {
-                    TimeIntervalPicker(
+                    TimeDurationPicker(
                         store: store.scope(
-                            state: \.timeInterval,
-                            action: ShieldAppsItem.Action.timeInterval
+                            state: \.timeDuration,
+                            action: ShieldAppsItem.Action.timeDuration
                         )
                     )
 

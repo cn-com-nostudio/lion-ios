@@ -15,29 +15,29 @@ extension ShieldAppsItem.State {
 struct ShieldAppsItem: ReducerProtocol {
     struct State: Equatable, Codable, Identifiable {
         let id: UUID
-        var isOn: Bool
-        var timeInterval: TimeInterval.State
+//        var isOn: Bool
+        var timeDuration: TimeDuration.State
         var weekdays: SortedSet<Weekday>
         var selectedApps: AppsSelection.State
 
         init(
             id: UUID,
-            isOn: Bool = false,
-            timeInterval: TimeInterval.State = .default,
+//            isOn: Bool = false,
+            timeDuration: TimeDuration.State = .default,
             weekdays: SortedSet<Weekday> = .everyDay,
             selectedApps: AppsSelection.State = .none
         ) {
             self.id = id
-            self.isOn = isOn
-            self.timeInterval = timeInterval
+//            self.isOn = isOn
+            self.timeDuration = timeDuration
             self.weekdays = weekdays
             self.selectedApps = selectedApps
         }
     }
 
     enum Action: Equatable {
-        case toggleIsOn(Bool)
-        case timeInterval(TimeInterval.Action)
+//        case toggleIsOn(Bool)
+        case timeDuration(TimeDuration.Action)
         case weekday(WeekdayAction)
         case selectApps(AppsSelection.Action)
     }
@@ -50,9 +50,9 @@ struct ShieldAppsItem: ReducerProtocol {
     var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
             switch action {
-            case let .toggleIsOn(isOn):
-                state.isOn = isOn
-                return .none
+//            case let .toggleIsOn(isOn):
+//                state.isOn = isOn
+//                return .none
 
             case let .weekday(.addWeekday(weekday)):
                 state.weekdays.insert(weekday)
@@ -67,8 +67,8 @@ struct ShieldAppsItem: ReducerProtocol {
             }
         }
 
-        Scope(state: \.timeInterval, action: /Action.timeInterval) {
-            TimeInterval()
+        Scope(state: \.timeDuration, action: /Action.timeDuration) {
+            TimeDuration()
         }
 
         Scope(state: \.selectedApps, action: /Action.selectApps) {

@@ -83,7 +83,7 @@
 		865E022729A61AA100B8DE82 /* TimeSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01AC29A61AA100B8DE82 /* TimeSelection.swift */; };
 		865E022929A61AA100B8DE82 /* HourMinute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01AE29A61AA100B8DE82 /* HourMinute.swift */; };
 		865E022A29A61AA100B8DE82 /* ShieldAppsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01AF29A61AA100B8DE82 /* ShieldAppsSettings.swift */; };
-		865E022B29A61AA100B8DE82 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01B029A61AA100B8DE82 /* TimeInterval.swift */; };
+		865E022B29A61AA100B8DE82 /* TimeDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01B029A61AA100B8DE82 /* TimeDuration.swift */; };
 		865E022C29A61AA100B8DE82 /* ShieldAppsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01B129A61AA100B8DE82 /* ShieldAppsItem.swift */; };
 		865E022D29A61AA100B8DE82 /* PasswordLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01B229A61AA100B8DE82 /* PasswordLock.swift */; };
 		865E022E29A61AA100B8DE82 /* ModeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01B329A61AA100B8DE82 /* ModeSettings.swift */; };
@@ -119,18 +119,64 @@
 		865E024D29A61AA100B8DE82 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01DB29A61AA100B8DE82 /* WebView.swift */; };
 		865E025629A61DFE00B8DE82 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 865E025529A61DFE00B8DE82 /* ComposableArchitecture */; };
 		865E025829A61E8000B8DE82 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 865E025729A61E8000B8DE82 /* AlertToast */; };
-		8689BA3629706E7200268A64 /* AppsSchedulerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8689BA3529706E7200268A64 /* AppsSchedulerExtension.swift */; };
-		86966DA62971170700AAB1C7 /* AppsShcheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86966DA52971170700AAB1C7 /* AppsShcheduler.swift */; };
+		868112AB29A91F7800162733 /* Limiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868112AA29A91F7800162733 /* Limiter.swift */; };
+		868112AD29A9231400162733 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868112AC29A9231300162733 /* Debouncer.swift */; };
 		86B7A037295197BE00D3D34A /* LionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A036295197BE00D3D34A /* LionUITests.swift */; };
 		86B7A039295197BE00D3D34A /* LionUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A038295197BE00D3D34A /* LionUITestsLaunchTests.swift */; };
 		86CB364829A6363E002F434B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86CB364A29A6363E002F434B /* InfoPlist.strings */; };
-		A41DAE532977D65200361AE1 /* UserDefaultCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41DAE522977D65200361AE1 /* UserDefaultCache.swift */; };
-		A469FC5729793AEE006E47D3 /* ManagedSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A49445922978F668004BCE9A /* ManagedSettings.framework */; };
-		A469FC5A29793AEE006E47D3 /* ShieldActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A469FC5929793AEE006E47D3 /* ShieldActionExtension.swift */; };
-		A49445932978F669004BCE9A /* ManagedSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A49445922978F668004BCE9A /* ManagedSettings.framework */; };
-		A49445952978F669004BCE9A /* ManagedSettingsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A49445942978F669004BCE9A /* ManagedSettingsUI.framework */; };
-		A49445982978F669004BCE9A /* ShieldConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49445972978F669004BCE9A /* ShieldConfigurationExtension.swift */; };
+		86EEA4AC29A90BAC006D4D68 /* DeviceActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86EEA4AB29A90BAC006D4D68 /* DeviceActivity.framework */; };
+		86EEA4AF29A90BAD006D4D68 /* DeviceActivityMonitorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EEA4AE29A90BAD006D4D68 /* DeviceActivityMonitorExtension.swift */; };
+		86EEA4B429A90BAD006D4D68 /* DeviceActivityMonitorExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 86EEA4AA29A90BAC006D4D68 /* DeviceActivityMonitorExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		86EEA4B929A90BDE006D4D68 /* AppsShcheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EEA4B829A90BDE006D4D68 /* AppsShcheduler.swift */; };
+		86EEA4BB29A90C2E006D4D68 /* UserDefaultCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EEA4BA29A90C2E006D4D68 /* UserDefaultCache.swift */; };
+		86EEA4C129A90D34006D4D68 /* ManagedSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A49445922978F668004BCE9A /* ManagedSettings.framework */; };
+		86EEA4C229A90D34006D4D68 /* ManagedSettingsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A49445942978F669004BCE9A /* ManagedSettingsUI.framework */; };
+		86EEA4C529A90D34006D4D68 /* ShieldConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EEA4C429A90D34006D4D68 /* ShieldConfigurationExtension.swift */; };
+		86EEA4CA29A90D34006D4D68 /* ShieldConfigurationExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 86EEA4C029A90D34006D4D68 /* ShieldConfigurationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		86EEA4D329A90E30006D4D68 /* ManagedSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A49445922978F668004BCE9A /* ManagedSettings.framework */; };
+		86EEA4D629A90E30006D4D68 /* ShieldActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EEA4D529A90E30006D4D68 /* ShieldActionExtension.swift */; };
+		86EEA4DB29A90E30006D4D68 /* ShieldActionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 86EEA4D229A90E30006D4D68 /* ShieldActionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		86EEA4B229A90BAD006D4D68 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 86B7A010295197BA00D3D34A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 86EEA4A929A90BAC006D4D68;
+			remoteInfo = DeviceActivityMonitorExtension;
+		};
+		86EEA4C829A90D34006D4D68 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 86B7A010295197BA00D3D34A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 86EEA4BF29A90D34006D4D68;
+			remoteInfo = ShieldConfigurationExtension;
+		};
+		86EEA4D929A90E30006D4D68 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 86B7A010295197BA00D3D34A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 86EEA4D129A90E30006D4D68;
+			remoteInfo = ShieldActionExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		86EEA49429A90A04006D4D68 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				86EEA4CA29A90D34006D4D68 /* ShieldConfigurationExtension.appex in Embed Foundation Extensions */,
+				86EEA4B429A90BAD006D4D68 /* DeviceActivityMonitorExtension.appex in Embed Foundation Extensions */,
+				86EEA4DB29A90E30006D4D68 /* ShieldActionExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		864AEE37295880C500AB1379 /* DirectoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryTests.swift; sourceTree = "<group>"; };
@@ -210,7 +256,7 @@
 		865E01AC29A61AA100B8DE82 /* TimeSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSelection.swift; sourceTree = "<group>"; };
 		865E01AE29A61AA100B8DE82 /* HourMinute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourMinute.swift; sourceTree = "<group>"; };
 		865E01AF29A61AA100B8DE82 /* ShieldAppsSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShieldAppsSettings.swift; sourceTree = "<group>"; };
-		865E01B029A61AA100B8DE82 /* TimeInterval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
+		865E01B029A61AA100B8DE82 /* TimeDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeDuration.swift; sourceTree = "<group>"; };
 		865E01B129A61AA100B8DE82 /* ShieldAppsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShieldAppsItem.swift; sourceTree = "<group>"; };
 		865E01B229A61AA100B8DE82 /* PasswordLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordLock.swift; sourceTree = "<group>"; };
 		865E01B329A61AA100B8DE82 /* ModeSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModeSettings.swift; sourceTree = "<group>"; };
@@ -245,11 +291,8 @@
 		865E01DA29A61AA100B8DE82 /* PasswordSetupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordSetupView.swift; sourceTree = "<group>"; };
 		865E01DB29A61AA100B8DE82 /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		865E01DC29A61AA100B8DE82 /* Lion.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Lion.entitlements; sourceTree = "<group>"; };
-		8689BA2929706DD200268A64 /* DeviceActivityMonitor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeviceActivityMonitor.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		8689BA2D29706DD200268A64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8689BA3529706E7200268A64 /* AppsSchedulerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsSchedulerExtension.swift; sourceTree = "<group>"; };
-		8689BA3729706FF700268A64 /* DeviceActivityMonitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeviceActivityMonitor.entitlements; sourceTree = "<group>"; };
-		86966DA52971170700AAB1C7 /* AppsShcheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsShcheduler.swift; sourceTree = "<group>"; };
+		868112AA29A91F7800162733 /* Limiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Limiter.swift; sourceTree = "<group>"; };
+		868112AC29A9231300162733 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		869EA954298BAD3100083FEB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		86B7A028295197BE00D3D34A /* LionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B7A02C295197BE00D3D34A /* LionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LionTests.swift; sourceTree = "<group>"; };
@@ -259,17 +302,23 @@
 		86CB364929A6363E002F434B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		86CB364B29A63640002F434B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		86CB364C29A67C66002F434B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		A41DAE522977D65200361AE1 /* UserDefaultCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultCache.swift; sourceTree = "<group>"; };
-		A469FC5629793AEE006E47D3 /* ShieldActionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShieldActionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		A469FC5929793AEE006E47D3 /* ShieldActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldActionExtension.swift; sourceTree = "<group>"; };
-		A469FC5B29793AEE006E47D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A469FC5C29793AEE006E47D3 /* ShieldActionExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShieldActionExtension.entitlements; sourceTree = "<group>"; };
-		A49445902978F668004BCE9A /* ShieldConfiguration.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShieldConfiguration.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		86EEA4AA29A90BAC006D4D68 /* DeviceActivityMonitorExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeviceActivityMonitorExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		86EEA4AB29A90BAC006D4D68 /* DeviceActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceActivity.framework; path = System/Library/Frameworks/DeviceActivity.framework; sourceTree = SDKROOT; };
+		86EEA4AE29A90BAD006D4D68 /* DeviceActivityMonitorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityMonitorExtension.swift; sourceTree = "<group>"; };
+		86EEA4B029A90BAD006D4D68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86EEA4B129A90BAD006D4D68 /* DeviceActivityMonitorExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeviceActivityMonitorExtension.entitlements; sourceTree = "<group>"; };
+		86EEA4B829A90BDE006D4D68 /* AppsShcheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppsShcheduler.swift; sourceTree = "<group>"; };
+		86EEA4BA29A90C2E006D4D68 /* UserDefaultCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultCache.swift; sourceTree = "<group>"; };
+		86EEA4C029A90D34006D4D68 /* ShieldConfigurationExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShieldConfigurationExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		86EEA4C429A90D34006D4D68 /* ShieldConfigurationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldConfigurationExtension.swift; sourceTree = "<group>"; };
+		86EEA4C629A90D34006D4D68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86EEA4C729A90D34006D4D68 /* ShieldConfigurationExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShieldConfigurationExtension.entitlements; sourceTree = "<group>"; };
+		86EEA4D229A90E30006D4D68 /* ShieldActionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShieldActionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		86EEA4D529A90E30006D4D68 /* ShieldActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldActionExtension.swift; sourceTree = "<group>"; };
+		86EEA4D729A90E30006D4D68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86EEA4D829A90E30006D4D68 /* ShieldActionExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShieldActionExtension.entitlements; sourceTree = "<group>"; };
 		A49445922978F668004BCE9A /* ManagedSettings.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ManagedSettings.framework; path = System/Library/Frameworks/ManagedSettings.framework; sourceTree = SDKROOT; };
 		A49445942978F669004BCE9A /* ManagedSettingsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ManagedSettingsUI.framework; path = System/Library/Frameworks/ManagedSettingsUI.framework; sourceTree = SDKROOT; };
-		A49445972978F669004BCE9A /* ShieldConfigurationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldConfigurationExtension.swift; sourceTree = "<group>"; };
-		A49445992978F669004BCE9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A494459A2978F669004BCE9A /* ShieldConfiguration.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShieldConfiguration.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,13 +328,6 @@
 			files = (
 				865E025629A61DFE00B8DE82 /* ComposableArchitecture in Frameworks */,
 				865E025829A61E8000B8DE82 /* AlertToast in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8689BA2629706DD200268A64 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,20 +345,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A469FC5329793AEE006E47D3 /* Frameworks */ = {
+		86EEA4A729A90BAC006D4D68 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A469FC5729793AEE006E47D3 /* ManagedSettings.framework in Frameworks */,
+				86EEA4AC29A90BAC006D4D68 /* DeviceActivity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A494458D2978F668004BCE9A /* Frameworks */ = {
+		86EEA4BD29A90D34006D4D68 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A49445932978F669004BCE9A /* ManagedSettings.framework in Frameworks */,
-				A49445952978F669004BCE9A /* ManagedSettingsUI.framework in Frameworks */,
+				86EEA4C129A90D34006D4D68 /* ManagedSettings.framework in Frameworks */,
+				86EEA4C229A90D34006D4D68 /* ManagedSettingsUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		86EEA4CF29A90E30006D4D68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86EEA4D329A90E30006D4D68 /* ManagedSettings.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +443,7 @@
 				865E017529A61AA100B8DE82 /* Sequence */,
 				865E017829A61AA100B8DE82 /* PropertyWrapper */,
 				865E017B29A61AA100B8DE82 /* Caching */,
+				868112AA29A91F7800162733 /* Limiter.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -547,6 +598,7 @@
 				865E019E29A61AA100B8DE82 /* Application.swift */,
 				865E019F29A61AA100B8DE82 /* KeyboardNotifiable.swift */,
 				865E01A029A61AA100B8DE82 /* RootStoreInitial.swift */,
+				868112AC29A9231300162733 /* Debouncer.swift */,
 			);
 			path = Dependecy;
 			sourceTree = "<group>";
@@ -585,7 +637,7 @@
 				865E01AC29A61AA100B8DE82 /* TimeSelection.swift */,
 				865E01AE29A61AA100B8DE82 /* HourMinute.swift */,
 				865E01AF29A61AA100B8DE82 /* ShieldAppsSettings.swift */,
-				865E01B029A61AA100B8DE82 /* TimeInterval.swift */,
+				865E01B029A61AA100B8DE82 /* TimeDuration.swift */,
 				865E01B129A61AA100B8DE82 /* ShieldAppsItem.swift */,
 			);
 			path = ShieldApps;
@@ -690,27 +742,15 @@
 			path = PasswordLock;
 			sourceTree = "<group>";
 		};
-		8689BA2A29706DD200268A64 /* DeviceActivityMonitor */ = {
-			isa = PBXGroup;
-			children = (
-				8689BA3729706FF700268A64 /* DeviceActivityMonitor.entitlements */,
-				8689BA3529706E7200268A64 /* AppsSchedulerExtension.swift */,
-				86966DA52971170700AAB1C7 /* AppsShcheduler.swift */,
-				A41DAE522977D65200361AE1 /* UserDefaultCache.swift */,
-				8689BA2D29706DD200268A64 /* Info.plist */,
-			);
-			path = DeviceActivityMonitor;
-			sourceTree = "<group>";
-		};
 		86B7A00F295197BA00D3D34A = {
 			isa = PBXGroup;
 			children = (
 				865E014D29A61AA100B8DE82 /* Lion */,
 				86B7A02B295197BE00D3D34A /* LionTests */,
 				86B7A035295197BE00D3D34A /* LionUITests */,
-				8689BA2A29706DD200268A64 /* DeviceActivityMonitor */,
-				A49445962978F669004BCE9A /* ShieldConfiguration */,
-				A469FC5829793AEE006E47D3 /* ShieldActionExtension */,
+				86EEA4AD29A90BAD006D4D68 /* DeviceActivityMonitorExtension */,
+				86EEA4C329A90D34006D4D68 /* ShieldConfigurationExtension */,
+				86EEA4D429A90E30006D4D68 /* ShieldActionExtension */,
 				A49445912978F668004BCE9A /* Frameworks */,
 				86B7A019295197BA00D3D34A /* Products */,
 			);
@@ -721,10 +761,10 @@
 			children = (
 				86B7A028295197BE00D3D34A /* LionTests.xctest */,
 				86B7A032295197BE00D3D34A /* LionUITests.xctest */,
-				8689BA2929706DD200268A64 /* DeviceActivityMonitor.appex */,
-				A49445902978F668004BCE9A /* ShieldConfiguration.appex */,
-				A469FC5629793AEE006E47D3 /* ShieldActionExtension.appex */,
 				865E013F29A6190C00B8DE82 /* Lion.app */,
+				86EEA4AA29A90BAC006D4D68 /* DeviceActivityMonitorExtension.appex */,
+				86EEA4C029A90D34006D4D68 /* ShieldConfigurationExtension.appex */,
+				86EEA4D229A90E30006D4D68 /* ShieldActionExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -762,12 +802,34 @@
 			path = Caching;
 			sourceTree = "<group>";
 		};
-		A469FC5829793AEE006E47D3 /* ShieldActionExtension */ = {
+		86EEA4AD29A90BAD006D4D68 /* DeviceActivityMonitorExtension */ = {
 			isa = PBXGroup;
 			children = (
-				A469FC5929793AEE006E47D3 /* ShieldActionExtension.swift */,
-				A469FC5B29793AEE006E47D3 /* Info.plist */,
-				A469FC5C29793AEE006E47D3 /* ShieldActionExtension.entitlements */,
+				86EEA4BA29A90C2E006D4D68 /* UserDefaultCache.swift */,
+				86EEA4B829A90BDE006D4D68 /* AppsShcheduler.swift */,
+				86EEA4AE29A90BAD006D4D68 /* DeviceActivityMonitorExtension.swift */,
+				86EEA4B029A90BAD006D4D68 /* Info.plist */,
+				86EEA4B129A90BAD006D4D68 /* DeviceActivityMonitorExtension.entitlements */,
+			);
+			path = DeviceActivityMonitorExtension;
+			sourceTree = "<group>";
+		};
+		86EEA4C329A90D34006D4D68 /* ShieldConfigurationExtension */ = {
+			isa = PBXGroup;
+			children = (
+				86EEA4C429A90D34006D4D68 /* ShieldConfigurationExtension.swift */,
+				86EEA4C629A90D34006D4D68 /* Info.plist */,
+				86EEA4C729A90D34006D4D68 /* ShieldConfigurationExtension.entitlements */,
+			);
+			path = ShieldConfigurationExtension;
+			sourceTree = "<group>";
+		};
+		86EEA4D429A90E30006D4D68 /* ShieldActionExtension */ = {
+			isa = PBXGroup;
+			children = (
+				86EEA4D529A90E30006D4D68 /* ShieldActionExtension.swift */,
+				86EEA4D729A90E30006D4D68 /* Info.plist */,
+				86EEA4D829A90E30006D4D68 /* ShieldActionExtension.entitlements */,
 			);
 			path = ShieldActionExtension;
 			sourceTree = "<group>";
@@ -778,18 +840,9 @@
 				869EA954298BAD3100083FEB /* StoreKit.framework */,
 				A49445922978F668004BCE9A /* ManagedSettings.framework */,
 				A49445942978F669004BCE9A /* ManagedSettingsUI.framework */,
+				86EEA4AB29A90BAC006D4D68 /* DeviceActivity.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A49445962978F669004BCE9A /* ShieldConfiguration */ = {
-			isa = PBXGroup;
-			children = (
-				A49445972978F669004BCE9A /* ShieldConfigurationExtension.swift */,
-				A49445992978F669004BCE9A /* Info.plist */,
-				A494459A2978F669004BCE9A /* ShieldConfiguration.entitlements */,
-			);
-			path = ShieldConfiguration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -803,10 +856,14 @@
 				865E013C29A6190C00B8DE82 /* Frameworks */,
 				865E013D29A6190C00B8DE82 /* Resources */,
 				865E028F29A61FFC00B8DE82 /* Run Scripts */,
+				86EEA49429A90A04006D4D68 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				86EEA4B329A90BAD006D4D68 /* PBXTargetDependency */,
+				86EEA4C929A90D34006D4D68 /* PBXTargetDependency */,
+				86EEA4DA29A90E30006D4D68 /* PBXTargetDependency */,
 			);
 			name = Lion;
 			packageProductDependencies = (
@@ -816,23 +873,6 @@
 			productName = Lion;
 			productReference = 865E013F29A6190C00B8DE82 /* Lion.app */;
 			productType = "com.apple.product-type.application";
-		};
-		8689BA2829706DD200268A64 /* DeviceActivityMonitor */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8689BA3129706DD200268A64 /* Build configuration list for PBXNativeTarget "DeviceActivityMonitor" */;
-			buildPhases = (
-				8689BA2529706DD200268A64 /* Sources */,
-				8689BA2629706DD200268A64 /* Frameworks */,
-				8689BA2729706DD200268A64 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = DeviceActivityMonitor;
-			productName = DeviceActivityMonitor;
-			productReference = 8689BA2929706DD200268A64 /* DeviceActivityMonitor.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 		86B7A027295197BE00D3D34A /* LionTests */ = {
 			isa = PBXNativeTarget;
@@ -868,13 +908,47 @@
 			productReference = 86B7A032295197BE00D3D34A /* LionUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		A469FC5529793AEE006E47D3 /* ShieldActionExtension */ = {
+		86EEA4A929A90BAC006D4D68 /* DeviceActivityMonitorExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A469FC6229793AEE006E47D3 /* Build configuration list for PBXNativeTarget "ShieldActionExtension" */;
+			buildConfigurationList = 86EEA4B529A90BAD006D4D68 /* Build configuration list for PBXNativeTarget "DeviceActivityMonitorExtension" */;
 			buildPhases = (
-				A469FC5229793AEE006E47D3 /* Sources */,
-				A469FC5329793AEE006E47D3 /* Frameworks */,
-				A469FC5429793AEE006E47D3 /* Resources */,
+				86EEA4A629A90BAC006D4D68 /* Sources */,
+				86EEA4A729A90BAC006D4D68 /* Frameworks */,
+				86EEA4A829A90BAC006D4D68 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DeviceActivityMonitorExtension;
+			productName = DeviceActivityMonitorExtension;
+			productReference = 86EEA4AA29A90BAC006D4D68 /* DeviceActivityMonitorExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		86EEA4BF29A90D34006D4D68 /* ShieldConfigurationExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 86EEA4CB29A90D35006D4D68 /* Build configuration list for PBXNativeTarget "ShieldConfigurationExtension" */;
+			buildPhases = (
+				86EEA4BC29A90D34006D4D68 /* Sources */,
+				86EEA4BD29A90D34006D4D68 /* Frameworks */,
+				86EEA4BE29A90D34006D4D68 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShieldConfigurationExtension;
+			productName = ShieldConfigurationExtension;
+			productReference = 86EEA4C029A90D34006D4D68 /* ShieldConfigurationExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		86EEA4D129A90E30006D4D68 /* ShieldActionExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 86EEA4DC29A90E30006D4D68 /* Build configuration list for PBXNativeTarget "ShieldActionExtension" */;
+			buildPhases = (
+				86EEA4CE29A90E30006D4D68 /* Sources */,
+				86EEA4CF29A90E30006D4D68 /* Frameworks */,
+				86EEA4D029A90E30006D4D68 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -882,24 +956,7 @@
 			);
 			name = ShieldActionExtension;
 			productName = ShieldActionExtension;
-			productReference = A469FC5629793AEE006E47D3 /* ShieldActionExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
-		A494458F2978F668004BCE9A /* ShieldConfiguration */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A49445A02978F669004BCE9A /* Build configuration list for PBXNativeTarget "ShieldConfiguration" */;
-			buildPhases = (
-				A494458C2978F668004BCE9A /* Sources */,
-				A494458D2978F668004BCE9A /* Frameworks */,
-				A494458E2978F668004BCE9A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = ShieldConfiguration;
-			productName = ShieldConfiguration;
-			productReference = A49445902978F668004BCE9A /* ShieldConfiguration.appex */;
+			productReference = 86EEA4D229A90E30006D4D68 /* ShieldActionExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -915,9 +972,6 @@
 					865E013E29A6190C00B8DE82 = {
 						CreatedOnToolsVersion = 14.2;
 					};
-					8689BA2829706DD200268A64 = {
-						CreatedOnToolsVersion = 14.2;
-					};
 					86B7A027295197BE00D3D34A = {
 						CreatedOnToolsVersion = 14.2;
 						TestTargetID = 86B7A017295197BA00D3D34A;
@@ -926,10 +980,13 @@
 						CreatedOnToolsVersion = 14.2;
 						TestTargetID = 86B7A017295197BA00D3D34A;
 					};
-					A469FC5529793AEE006E47D3 = {
+					86EEA4A929A90BAC006D4D68 = {
 						CreatedOnToolsVersion = 14.2;
 					};
-					A494458F2978F668004BCE9A = {
+					86EEA4BF29A90D34006D4D68 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					86EEA4D129A90E30006D4D68 = {
 						CreatedOnToolsVersion = 14.2;
 					};
 				};
@@ -955,9 +1012,9 @@
 				865E013E29A6190C00B8DE82 /* Lion */,
 				86B7A027295197BE00D3D34A /* LionTests */,
 				86B7A031295197BE00D3D34A /* LionUITests */,
-				8689BA2829706DD200268A64 /* DeviceActivityMonitor */,
-				A494458F2978F668004BCE9A /* ShieldConfiguration */,
-				A469FC5529793AEE006E47D3 /* ShieldActionExtension */,
+				86EEA4A929A90BAC006D4D68 /* DeviceActivityMonitorExtension */,
+				86EEA4BF29A90D34006D4D68 /* ShieldConfigurationExtension */,
+				86EEA4D129A90E30006D4D68 /* ShieldActionExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -971,13 +1028,6 @@
 				86CB364829A6363E002F434B /* InfoPlist.strings in Resources */,
 				865E023029A61AA100B8DE82 /* Preview Assets.xcassets in Resources */,
 				865E01E329A61AA100B8DE82 /* Localizable.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8689BA2729706DD200268A64 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -995,14 +1045,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A469FC5429793AEE006E47D3 /* Resources */ = {
+		86EEA4A829A90BAC006D4D68 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A494458E2978F668004BCE9A /* Resources */ = {
+		86EEA4BE29A90D34006D4D68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		86EEA4D029A90E30006D4D68 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1044,6 +1101,7 @@
 				865E023B29A61AA100B8DE82 /* ModeItemsView.swift in Sources */,
 				865E021229A61AA100B8DE82 /* ShieldAppsScheduler.swift in Sources */,
 				865E023429A61AA100B8DE82 /* CheckListView.swift in Sources */,
+				868112AD29A9231400162733 /* Debouncer.swift in Sources */,
 				865E020D29A61AA100B8DE82 /* DigitGroup.swift in Sources */,
 				865E022929A61AA100B8DE82 /* HourMinute.swift in Sources */,
 				865E01FC29A61AA100B8DE82 /* Sequence+Sorted.swift in Sources */,
@@ -1062,7 +1120,7 @@
 				865E023629A61AA100B8DE82 /* ModePreview.swift in Sources */,
 				865E01E929A61AA100B8DE82 /* LocalizedStringKey.swift in Sources */,
 				865E024D29A61AA100B8DE82 /* WebView.swift in Sources */,
-				865E022B29A61AA100B8DE82 /* TimeInterval.swift in Sources */,
+				865E022B29A61AA100B8DE82 /* TimeDuration.swift in Sources */,
 				865E021129A61AA100B8DE82 /* RootStateCache.swift in Sources */,
 				865E022129A61AA100B8DE82 /* MoreItem.swift in Sources */,
 				865E01F829A61AA100B8DE82 /* EffectTask+Extension.swift in Sources */,
@@ -1141,18 +1199,9 @@
 				865E022F29A61AA100B8DE82 /* RootView.swift in Sources */,
 				865E021C29A61AA100B8DE82 /* Application.swift in Sources */,
 				865E022629A61AA100B8DE82 /* InAppPurchaseProduct.swift in Sources */,
+				868112AB29A91F7800162733 /* Limiter.swift in Sources */,
 				865E022029A61AA100B8DE82 /* Mode.swift in Sources */,
 				865E023F29A61AA100B8DE82 /* ShieldAppsSettingsView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8689BA2529706DD200268A64 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				86966DA62971170700AAB1C7 /* AppsShcheduler.swift in Sources */,
-				A41DAE532977D65200361AE1 /* UserDefaultCache.swift in Sources */,
-				8689BA3629706E7200268A64 /* AppsSchedulerExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1174,23 +1223,51 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A469FC5229793AEE006E47D3 /* Sources */ = {
+		86EEA4A629A90BAC006D4D68 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A469FC5A29793AEE006E47D3 /* ShieldActionExtension.swift in Sources */,
+				86EEA4B929A90BDE006D4D68 /* AppsShcheduler.swift in Sources */,
+				86EEA4BB29A90C2E006D4D68 /* UserDefaultCache.swift in Sources */,
+				86EEA4AF29A90BAD006D4D68 /* DeviceActivityMonitorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A494458C2978F668004BCE9A /* Sources */ = {
+		86EEA4BC29A90D34006D4D68 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A49445982978F669004BCE9A /* ShieldConfigurationExtension.swift in Sources */,
+				86EEA4C529A90D34006D4D68 /* ShieldConfigurationExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		86EEA4CE29A90E30006D4D68 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86EEA4D629A90E30006D4D68 /* ShieldActionExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		86EEA4B329A90BAD006D4D68 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 86EEA4A929A90BAC006D4D68 /* DeviceActivityMonitorExtension */;
+			targetProxy = 86EEA4B229A90BAD006D4D68 /* PBXContainerItemProxy */;
+		};
+		86EEA4C929A90D34006D4D68 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 86EEA4BF29A90D34006D4D68 /* ShieldConfigurationExtension */;
+			targetProxy = 86EEA4C829A90D34006D4D68 /* PBXContainerItemProxy */;
+		};
+		86EEA4DA29A90E30006D4D68 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 86EEA4D129A90E30006D4D68 /* ShieldActionExtension */;
+			targetProxy = 86EEA4D929A90E30006D4D68 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		865E015329A61AA100B8DE82 /* Localizable.strings */ = {
@@ -1217,12 +1294,13 @@
 		865E014B29A6190E00B8DE82 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Lion/Lion.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_ASSET_PATHS = "\"Lion/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = G32N9Q2G5M;
@@ -1258,12 +1336,13 @@
 		865E014C29A6190E00B8DE82 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Lion/Lion.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_ASSET_PATHS = "\"Lion/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = G32N9Q2G5M;
@@ -1293,70 +1372,6 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-		8689BA3229706DD200268A64 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = DeviceActivityMonitor/DeviceActivityMonitor.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 21;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = G32N9Q2G5M;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DeviceActivityMonitor/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = DeviceActivityMonitor;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.nostudio.lion.DeviceActivityMonitor;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Lion App DeviceActivityMonitor For Develop";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		8689BA3329706DD200268A64 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = DeviceActivityMonitor/DeviceActivityMonitor.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 21;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = G32N9Q2G5M;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DeviceActivityMonitor/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = DeviceActivityMonitor;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.nostudio.lion.DeviceActivityMonitor;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Lion App DeviceActivityMonitor For Develop";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1482,10 +1497,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = G32N9Q2G5M;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cn.com.mooyoo.LionTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1494,7 +1509,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lion.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lion";
 			};
 			name = Debug;
@@ -1505,10 +1520,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = G32N9Q2G5M;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cn.com.mooyoo.LionTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1517,7 +1532,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lion.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lion";
 			};
 			name = Release;
@@ -1527,7 +1542,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = G32N9Q2G5M;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -1538,7 +1553,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = Lion;
 			};
 			name = Debug;
@@ -1548,7 +1563,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = G32N9Q2G5M;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -1559,24 +1574,23 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = Lion;
 			};
 			name = Release;
 		};
-		A469FC6029793AEE006E47D3 /* Debug */ = {
+		86EEA4B629A90BAD006D4D68 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_ENTITLEMENTS = DeviceActivityMonitorExtension/DeviceActivityMonitorExtension.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = G32N9Q2G5M;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ShieldActionExtension;
+				INFOPLIST_FILE = DeviceActivityMonitorExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DeviceActivityMonitorExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1585,10 +1599,10 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.nostudio.lion.ShieldAction;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.nostudio.lion.DeviceActivityMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Lion App ShieldAction For Develop";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Lion App DeviceActivityMonitor For Develop";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1596,19 +1610,18 @@
 			};
 			name = Debug;
 		};
-		A469FC6129793AEE006E47D3 /* Release */ = {
+		86EEA4B729A90BAD006D4D68 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_ENTITLEMENTS = DeviceActivityMonitorExtension/DeviceActivityMonitorExtension.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = G32N9Q2G5M;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ShieldActionExtension;
+				INFOPLIST_FILE = DeviceActivityMonitorExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DeviceActivityMonitorExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1617,10 +1630,10 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cn.com.nostudio.lion.ShieldAction;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.nostudio.lion.DeviceActivityMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Lion App ShieldAction For Develop";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Lion App DeviceActivityMonitor For Develop";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1628,19 +1641,18 @@
 			};
 			name = Release;
 		};
-		A494459E2978F669004BCE9A /* Debug */ = {
+		86EEA4CC29A90D35006D4D68 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ShieldConfiguration/ShieldConfiguration.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = G32N9Q2G5M;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ShieldConfiguration/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ShieldConfiguration;
+				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShieldConfigurationExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1660,19 +1672,18 @@
 			};
 			name = Debug;
 		};
-		A494459F2978F669004BCE9A /* Release */ = {
+		86EEA4CD29A90D35006D4D68 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ShieldConfiguration/ShieldConfiguration.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_ENTITLEMENTS = ShieldConfigurationExtension/ShieldConfigurationExtension.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = G32N9Q2G5M;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ShieldConfiguration/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ShieldConfiguration;
+				INFOPLIST_FILE = ShieldConfigurationExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShieldConfigurationExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1685,6 +1696,68 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Lion App ShieldConfiguration For Develop";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		86EEA4DD29A90E30006D4D68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 23;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = G32N9Q2G5M;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShieldActionExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.nostudio.lion.ShieldAction;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Lion App ShieldAction For Develop";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		86EEA4DE29A90E30006D4D68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShieldActionExtension/ShieldActionExtension.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 23;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = G32N9Q2G5M;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShieldActionExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShieldActionExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.com.nostudio.lion.ShieldAction;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Lion App ShieldAction For Develop";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1700,15 +1773,6 @@
 			buildConfigurations = (
 				865E014B29A6190E00B8DE82 /* Debug */,
 				865E014C29A6190E00B8DE82 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8689BA3129706DD200268A64 /* Build configuration list for PBXNativeTarget "DeviceActivityMonitor" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8689BA3229706DD200268A64 /* Debug */,
-				8689BA3329706DD200268A64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1740,20 +1804,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A469FC6229793AEE006E47D3 /* Build configuration list for PBXNativeTarget "ShieldActionExtension" */ = {
+		86EEA4B529A90BAD006D4D68 /* Build configuration list for PBXNativeTarget "DeviceActivityMonitorExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A469FC6029793AEE006E47D3 /* Debug */,
-				A469FC6129793AEE006E47D3 /* Release */,
+				86EEA4B629A90BAD006D4D68 /* Debug */,
+				86EEA4B729A90BAD006D4D68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A49445A02978F669004BCE9A /* Build configuration list for PBXNativeTarget "ShieldConfiguration" */ = {
+		86EEA4CB29A90D35006D4D68 /* Build configuration list for PBXNativeTarget "ShieldConfigurationExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A494459E2978F669004BCE9A /* Debug */,
-				A494459F2978F669004BCE9A /* Release */,
+				86EEA4CC29A90D35006D4D68 /* Debug */,
+				86EEA4CD29A90D35006D4D68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		86EEA4DC29A90E30006D4D68 /* Build configuration list for PBXNativeTarget "ShieldActionExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				86EEA4DD29A90E30006D4D68 /* Debug */,
+				86EEA4DE29A90E30006D4D68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

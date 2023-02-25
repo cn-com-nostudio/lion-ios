@@ -5,8 +5,8 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct TimeIntervalPicker: View {
-    let store: StoreOf<TimeInterval>
+struct TimeDurationPicker: View {
+    let store: StoreOf<TimeDuration>
 
     var body: some View {
         WithViewStore(store) { _ in
@@ -21,7 +21,7 @@ struct TimeIntervalPicker: View {
                         name: .from,
                         store: store.scope(
                             state: \.start,
-                            action: TimeInterval.Action.start
+                            action: TimeDuration.Action.start
                         )
                     )
 
@@ -32,7 +32,7 @@ struct TimeIntervalPicker: View {
                         name: .to,
                         store: store.scope(
                             state: \.end,
-                            action: TimeInterval.Action.end
+                            action: TimeDuration.Action.end
                         )
                     )
                 }
@@ -44,12 +44,12 @@ struct TimeIntervalPicker: View {
     }
 }
 
-struct TimeIntervalPicker_Previews: PreviewProvider {
+struct TimeDurationPicker_Previews: PreviewProvider {
     static var previews: some View {
-        TimeIntervalPicker(
+        TimeDurationPicker(
             store: Store(
                 initialState: .default,
-                reducer: TimeInterval()
+                reducer: TimeDuration()
             )
         )
         .previewDevice(PreviewDevice(rawValue: "iPhone 14"))

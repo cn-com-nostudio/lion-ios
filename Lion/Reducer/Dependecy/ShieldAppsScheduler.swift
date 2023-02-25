@@ -56,13 +56,13 @@ extension ShieldAppsItem.State {
         weekdays.map { weekday in
             let activity = DeviceActivityName(id.uuidString + String(weekday.rawValue))
             let start = DateComponents(
-                hour: timeInterval.start.time.hour,
-                minute: timeInterval.start.time.minute,
+                hour: timeDuration.start.time.hour,
+                minute: timeDuration.start.time.minute,
                 weekday: weekday.rawValue
             )
             let end = DateComponents(
-                hour: timeInterval.end.time.hour,
-                minute: timeInterval.end.time.minute,
+                hour: timeDuration.end.time.hour,
+                minute: timeDuration.end.time.minute,
                 weekday: weekday.rawValue
             )
             let schedule = DeviceActivitySchedule(

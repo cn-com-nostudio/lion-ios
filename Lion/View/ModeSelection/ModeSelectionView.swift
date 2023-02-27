@@ -50,7 +50,6 @@ struct ModeSelectionView: View {
                                 }
                             )
                         }
-                        .frame(height: 400)
                     }
 
                     VStack {

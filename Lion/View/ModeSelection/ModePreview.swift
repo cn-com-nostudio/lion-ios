@@ -10,64 +10,17 @@ struct ModePreview: View {
     let header: ModeHeader
     var action: () -> Void
 
-    let cornerRadius: CGFloat = 32.0
-
     var body: some View {
         WithViewStore(store) { viewStore in
-            VStack(spacing: .four) {
-                VStack(spacing: .one) {
-                    ModeHeaderView(model: header)
-                        .cornerRadius(cornerRadius, corners: [.topLeft, .topRight])
-
-                    VStack(alignment: .leading, spacing: .one) {
-                        HStack {
-                            Text(LocalizedStringKey(viewStore.modeName))
-                                .font(.lion.title1)
-                                .foregroundColor(header.primaryColor)
-                            Spacer()
-                            Image(.threeDots)
-                                .resizable()
-                                .frame(width: 28, height: 28)
-                        }
-                        CheckListView(store: store)
-                    }
-                    .padding(.leading, 24)
-                    .padding(.trailing, 16)
-                    .frame(maxWidth: .infinity)
-                    .background(Color(.systemBackground))
-                    .cornerRadius(cornerRadius, corners: [.bottomLeft, .bottomRight])
-                    .padding(.bottom, 20)
-                }
-                .background {
-                    Color.white
-                        .cornerRadius(cornerRadius)
-                }
-                .overlay(
-                    RoundedRectangle(cornerRadius: cornerRadius)
-                        .stroke(.white, lineWidth: 5)
-                        .shadow(radius: 15, x: 0, y: 5.0)
-                )
-
-                Button {
-                    action()
-                } label: {
-                    Group {
-                        if viewStore.isSetting {
-                            ProgressView()
-                        } else {
-                            Text(viewStore.isOn ? .close : .open)
-                                .font(.lion.title3)
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 60)
-                    .font(.lion.title3)
-                    .foregroundColor(viewStore.isOn ? .white : .black)
-                    .background(viewStore.isOn ? Color.lion.blue : Color.lion.yellow)
-                    .cornerRadius(16)
-                }
-                .frame(width: 230)
-                .disabled(viewStore.isSetting)
+            ZStack(alignment: Alignment(horizontal: .center, vertical: .hAlignment)) {
+                ModePreviewWithoutImage(store: store, header: header, action: action)
+                    .frame(height: 375)
+                header.headImage
+                    .resizable()
+                    .frame(width: 292, height: 246)
+            }
+            .onTapGesture {
+                viewStore.send(.toggleIsPresented(true))
             }
             .fullScreenCover(
                 isPresented: viewStore.binding(
@@ -81,9 +34,69 @@ struct ModePreview: View {
                     )
                 }
             )
-            .onTapGesture {
-                viewStore.send(.toggleIsPresented(true))
+        }
+    }
+}
+
+struct ModePreviewWithoutImage: View {
+    let store: StoreOf<ModeSettings>
+    let header: ModeHeader
+    var action: () -> Void
+
+    private let cornerRadius: CGFloat = 32.0
+
+    var body: some View {
+        WithViewStore(store) { viewStore in
+            VStack {
+                LinearGradient(
+                    gradient: header.gradient,
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .alignmentGuide(.hAlignment) { dim in
+                    dim[.bottom]
+                }
+
+                VStack(alignment: .leading, spacing: .one) {
+                    HStack {
+                        Text(LocalizedStringKey(viewStore.modeName))
+                            .font(.lion.title1)
+                            .foregroundColor(header.primaryColor)
+                        Spacer()
+
+                        Button {
+                            action()
+                        } label: {
+                            Group {
+                                if viewStore.isSetting {
+                                    ProgressView()
+                                } else {
+                                    Text(viewStore.isOn ? .close : .open)
+                                        .font(.lion.title3)
+                                }
+                            }
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 50)
+                            .font(.lion.title3)
+                            .foregroundColor(viewStore.isOn ? .white : .black)
+                            .background(viewStore.isOn ? Color.lion.blue : Color.lion.yellow)
+                            .cornerRadius(16)
+                        }
+                        .frame(width: 126)
+                        .disabled(viewStore.isSetting)
+                    }
+                    CheckListView(store: store)
+                }
+                .padding(.horizontal)
+                .padding(.bottom, 20)
             }
+            .background(Color.lion.white)
+            .cornerRadius(cornerRadius)
+            .overlay(
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(.white, lineWidth: 5)
+                    .shadow(radius: 15, x: 0, y: 5.0)
+            )
         }
     }
 }
@@ -101,7 +114,7 @@ struct ModePreview_Previews: PreviewProvider {
         .previewDevice(PreviewDevice(rawValue: "iPhone 14"))
         .previewDisplayName("ModePreview")
         .environment(\.locale, .init(identifier: "zh_CN"))
-        .padding(50)
-        .aspectRatio(0.65, contentMode: .fit)
+        .padding(.horizontal, 50)
+        .frame(height: 500)
     }
 }

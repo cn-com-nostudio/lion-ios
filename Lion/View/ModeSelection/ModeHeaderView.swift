@@ -30,11 +30,9 @@ struct ModeHeader_Previews: PreviewProvider {
         ModeHeaderView(
             model: ModeHeaders[.child]
         )
-        .cornerRadius(16, corners: [.topLeft, .topRight])
         .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro Max"))
         .previewDisplayName("ModeHeader")
         .environment(\.locale, .init(identifier: "zh_CN"))
-        .padding(70)
-        .aspectRatio(0.85, contentMode: .fit)
+        .frame(height: 500)
     }
 }

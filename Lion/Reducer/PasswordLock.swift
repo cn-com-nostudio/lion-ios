@@ -178,7 +178,8 @@ struct PasswordLock: ReducerProtocol {
 
             case .gotoAppSettings:
                 return .fireAndForget {
-                    _ = await application.rate()
+                    // TODO: go to app settings
+//                    _ = await application.rate()
                 }
 
             case .gotoPasscode:

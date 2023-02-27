@@ -73,6 +73,15 @@
       }
     },
     {
+      "identity" : "swift-dependencies-additions",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tgrapperon/swift-dependencies-additions.git",
+      "state" : {
+        "revision" : "842f6f2f03c591275a40550839bfa20b05e85072",
+        "version" : "0.3.0"
+      }
+    },
+    {
       "identity" : "swift-identified-collections",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-identified-collections",

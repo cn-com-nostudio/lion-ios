@@ -51,15 +51,23 @@ struct ModePreview: View {
                 Button {
                     action()
                 } label: {
-                    Text(viewStore.isOn ? .close : .open)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .font(.lion.title3)
-                        .foregroundColor(viewStore.isOn ? .white : .black)
-                        .background(viewStore.isOn ? Color.lion.blue : Color.lion.yellow)
-                        .cornerRadius(16)
+                    Group {
+                        if viewStore.isSetting {
+                            ProgressView()
+                        } else {
+                            Text(viewStore.isOn ? .close : .open)
+                                .font(.lion.title3)
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 60)
+                    .font(.lion.title3)
+                    .foregroundColor(viewStore.isOn ? .white : .black)
+                    .background(viewStore.isOn ? Color.lion.blue : Color.lion.yellow)
+                    .cornerRadius(16)
                 }
                 .frame(width: 230)
+                .disabled(viewStore.isSetting)
             }
             .fullScreenCover(
                 isPresented: viewStore.binding(

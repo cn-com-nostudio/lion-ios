@@ -11,6 +11,17 @@ struct ScheduleItem {
     let activity: DeviceActivityName
     let schedule: DeviceActivitySchedule
     let applications: Set<ApplicationToken>
+
+//    var isAliveNow: Bool {
+//        let now = Calendar.current.dateComponents([.hour, .minute, .weekday], from: Date())
+//
+//        return now.weekday! >= schedule.intervalStart.weekday!
+//            && now.weekday! <= schedule.intervalEnd.weekday!
+//            && now.hour! >= schedule.intervalStart.hour!
+//            && now.hour! <= schedule.intervalEnd.hour!
+//            && now.minute! >= schedule.intervalStart.minute!
+//            && now.minute! < schedule.intervalEnd.minute!
+//    }
 }
 
 // These name should align with app extension.
@@ -28,6 +39,7 @@ struct ShieldAppsScheduler {
 
     func startMonitoring(items: [ShieldAppsItem.State]) throws {
         try items.forEach(startMonitoring(item:))
+        print("startMonitoring(items:)")
     }
 
     func startMonitoring(item: ShieldAppsItem.State) throws {
@@ -35,18 +47,25 @@ struct ShieldAppsScheduler {
     }
 
     private func startMonitoring(item: ScheduleItem) throws {
-        Task {
-            let event = DeviceActivityEvent(
-                applications: item.applications,
-                threshold: DateComponents(hour: 0, second: 0)
-            )
-            try center.startMonitoring(item.activity, during: item.schedule, events: [.shieldSettings: event])
-        }
+        let event = DeviceActivityEvent(
+            applications: item.applications,
+            threshold: DateComponents(hour: 0, second: 0)
+        )
+        try center.startMonitoring(item.activity, during: item.schedule, events: [.shieldSettings: event])
+
+//        if item.isAliveNow {
+//            if let applications = store.shield.applications {
+//                store.shield.applications = applications.union(item.applications)
+//            } else {
+//                store.shield.applications = item.applications
+//            }
+//        }
     }
 
     func stopMonitoringAll() {
         center.stopMonitoring()
-        store.shield.applications = nil
+        store.shield.applications = []
+        print("stopMonitoringAll")
     }
 
     func stopMonitoring(item: ShieldAppsItem.State) {

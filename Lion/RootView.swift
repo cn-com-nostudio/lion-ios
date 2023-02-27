@@ -2,6 +2,7 @@
 // Copyright (c) 2023 Nostudio
 // Created by Jerry X T Wang on 2023/2/22.
 
+import BackgroundTasks
 import ComposableArchitecture
 import SwiftUI
 
@@ -86,11 +87,11 @@ struct RootView: View {
                 viewStore.send(.member(.yearlyMember(.syncPurchaseStateIfNeeded)))
                 viewStore.send(.member(.lifetimeMember(.syncPurchaseStateIfNeeded)))
             }
-            .onChange(of: scenePhase) {
-                if $0 == .active {
-                    viewStore.send(.requestScreenTimeAccessPermission)
-                }
-            }
+//            .onChange(of: scenePhase) {
+//                if $0 == .active {
+//                    viewStore.send(.requestScreenTimeAccessPermission)
+//                }
+//            }
         }
     }
 }

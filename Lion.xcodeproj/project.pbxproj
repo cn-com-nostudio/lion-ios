@@ -136,6 +136,7 @@
 		86EEA4D329A90E30006D4D68 /* ManagedSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A49445922978F668004BCE9A /* ManagedSettings.framework */; };
 		86EEA4D629A90E30006D4D68 /* ShieldActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EEA4D529A90E30006D4D68 /* ShieldActionExtension.swift */; };
 		86EEA4DB29A90E30006D4D68 /* ShieldActionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 86EEA4D229A90E30006D4D68 /* ShieldActionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		86F6488F29AA502D00CE7578 /* DependenciesAdditions in Frameworks */ = {isa = PBXBuildFile; productRef = 86F6488E29AA502D00CE7578 /* DependenciesAdditions */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -326,6 +327,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86F6488F29AA502D00CE7578 /* DependenciesAdditions in Frameworks */,
 				865E025629A61DFE00B8DE82 /* ComposableArchitecture in Frameworks */,
 				865E025829A61E8000B8DE82 /* AlertToast in Frameworks */,
 			);
@@ -869,6 +871,7 @@
 			packageProductDependencies = (
 				865E025529A61DFE00B8DE82 /* ComposableArchitecture */,
 				865E025729A61E8000B8DE82 /* AlertToast */,
+				86F6488E29AA502D00CE7578 /* DependenciesAdditions */,
 			);
 			productName = Lion;
 			productReference = 865E013F29A6190C00B8DE82 /* Lion.app */;
@@ -1004,6 +1007,7 @@
 			packageReferences = (
 				86675283299B92F600D60C0B /* XCRemoteSwiftPackageReference "AlertToast" */,
 				865E025429A61D9700B8DE82 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				86F6488D29AA4E8E00CE7578 /* XCRemoteSwiftPackageReference "swift-dependencies-additions" */,
 			);
 			productRefGroup = 86B7A019295197BA00D3D34A /* Products */;
 			projectDirPath = "";
@@ -1850,6 +1854,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		86F6488D29AA4E8E00CE7578 /* XCRemoteSwiftPackageReference "swift-dependencies-additions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tgrapperon/swift-dependencies-additions.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1862,6 +1874,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 86675283299B92F600D60C0B /* XCRemoteSwiftPackageReference "AlertToast" */;
 			productName = AlertToast;
+		};
+		86F6488E29AA502D00CE7578 /* DependenciesAdditions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86F6488D29AA4E8E00CE7578 /* XCRemoteSwiftPackageReference "swift-dependencies-additions" */;
+			productName = DependenciesAdditions;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

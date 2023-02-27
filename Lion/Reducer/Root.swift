@@ -78,7 +78,8 @@ struct Root: ReducerProtocol {
 
             case .rateApp:
                 return .fireAndForget {
-                    await application.rate()
+                    // TODO: app review
+//                    await application.rate()
                 }
 
             case .syncScreenTimeAuthorizationStatus:
@@ -89,8 +90,12 @@ struct Root: ReducerProtocol {
 
             case .requestScreenTimeAccessPermission:
                 return .task {
-                    let isGranted = await screenTimeAuth.requestAuthorization()
-                    return .updateIsScreenTimeAccessGranted(isGranted)
+                    do {
+                        try await screenTimeAuth.requestAuthorization()
+                        return .updateIsScreenTimeAccessGranted(true)
+                    } catch {
+                        return .updateIsScreenTimeAccessGranted(false)
+                    }
                 }
 
             case let .updateIsScreenTimeAccessGranted(isGranted):

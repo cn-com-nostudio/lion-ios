@@ -52,19 +52,11 @@ struct ShieldAppsItem: ReducerProtocol {
     }
 
     var body: some ReducerProtocol<State, Action> {
-        Reduce { state, action in
+        Reduce { _, action in
             switch action {
 //            case let .toggleIsOn(isOn):
 //                state.isOn = isOn
 //                return .none
-
-            case let .weekday(.addWeekday(weekday)):
-                state.weekdays.insert(weekday)
-                return .none
-
-            case let .weekday(.removeWeekday(weekday)):
-                state.weekdays.remove(weekday)
-                return .none
 
             default:
                 return .none
@@ -77,6 +69,21 @@ struct ShieldAppsItem: ReducerProtocol {
 
         Scope(state: \.selectedApps, action: /Action.selectApps) {
             AppsSelection()
+        }
+
+        Reduce { state, action in
+            switch action {
+            case let .weekday(.addWeekday(weekday)):
+                state.weekdays.insert(weekday)
+                return .none
+
+            case let .weekday(.removeWeekday(weekday)):
+                state.weekdays.remove(weekday)
+                return .none
+
+            default:
+                return .none
+            }
         }
     }
 }

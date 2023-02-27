@@ -18,14 +18,64 @@ extension EffectTask {
 
 extension EffectPublisher where Failure == Never {
     static func fireAndForget(
-        priority _: TaskPriority? = nil,
+        priority: TaskPriority? = nil,
         _ work: @escaping @Sendable () async throws -> Void,
         onlyWhen condiction: @autoclosure () -> Bool
     ) -> Self {
         if condiction() {
-            return .fireAndForget {
+            return .fireAndForget(priority: priority) {
                 try await work()
             }
+        } else {
+            return .none
+        }
+    }
+}
+
+extension EffectPublisher where Failure == Never {
+    static func task(
+        priority: TaskPriority? = nil,
+        operation: @escaping @Sendable () async throws -> Action,
+        catch handler: (@Sendable (Error) async -> Action)? = nil,
+        onlyWhen condiction: @autoclosure () -> Bool,
+        file: StaticString = #file,
+        fileID: StaticString = #fileID,
+        line: UInt = #line
+    ) -> Self {
+        if condiction() {
+            return .task(
+                priority: priority,
+                operation: operation,
+                catch: handler,
+                file: file,
+                fileID: fileID,
+                line: line
+            )
+        } else {
+            return .none
+        }
+    }
+}
+
+extension EffectPublisher where Failure == Never {
+    static func run(
+        priority: TaskPriority? = nil,
+        operation: @escaping @Sendable (Send) async throws -> Void,
+        catch handler: (@Sendable (Error, Send) async -> Void)? = nil,
+        onlyWhen condiction: @autoclosure () -> Bool,
+        file: StaticString = #file,
+        fileID: StaticString = #fileID,
+        line: UInt = #line
+    ) -> Self {
+        if condiction() {
+            return .run(
+                priority: priority,
+                operation: operation,
+                catch: handler,
+                file: file,
+                fileID: fileID,
+                line: line
+            )
         } else {
             return .none
         }

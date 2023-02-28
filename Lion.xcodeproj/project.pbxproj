@@ -125,6 +125,9 @@
 		86B7A037295197BE00D3D34A /* LionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A036295197BE00D3D34A /* LionUITests.swift */; };
 		86B7A039295197BE00D3D34A /* LionUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A038295197BE00D3D34A /* LionUITestsLaunchTests.swift */; };
 		86CB364829A6363E002F434B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86CB364A29A6363E002F434B /* InfoPlist.strings */; };
+		86E266CA29AE4752006CBBD5 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E266C929AE4752006CBBD5 /* Color+Hex.swift */; };
+		86E266CD29AE47EE006CBBD5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86E266CF29AE47EE006CBBD5 /* Localizable.strings */; };
+		86E266D229AE4961006CBBD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86E266D129AE4961006CBBD5 /* Assets.xcassets */; };
 		86EEA4AC29A90BAC006D4D68 /* DeviceActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86EEA4AB29A90BAC006D4D68 /* DeviceActivity.framework */; };
 		86EEA4AF29A90BAD006D4D68 /* DeviceActivityMonitorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EEA4AE29A90BAD006D4D68 /* DeviceActivityMonitorExtension.swift */; };
 		86EEA4B429A90BAD006D4D68 /* DeviceActivityMonitorExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 86EEA4AA29A90BAC006D4D68 /* DeviceActivityMonitorExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -305,6 +308,10 @@
 		86CB364929A6363E002F434B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		86CB364B29A63640002F434B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		86CB364C29A67C66002F434B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		86E266C929AE4752006CBBD5 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		86E266CE29AE47EE006CBBD5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		86E266D029AE47F0006CBBD5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		86E266D129AE4961006CBBD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86EEA4AA29A90BAC006D4D68 /* DeviceActivityMonitorExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeviceActivityMonitorExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		86EEA4AB29A90BAC006D4D68 /* DeviceActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceActivity.framework; path = System/Library/Frameworks/DeviceActivity.framework; sourceTree = SDKROOT; };
 		86EEA4AE29A90BAD006D4D68 /* DeviceActivityMonitorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityMonitorExtension.swift; sourceTree = "<group>"; };
@@ -822,9 +829,12 @@
 		86EEA4C329A90D34006D4D68 /* ShieldConfigurationExtension */ = {
 			isa = PBXGroup;
 			children = (
+				86E266CF29AE47EE006CBBD5 /* Localizable.strings */,
 				86EEA4C429A90D34006D4D68 /* ShieldConfigurationExtension.swift */,
 				86EEA4C629A90D34006D4D68 /* Info.plist */,
 				86EEA4C729A90D34006D4D68 /* ShieldConfigurationExtension.entitlements */,
+				86E266C929AE4752006CBBD5 /* Color+Hex.swift */,
+				86E266D129AE4961006CBBD5 /* Assets.xcassets */,
 			);
 			path = ShieldConfigurationExtension;
 			sourceTree = "<group>";
@@ -1063,6 +1073,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86E266D229AE4961006CBBD5 /* Assets.xcassets in Resources */,
+				86E266CD29AE47EE006CBBD5 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1246,6 +1258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				86EEA4C529A90D34006D4D68 /* ShieldConfigurationExtension.swift in Sources */,
+				86E266CA29AE4752006CBBD5 /* Color+Hex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1294,6 +1307,15 @@
 				86CB364B29A63640002F434B /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		86E266CF29AE47EE006CBBD5 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				86E266CE29AE47EE006CBBD5 /* en */,
+				86E266D029AE47F0006CBBD5 /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

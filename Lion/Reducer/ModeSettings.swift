@@ -129,12 +129,14 @@ struct ModeSettings: ReducerProtocol {
             case .toggleIsOn(true):
                 guard state.isOn != true else { return .none }
                 return .run { [state] send in
-                    defer {
-                        Task { await send(.updateIsSetting(false)) }
-                    }
                     await send(.updateIsSetting(true))
-                    try await turnOn(state)
-                    await send(.updateIsOn(true))
+                    do {
+                        try await turnOn(state)
+                        await send(.updateIsOn(true))
+                        await send(.updateIsSetting(false))
+                    } catch {
+                        await send(.updateIsSetting(false))
+                    }
                 }
 
             case .toggleIsOn(false):
@@ -245,15 +247,17 @@ struct ModeSettings: ReducerProtocol {
 
             case let .shieldAppsSettings(.willAddItem(item)) where state.isOn && state.isShieldApps:
                 return .run(operation: { [state] send in
-                    defer {
-                        Task { await send(.shieldAppsSettings(.selectedItem(.updateIsUpdating(false)))) }
-                    }
                     await send(.shieldAppsSettings(.selectedItem(.updateIsUpdating(true))))
-                    shieldAppsMonitor.stopMonitoringAll()
-                    var aliveItems = state.shieldAppsSettings.items
-                    aliveItems[id: item.id] = item
-                    try shieldAppsMonitor.startMonitoringItems(aliveItems.elements)
-                    await send(.shieldAppsSettings(.addItem(item)))
+                    do {
+                        shieldAppsMonitor.stopMonitoringAll()
+                        var aliveItems = state.shieldAppsSettings.items
+                        aliveItems[id: item.id] = item
+                        try shieldAppsMonitor.startMonitoringItems(aliveItems.elements)
+                        await send(.shieldAppsSettings(.addItem(item)))
+                        await send(.shieldAppsSettings(.selectedItem(.updateIsUpdating(false))))
+                    } catch {
+                        await send(.shieldAppsSettings(.selectedItem(.updateIsUpdating(false))))
+                    }
                 })
 
             case let .shieldAppsSettings(.willAddItem(item)) where !(state.isOn && state.isShieldApps):
@@ -263,15 +267,17 @@ struct ModeSettings: ReducerProtocol {
 
             case let .shieldAppsSettings(.willUpdateItem(item)) where state.isOn && state.isShieldApps:
                 return .run(operation: { [state] send in
-                    defer {
-                        Task { await send(.shieldAppsSettings(.selectedItem(.updateIsUpdating(false)))) }
-                    }
                     await send(.shieldAppsSettings(.selectedItem(.updateIsUpdating(true))))
-                    shieldAppsMonitor.stopMonitoringAll()
-                    var aliveItems = state.shieldAppsSettings.items
-                    aliveItems[id: item.id] = item
-                    try shieldAppsMonitor.startMonitoringItems(aliveItems.elements)
-                    await send(.shieldAppsSettings(.updateItem(item)))
+                    do {
+                        shieldAppsMonitor.stopMonitoringAll()
+                        var aliveItems = state.shieldAppsSettings.items
+                        aliveItems[id: item.id] = item
+                        try shieldAppsMonitor.startMonitoringItems(aliveItems.elements)
+                        await send(.shieldAppsSettings(.updateItem(item)))
+                        await send(.shieldAppsSettings(.selectedItem(.updateIsUpdating(false))))
+                    } catch {
+                        await send(.shieldAppsSettings(.selectedItem(.updateIsUpdating(false))))
+                    }
                 })
 
             case let .shieldAppsSettings(.willUpdateItem(item)) where !(state.isOn && state.isShieldApps):
@@ -281,15 +287,17 @@ struct ModeSettings: ReducerProtocol {
 
             case let .shieldAppsSettings(.willDeleteItem(item)) where state.isOn && state.isShieldApps:
                 return .run(operation: { [state] send in
-                    defer {
-                        Task { await send(.shieldAppsSettings(.selectedItem(.updateIsDeleting(false)))) }
-                    }
                     await send(.shieldAppsSettings(.selectedItem(.updateIsDeleting(true))))
-                    shieldAppsMonitor.stopMonitoringAll()
-                    var aliveItems = state.shieldAppsSettings.items
-                    aliveItems[id: item.id] = nil
-                    try shieldAppsMonitor.startMonitoringItems(aliveItems.elements)
-                    await send(.shieldAppsSettings(.deleteItem(item)))
+                    do {
+                        shieldAppsMonitor.stopMonitoringAll()
+                        var aliveItems = state.shieldAppsSettings.items
+                        aliveItems[id: item.id] = nil
+                        try shieldAppsMonitor.startMonitoringItems(aliveItems.elements)
+                        await send(.shieldAppsSettings(.deleteItem(item)))
+                        await send(.shieldAppsSettings(.selectedItem(.updateIsDeleting(false))))
+                    } catch {
+                        await send(.shieldAppsSettings(.selectedItem(.updateIsDeleting(false))))
+                    }
                 })
 
             case let .shieldAppsSettings(.willDeleteItem(item)) where !(state.isOn && state.isShieldApps):

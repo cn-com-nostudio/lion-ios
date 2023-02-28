@@ -4,72 +4,42 @@
 
 import ManagedSettings
 import ManagedSettingsUI
+import SwiftUI
 import UIKit
 
 // Override the functions below to customize the shields used in various situations.
 // The system provides a default appearance for any methods that your subclass doesn't override.
 // Make sure that your class name matches the NSExtensionPrincipalClass in your Info.plist.
 class ShieldConfigurationExtension: ShieldConfigurationDataSource {
-    override func configuration(shielding application: Application) -> ShieldConfiguration {
+    override func configuration(shielding _: Application) -> ShieldConfiguration {
         // Customize the shield as needed for applications.
 //        ShieldConfiguration()
         ShieldConfiguration(
-            backgroundBlurStyle: UIBlurEffect.Style.systemThickMaterial,
-            backgroundColor: UIColor.orange,
+            backgroundBlurStyle: UIBlurEffect.Style.systemMaterialDark,
+            backgroundColor: .clear, // UIColor(Color(hex: 0xEFF4F9)),
 
-            icon: nil,
+            icon: UIImage(named: "cat"),
 
             title: ShieldConfiguration.Label(
-                text: "Chores",
-                color: UIColor.orange
+                text: "放下手机 \n 自己才是生活的主角",
+                color: UIColor.black
             ),
 
             subtitle: .init(
-                text: "Sorry, you can't use \(application.localizedDisplayName ?? "this app") because you haven't finished all of your chores.",
-                color: UIColor.label
+                text: "今天玩手机的时间到啦",
+                color: UIColor(Color(hex: 0x191A1C))
             ),
 
             primaryButtonLabel: .init(
-                text: "Leave App",
-                color: UIColor.white
+                text: "好的",
+                color: .black
             ),
-            primaryButtonBackgroundColor: .orange
-        )
-    }
-
-    override func configuration(shielding application: Application, in _: ActivityCategory) -> ShieldConfiguration {
-        // Customize the shield as needed for applications shielded because of their category.
-        ShieldConfiguration(
-            backgroundBlurStyle: UIBlurEffect.Style.systemThickMaterial,
-            backgroundColor: UIColor.orange,
-
-            icon: nil,
-
-            title: ShieldConfiguration.Label(
-                text: "Chores",
-                color: UIColor.orange
-            ),
-
-            subtitle: .init(
-                text: "Sorry, you can't use \(application.localizedDisplayName ?? "this app") because you haven't finished all of your chores.",
-                color: UIColor.label
-            ),
-
-            primaryButtonLabel: .init(
-                text: "Leave App",
-                color: UIColor.white
-            ),
-            primaryButtonBackgroundColor: .orange
+            primaryButtonBackgroundColor: UIColor(Color(hex: 0xFFD836))
         )
     }
 
     override func configuration(shielding _: WebDomain) -> ShieldConfiguration {
         // Customize the shield as needed for web domains.
-        ShieldConfiguration()
-    }
-
-    override func configuration(shielding _: WebDomain, in _: ActivityCategory) -> ShieldConfiguration {
-        // Customize the shield as needed for web domains shielded because of their category.
         ShieldConfiguration()
     }
 }

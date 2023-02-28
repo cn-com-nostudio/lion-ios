@@ -6,8 +6,13 @@ import DeviceActivity
 import Foundation
 import ManagedSettings
 
+// These name should align with container app.
 extension ManagedSettingsStore.Name {
     static let lion: Self = .init("cn.com.nostudio.lion")
+}
+
+extension DeviceActivityEvent.Name {
+    static let shieldSettings: Self = .init("shieldSettings")
 }
 
 class DeviceActivityMonitorExtension: DeviceActivityMonitor {
@@ -34,13 +39,6 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         }
     }
 
-//    override func eventDidReachThreshold(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {
-//        let applicationsToAdd = center.events(for: activity)[event]?.applications ?? []
-//        let originalApplications = store.shield.applications ?? []
-//        let totalApplications = originalApplications.union(applicationsToAdd)
-//        store.shield.applications = totalApplications
-//    }
-
 //    override func intervalDidEnd(for activity: DeviceActivityName) {
 //        super.intervalDidEnd(for: activity)
 //        if let shieldEvent = center.events(for: activity)[shieldEventKey] {
@@ -57,29 +55,5 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
 //            let remainedApplications = applications.subtracting(applicationsToDelete)
 //            store.shield.applications = remainedApplications
 //        }
-//
-//        if let shieldEvent = center.events(for: activity)[shieldEventKey] {
-//            let applications = shieldEvent.applications
-//            store.shield.applications = applications
-//        }
 //    }
 }
-
-// private let shieldDeviceActivityNamePrefix = "shiled_device_activity_"
-// private let shieldEventKey: DeviceActivityEvent.Name = .shieldSettings
-//
-// extension DeviceActivityCenter {
-//    var shieldActivities: [DeviceActivityName] {
-//        activities.filter { $0.rawValue.hasPrefix(shieldDeviceActivityNamePrefix) }
-//    }
-//
-//    var shieldApplications: Set<ApplicationToken> {
-//        var applications: Set<ApplicationToken> = []
-//        for activity in shieldActivities {
-//            if let apps = events(for: activity)[shieldEventKey]?.applications {
-//                applications = applications.union(apps)
-//            }
-//        }
-//        return applications
-//    }
-// }

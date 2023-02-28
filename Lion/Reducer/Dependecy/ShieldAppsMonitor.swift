@@ -14,7 +14,7 @@ extension DependencyValues {
 
 struct ShieldAppsMonitor {
     var startMonitoringItems: ([ShieldAppsItem.State]) throws -> Void
-    var stopMonitoringAll: () throws -> Void
+    var stopMonitoringAll: () -> Void
 //    var startMonitoringItem: (ShieldAppsItem.State) async throws -> Void
 //    var stopMonitoringItem: (ShieldAppsItem.State) async throws -> Void
 }

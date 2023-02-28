@@ -9,6 +9,8 @@ import SwiftUI
 struct RootView: View {
     let store: StoreOf<Root>
 
+    @Environment(\.scenePhase) var scenePhase
+
     var body: some View {
         WithViewStore(store) { viewStore in
             Group {
@@ -29,6 +31,11 @@ struct RootView: View {
             }
             .onAppear {
                 viewStore.send(.appLaunched)
+            }
+            .onChange(of: scenePhase) { newValue in
+                if newValue == .active {
+                    viewStore.send(.requestScreenTimeAccessPermission)
+                }
             }
         }
     }

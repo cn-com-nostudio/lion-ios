@@ -37,7 +37,7 @@ struct ShieldAppsSettings: ReducerProtocol {
         case deselectItem
 
         case items(id: ShieldAppsItem.State.ID, action: ShieldAppsItem.Action)
-        case item(ShieldAppsItem.Action)
+        case selectedItem(ShieldAppsItem.Action)
     }
 
     @Dependency(\.uuid) var uuid
@@ -51,28 +51,15 @@ struct ShieldAppsSettings: ReducerProtocol {
 
             case let .addItem(item):
                 var copiedItem = item
-                copiedItem.isUpdating = false
-                copiedItem.isDeleting = false
                 copiedItem.isNew = false
-
                 state.items[id: copiedItem.id] = copiedItem
                 return .task { .deselectItem }
 
             case let .updateItem(item):
-                var copiedItem = item
-                copiedItem.isUpdating = false
-                copiedItem.isDeleting = false
-                copiedItem.isNew = false
-
-                state.items[id: item.id] = copiedItem
+                state.items[id: item.id] = item
                 return .task { .deselectItem }
 
             case let .deleteItem(item):
-                var copiedItem = item
-                copiedItem.isUpdating = false
-                copiedItem.isDeleting = false
-                copiedItem.isNew = false
-
                 state.items[id: item.id] = nil
                 return .task { .deselectItem }
 
@@ -83,7 +70,10 @@ struct ShieldAppsSettings: ReducerProtocol {
             case let .selectItem(id):
                 guard let item = state.items[id: id] else { return .none }
                 state.selectedItem = item
-                return .none
+                return .run { send in
+                    await send(.selectedItem(.updateIsUpdating(false)))
+                    await send(.selectedItem(.updateIsDeleting(false)))
+                }
 
             case .deselectItem:
                 state.selectedItem = nil
@@ -96,7 +86,7 @@ struct ShieldAppsSettings: ReducerProtocol {
         .forEach(\.items, action: /Action.items) {
             ShieldAppsItem()
         }
-        .ifLet(\.selectedItem, action: /Action.item) {
+        .ifLet(\.selectedItem, action: /Action.selectedItem) {
             ShieldAppsItem()
         }
     }

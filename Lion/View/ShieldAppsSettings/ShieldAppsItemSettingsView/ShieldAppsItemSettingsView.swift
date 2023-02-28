@@ -44,7 +44,7 @@ struct ShieldAppsItemSettingsView: View {
                             isLoading: viewStore.isUpdating,
                             isDisabled: viewStore.isUpdating || viewStore.isDeleting,
                             action: {
-                                viewStore.send(.updateIsUpdating(true))
+//                                viewStore.send(.updateIsUpdating(true))
                                 done(viewStore.state)
                             }
                         )
@@ -53,7 +53,7 @@ struct ShieldAppsItemSettingsView: View {
                                 isLoading: viewStore.isDeleting,
                                 isDisabled: viewStore.isUpdating || viewStore.isDeleting,
                                 action: {
-                                    viewStore.send(.updateIsDeleting(true))
+//                                    viewStore.send(.updateIsDeleting(true))
                                     delete(viewStore.state)
                                 }
                             )

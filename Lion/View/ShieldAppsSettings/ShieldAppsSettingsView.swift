@@ -62,7 +62,7 @@ struct ShieldAppsSettingsView: View {
                     IfLetStore(
                         store.scope(
                             state: \.selectedItem,
-                            action: ShieldAppsSettings.Action.item
+                            action: ShieldAppsSettings.Action.selectedItem
                         ),
                         then: {
                             ShieldAppsItemSettingsView(

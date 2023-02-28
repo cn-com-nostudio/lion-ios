@@ -12,9 +12,9 @@ extension DependencyValues {
 }
 
 struct ModeManager {
-    var denyAppInstallation: (_ isDenied: Bool) throws -> Void
-    var denyAppRemoval: (_ isDenied: Bool) throws -> Void
-    var setBlockAppTokens: (_ applications: Set<ApplicationToken>) throws -> Void
+    var denyAppInstallation: (_ isDenied: Bool) -> Void
+    var denyAppRemoval: (_ isDenied: Bool) -> Void
+    var setBlockAppTokens: (_ applications: Set<ApplicationToken>) -> Void
 }
 
 extension ManagedSettingsStore.Name {

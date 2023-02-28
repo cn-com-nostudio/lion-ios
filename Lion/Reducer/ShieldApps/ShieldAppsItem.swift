@@ -45,6 +45,7 @@ struct ShieldAppsItem: ReducerProtocol {
         case weekday(WeekdayAction)
         case selectApps(AppsSelection.Action)
 
+        case updateIsNew(Bool)
         case updateIsUpdating(Bool)
         case updateIsDeleting(Bool)
     }

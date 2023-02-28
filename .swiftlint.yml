@@ -4,7 +4,9 @@ excluded:
 disabled_rules: # 执行时排除掉的规则
   - opening_brace
   - multiple_closures_with_trailing_closure
-
+  - trailing_whitespace
+  - comment_spacing
+  
 type_name:
   excluded: 
     - T

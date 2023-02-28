@@ -9,8 +9,6 @@ import SwiftUI
 struct RootView: View {
     let store: StoreOf<Root>
 
-    @Environment(\.scenePhase) var scenePhase
-
     var body: some View {
         WithViewStore(store) { viewStore in
             Group {
@@ -32,34 +30,6 @@ struct RootView: View {
             .onAppear {
                 viewStore.send(.appLaunched)
             }
-
-//            appMainView
-//                .fullScreenCover(
-//                    isPresented: viewStore.binding(
-//                        get: \.passwordLock.isPasswordUnlockPresented,
-//                        send: Root.Action.none
-//                    )
-//                ) {
-//                }
-//                .fullScreenCover(
-//                    isPresented: viewStore.binding(
-//                        get: { _ in !viewStore.isIntroduceRead },
-//                        send: Root.Action.none
-//                    )
-//                ) {
-//                    IntroduceView(store: store)
-//                }
-//                .fullScreenCover(
-//                    isPresented: viewStore.binding(
-//                        get: \.needRequestScreenTimeAccessPermission,
-//                        send: Root.Action.none
-//                    )
-//                ) {
-//                    GrantAccessView(store: store)
-//                }
-//                .onAppear {
-//                    viewStore.send(.appLaunched)
-//                }
         }
     }
 
@@ -87,11 +57,6 @@ struct RootView: View {
                 viewStore.send(.member(.yearlyMember(.syncPurchaseStateIfNeeded)))
                 viewStore.send(.member(.lifetimeMember(.syncPurchaseStateIfNeeded)))
             }
-//            .onChange(of: scenePhase) {
-//                if $0 == .active {
-//                    viewStore.send(.requestScreenTimeAccessPermission)
-//                }
-//            }
         }
     }
 }

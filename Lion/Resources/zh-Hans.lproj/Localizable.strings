@@ -6,6 +6,11 @@
   
 */
 
+"protect your privacy and data" = "守护你隐私和数据";
+"start now" = "立即开始";
+"click to indicate your consent" = "点击立即开始表示你同意";
+"and" = "和";
+
 "child mode" = "带娃模式";
 "loan mode" = "出借模式";
 
@@ -69,15 +74,15 @@
 
 "become senior member" = "成为高级会员";
 "unlock all functions, protect your privacy" = "解锁所有功能，全力守护你的隐私";
-"protect your privacy" = "全力守护你的隐私";
+"fully protect your privacy" = "全力守护你的隐私";
 
 "12 months" = "12个月";
 "2 cups of coffee" = "2杯咖啡";
 "limit time offer %lld%" = "限时%lld%优惠";
 "lifetime member" = "终身会员";
 "pay once, available for life" = "一次付费，终身可用";
-"unlock immediately" = "立刻解锁";
-"subscribe immediately" = "开始订阅";
+"unlock now" = "立刻解锁";
+"subscribe now" = "开始订阅";
 
 "quick help" = "快速上手";
 "feedbacks and suggesctions" = "反馈建议";

@@ -9,6 +9,7 @@ import SwiftUI
 struct ModeSettingsView: View {
     let store: StoreOf<ModeSettings>
     let header: ModeHeader
+    let action: () -> Void
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -18,7 +19,8 @@ struct ModeSettingsView: View {
                         VStack(spacing: 0) {
                             ModeSettingsHeaderView(
                                 header: header,
-                                store: store
+                                store: store,
+                                action: action
                             )
                             .aspectRatio(1, contentMode: .fit)
 
@@ -63,7 +65,8 @@ struct ModeSettingsView_Previews: PreviewProvider {
                 initialState: .child,
                 reducer: ModeSettings()
             ),
-            header: ModeHeaders[.child]
+            header: ModeHeaders[.child],
+            action: {}
         )
         .previewDevice(PreviewDevice(rawValue: "iPhone 14"))
         .previewDisplayName("\(Self.self)")

@@ -29,10 +29,7 @@ struct Settings: Codable {
     }
 
     mutating func delete(for activity: DeviceActivityName) {
-        print("befor: \(appTokens)")
-        print("activity = \(activity.rawValue)")
         appTokens[activity.rawValue] = nil
-        print("after: \(appTokens)")
     }
 
     mutating func clearAll() {
@@ -63,14 +60,25 @@ struct AppsScheduler {
 
     mutating func intervalDidStart(for activity: DeviceActivityName) {
         guard let shieldEvent = center.events(for: activity)[shieldEventKey] else { return }
+        let name = activity.rawValue
+        let applications = shieldEvent.applications
+        let applicationsCount = shieldEvent.applications.count
+        let originalApplications = shield.appTokens
+        let originalApplicationsCount = shield.appTokens.count
         shield.add(from: shieldEvent, for: activity)
+        let afterApplications = shield.applications
+        let afterApplicationsCount = shield.applications.count
     }
 
     mutating func intervalDidEnd(for activity: DeviceActivityName) {
         if activity == .clearAllShieldSettings {
             shield.clearAll()
         } else {
+            let originalApplications = shield.appTokens
+            let originalApplicationsCount = shield.appTokens.count
             shield.delete(for: activity)
+            let afterApplications = shield.applications
+            let afterApplicationsCount = shield.applications.count
         }
     }
 }

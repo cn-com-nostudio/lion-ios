@@ -44,7 +44,7 @@ struct Introduce: Identifiable {
 struct IntroduceView: View {
     let store: StoreOf<Root>
     @State private var pageIndex: PagingView.PageIndex = 0
-
+    @State private var isStartPageShow: Bool = true
     let introduces: [Introduce] = [
         .page1, .page2, .page3
     ]
@@ -69,35 +69,39 @@ struct IntroduceView: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            ZStack(alignment: .bottom) {
-                PagingView(
-                    page: $pageIndex
-                ) {
-                    ForEach(introduces) { introduce in
-                        IntroducePage(introduce: introduce)
-                    }
+            if isStartPageShow == true {
+                StartPage {
+                    isStartPageShow = false
                 }
-
-                HStack {
-                    indexIndicator
-                    Spacer()
-                    Button {
-                        if isLastPage {
-                            viewStore.send(.toggleIsIntroduceRead(true))
-                        } else {
-                            nextPage()
+            } else {
+                ZStack(alignment: .bottom) {
+                    PagingView(
+                        page: $pageIndex
+                    ) {
+                        ForEach(introduces) { introduce in
+                            IntroducePage(introduce: introduce)
                         }
-                    } label: {
-                        Text(isLastPage ? .start : .nextPage)
-                            .font(.lion.title3)
-                            .foregroundColor(.lion.primary)
-                            .frame(width: 126, height: 60)
                     }
-                    .buttonStyle(PrimaryButton())
+
+                    HStack {
+                        indexIndicator
+                        Spacer()
+                        Button {
+                            if isLastPage {
+                                viewStore.send(.toggleIsIntroduceRead(true))
+                            } else {
+                                nextPage()
+                            }
+                        } label: {
+                            Text(isLastPage ? .start : .nextPage)
+                                .frame(width: 126, height: 60)
+                        }
+                        .buttonStyle(PrimaryButton())
+                    }
+                    .padding(40)
                 }
-                .padding(40)
+                .background(Color(.veryLightGreen))
             }
-            .background(Color(.veryLightGreen))
         }
     }
 }

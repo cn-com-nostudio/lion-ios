@@ -9,7 +9,7 @@ struct PrimaryButton: ButtonStyle {
         configuration
             .label
             .font(.lion.title3)
-            .foregroundColor(.black)
+            .foregroundColor(.lion.primary)
             .background(Color.lion.yellow)
             .cornerRadius(16)
     }
@@ -20,7 +20,7 @@ struct PrimarySelectedButton: ButtonStyle {
         configuration
             .label
             .font(.lion.title3)
-            .foregroundColor(.white)
+            .foregroundColor(.lion.white)
             .background(Color.lion.blue)
             .cornerRadius(16)
     }

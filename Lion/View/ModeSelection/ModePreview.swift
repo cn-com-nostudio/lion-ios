@@ -13,8 +13,13 @@ struct ModePreview: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             ZStack(alignment: Alignment(horizontal: .center, vertical: .hAlignment)) {
-                ModePreviewWithoutImage(store: store, header: header, action: action)
-                    .frame(height: 375)
+                ModePreviewWithoutImage(
+                    store: store,
+                    header: header,
+                    action: action
+                )
+                .frame(height: 375)
+
                 header.headImage
                     .resizable()
                     .frame(width: 292, height: 246)
@@ -30,7 +35,8 @@ struct ModePreview: View {
                 content: {
                     ModeSettingsView(
                         store: store,
-                        header: ModeHeaders[viewStore.state]
+                        header: ModeHeaders[viewStore.state],
+                        action: action
                     )
                 }
             )

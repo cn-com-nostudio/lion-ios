@@ -31,33 +31,55 @@ struct CloseButton: View {
 struct ModeSettingsHeaderView: View {
     let header: ModeHeader
     let store: StoreOf<ModeSettings>
+    var action: () -> Void
 
     var body: some View {
-        WithViewStore(store) { _ in
+        WithViewStore(store) { viewStore in
             ZStack(alignment: .bottom) {
                 ModeHeaderView(model: header)
-                Color.clear.overlay(alignment: .leading) {
-                    VStack(alignment: .leading, spacing: 5) {
-                        Spacer()
-                        Text(header.modeTip)
-                            .font(.lion.title3)
-                            .foregroundColor(.white.opacity(0.5))
+
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(header.modeTip)
+                        .font(.lion.title3)
+                        .foregroundColor(.white.opacity(0.5))
+
+                    HStack {
                         Text(header.modeName)
                             .font(.lion.largeTitle)
                             .foregroundColor(.white)
                         Spacer()
-                        Spacer()
-                        Spacer()
-                        Spacer()
+                        Button {
+                            action()
+                        } label: {
+                            Group {
+                                if viewStore.isSetting {
+                                    ProgressView()
+                                } else {
+                                    Text(viewStore.isOn ? .close : .open)
+                                }
+                            }
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 50)
+                            .font(.lion.title3)
+                            .foregroundColor(viewStore.isOn ? .white : .black)
+                            .background(viewStore.isOn ? Color.lion.blue : Color.lion.yellow)
+                            .cornerRadius(16)
+                        }
+                        .frame(width: 126)
+                        .disabled(viewStore.isSetting)
                     }
-                }.padding([.leading, .trailing], 32)
+                }
+                .padding(.horizontal, 25)
+                .padding(.top, 56)
+                .padding(.bottom, 30)
+                .background {
+                    LinearGradient(
+                        gradient: header.maskGradient,
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                }
             }
-//            .overlay(alignment: .topTrailing) {
-//                CloseButton {
-//                    viewStore.send(.toggleIsPresented(false))
-//                }
-//                .padding([.top, .trailing], 20)
-//            }
         }
     }
 }
@@ -70,7 +92,8 @@ struct ModeSettingsHeaderView_Previews: PreviewProvider {
                 store: Store(
                     initialState: .child,
                     reducer: ModeSettings()
-                )
+                ),
+                action: {}
             )
             .aspectRatio(0.975, contentMode: .fit)
         }

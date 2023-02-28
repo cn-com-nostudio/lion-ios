@@ -121,6 +121,7 @@
 		865E025829A61E8000B8DE82 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 865E025729A61E8000B8DE82 /* AlertToast */; };
 		868112AB29A91F7800162733 /* Limiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868112AA29A91F7800162733 /* Limiter.swift */; };
 		868112AD29A9231400162733 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868112AC29A9231300162733 /* Debouncer.swift */; };
+		869988A329AD065100CCED37 /* StartPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869988A229AD065100CCED37 /* StartPage.swift */; };
 		86B7A037295197BE00D3D34A /* LionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A036295197BE00D3D34A /* LionUITests.swift */; };
 		86B7A039295197BE00D3D34A /* LionUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A038295197BE00D3D34A /* LionUITestsLaunchTests.swift */; };
 		86CB364829A6363E002F434B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86CB364A29A6363E002F434B /* InfoPlist.strings */; };
@@ -294,6 +295,7 @@
 		865E01DC29A61AA100B8DE82 /* Lion.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Lion.entitlements; sourceTree = "<group>"; };
 		868112AA29A91F7800162733 /* Limiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Limiter.swift; sourceTree = "<group>"; };
 		868112AC29A9231300162733 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
+		869988A229AD065100CCED37 /* StartPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPage.swift; sourceTree = "<group>"; };
 		869EA954298BAD3100083FEB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		86B7A028295197BE00D3D34A /* LionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B7A02C295197BE00D3D34A /* LionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LionTests.swift; sourceTree = "<group>"; };
@@ -672,6 +674,7 @@
 			children = (
 				865E01B929A61AA100B8DE82 /* GrantAccessView.swift */,
 				865E01BA29A61AA100B8DE82 /* IntroduceView.swift */,
+				869988A229AD065100CCED37 /* StartPage.swift */,
 			);
 			path = Introduce;
 			sourceTree = "<group>";
@@ -1191,6 +1194,7 @@
 				865E021029A61AA100B8DE82 /* PrimaryButton.swift in Sources */,
 				865E01ED29A61AA100B8DE82 /* Directory.swift in Sources */,
 				865E022C29A61AA100B8DE82 /* ShieldAppsItem.swift in Sources */,
+				869988A329AD065100CCED37 /* StartPage.swift in Sources */,
 				865E021B29A61AA100B8DE82 /* ShieldAppsMonitor.swift in Sources */,
 				865E020729A61AA100B8DE82 /* Shake.swift in Sources */,
 				865E023229A61AA100B8DE82 /* IntroduceView.swift in Sources */,

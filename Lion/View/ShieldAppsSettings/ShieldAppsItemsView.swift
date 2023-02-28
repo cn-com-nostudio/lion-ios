@@ -21,7 +21,7 @@ struct ShieldAppsItemsView: View {
                         ShieldAppsItemView(
                             store: itemStore,
                             tapAction: {
-                                viewStore.send(.selectedItem(itemViewStore.id))
+                                viewStore.send(.selectItem(itemViewStore.id))
                             }
                         )
                     }

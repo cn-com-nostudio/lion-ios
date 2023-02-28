@@ -16,18 +16,27 @@ struct ShieldAppsSettings: ReducerProtocol {
         @NotCoded var selectedItem: ShieldAppsItem.State?
     }
 
+    enum ItemAction {
+        case add
+        case update
+        case delete
+    }
+
     enum Action: Equatable {
         case toggleIsPresented(Bool)
 
+        case willAddItem(ShieldAppsItem.State)
         case addItem(ShieldAppsItem.State)
+        case willUpdateItem(ShieldAppsItem.State)
         case updateItem(ShieldAppsItem.State)
+        case willDeleteItem(ShieldAppsItem.State)
         case deleteItem(ShieldAppsItem.State)
 
-        case items(id: ShieldAppsItem.State.ID, action: ShieldAppsItem.Action)
+        case selectNewItem
+        case selectItem(UUID)
+        case deselectItem
 
-        case willAddItem
-        case selectedItem(UUID)
-        case deselectedItem
+        case items(id: ShieldAppsItem.State.ID, action: ShieldAppsItem.Action)
         case item(ShieldAppsItem.Action)
     }
 
@@ -41,36 +50,42 @@ struct ShieldAppsSettings: ReducerProtocol {
                 return .none
 
             case let .addItem(item):
-                if !state.items.contains(item) {
-                    var copiedItem = item
-                    copiedItem.isNew = false
-                    state.items.insert(copiedItem, at: 0)
-                    print("addItem")
-                }
-                return .none
+                var copiedItem = item
+                copiedItem.isUpdating = false
+                copiedItem.isDeleting = false
+                copiedItem.isNew = false
+
+                state.items[id: copiedItem.id] = copiedItem
+                return .task { .deselectItem }
 
             case let .updateItem(item):
-                if state.items.contains(item) {
-                    state.items[id: item.id] = item
-                    print("updateItem")
-                }
-                return .none
+                var copiedItem = item
+                copiedItem.isUpdating = false
+                copiedItem.isDeleting = false
+                copiedItem.isNew = false
+
+                state.items[id: item.id] = copiedItem
+                return .task { .deselectItem }
 
             case let .deleteItem(item):
+                var copiedItem = item
+                copiedItem.isUpdating = false
+                copiedItem.isDeleting = false
+                copiedItem.isNew = false
+
                 state.items[id: item.id] = nil
-                print("deleteItem")
+                return .task { .deselectItem }
+
+            case .selectNewItem:
+                state.selectedItem = .new
                 return .none
 
-            case .willAddItem:
-                state.selectedItem = .default
-                return .none
-
-            case let .selectedItem(id):
-                guard let item = state.items[id: id] else { return .none }
+            case let .selectItem(id):
+                guard var item = state.items[id: id] else { return .none }
                 state.selectedItem = item
                 return .none
 
-            case .deselectedItem:
+            case .deselectItem:
                 state.selectedItem = nil
                 return .none
 

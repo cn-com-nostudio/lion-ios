@@ -40,11 +40,23 @@ struct ShieldAppsItemSettingsView: View {
                     Spacer()
 
                     VStack(spacing: 16) {
-                        doneButton {
-                            done(viewStore.state)
-                        }
+                        doneButton(
+                            isLoading: viewStore.isUpdating,
+                            isDisabled: viewStore.isUpdating || viewStore.isDeleting,
+                            action: {
+                                viewStore.send(.updateIsUpdating(true))
+                                done(viewStore.state)
+                            }
+                        )
                         if !viewStore.isNew {
-                            deleteButton { delete(viewStore.state) }
+                            deleteButton(
+                                isLoading: viewStore.isDeleting,
+                                isDisabled: viewStore.isUpdating || viewStore.isDeleting,
+                                action: {
+                                    viewStore.send(.updateIsDeleting(true))
+                                    delete(viewStore.state)
+                                }
+                            )
                         }
                     }
                 }
@@ -68,29 +80,55 @@ struct ShieldAppsItemSettingsView: View {
     }
 
     @ViewBuilder
-    func doneButton(_ action: @escaping () -> Void) -> some View {
+    func doneButton(
+        isLoading: Bool,
+        isDisabled: Bool,
+        action: @escaping () -> Void
+    )
+        -> some View
+    {
         Button {
             action()
         } label: {
-            Text(.done)
-                .font(.lion.title3)
-                .frame(maxWidth: .infinity)
-                .frame(height: 60)
+            Group {
+                if isLoading {
+                    ProgressView()
+                } else {
+                    Text(.done)
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 60)
         }
         .buttonStyle(PrimaryButton())
+        .disabled(isDisabled)
+        .opacity(isDisabled ? 0.5 : 1.0)
     }
 
     @ViewBuilder
-    func deleteButton(_ action: @escaping () -> Void) -> some View {
+    func deleteButton(
+        isLoading: Bool,
+        isDisabled: Bool,
+        action: @escaping () -> Void
+    )
+        -> some View
+    {
         Button {
             action()
         } label: {
-            Text(.delete)
-                .font(.lion.title3)
-                .frame(maxWidth: .infinity)
-                .frame(height: 60)
+            Group {
+                if isLoading {
+                    ProgressView()
+                } else {
+                    Text(.delete)
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 60)
         }
         .buttonStyle(DeleteButton())
+        .disabled(isDisabled)
+        .opacity(isDisabled ? 0.5 : 1.0)
     }
 }
 

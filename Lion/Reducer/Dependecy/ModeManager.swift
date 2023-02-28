@@ -17,8 +17,12 @@ struct ModeManager {
     var setBlockAppTokens: (_ applications: Set<ApplicationToken>) async throws -> Void
 }
 
+extension ManagedSettingsStore.Name {
+    static let lion: Self = .init("cn.com.nostudio.lion")
+}
+
 extension ModeManager: DependencyKey {
-    static let sharedStore = ManagedSettingsStore()
+    static let sharedStore: ManagedSettingsStore = .init(named: .lion)
     static let center = AuthorizationCenter.shared
 
     static var liveValue: Self = .init(

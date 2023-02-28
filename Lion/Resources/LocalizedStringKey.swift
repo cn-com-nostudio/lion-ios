@@ -5,6 +5,11 @@
 import SwiftUI
 
 extension LocalizedStringKey {
+    static let protectYourPrivacyAndData: Self = "protect your privacy and data"
+    static let startNow: Self = "start now"
+    static let clickToIndicateYourConsent: Self = "click to indicate your consent"
+    static let and: Self = "and"
+
     static let childMode: Self = "child mode"
     static let loanMode: Self = "loan mode"
     static let childModeTip: Self = "child mode tip"
@@ -56,9 +61,9 @@ extension LocalizedStringKey {
 
     static let becomeSeniorMember: Self = "become senior member"
     static let unlockAllFunctions: Self = "unlock all functions, protect your privacy"
-    static let protectYourPrivacy: Self = "protect your privacy"
-    static let unlockImmediately: Self = "unlock immediately"
-    static let subscribeImmediately: Self = "subscribe immediately"
+    static let fullProtectYourPrivacy: Self = "fully protect your privacy"
+    static let unlockNow: Self = "unlock now"
+    static let subscribeNow: Self = "subscribe now"
 
     static let quickHelp: Self = "quick help"
     static let feedbacksAndSuggestions: Self = "feedbacks and suggesctions"

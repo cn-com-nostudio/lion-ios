@@ -8,7 +8,7 @@ struct DeleteButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration
             .label
-            .font(.body.weight(.bold))
+            .font(.lion.title3)
             .foregroundColor(.red)
             .background(Color(.white))
             .cornerRadius(16)

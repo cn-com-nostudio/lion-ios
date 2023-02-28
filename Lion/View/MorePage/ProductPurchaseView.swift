@@ -122,7 +122,7 @@ struct MemberIntorduceView: View {
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(.becomeSeniorMember)
-                Text(.protectYourPrivacy)
+                Text(.fullProtectYourPrivacy)
                     .background(
                         Color.lion.yellow
                             .padding(.vertical, 4)
@@ -187,7 +187,7 @@ struct MemberIntorduceView: View {
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(.becomeSeniorMember)
-                Text(.protectYourPrivacy)
+                Text(.fullProtectYourPrivacy)
                     .background(
                         Color.lion.yellow
                             .padding(.vertical, 4)

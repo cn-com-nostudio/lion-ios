@@ -9,17 +9,9 @@ struct ModeHeader: Equatable {
     let modeTip: LocalizedStringKey
     let aboutTip: LocalizedStringKey
     let headImage: Image
-    let colors: [Color]
-}
-
-extension ModeHeader {
-    var gradient: Gradient {
-        .init(colors: colors)
-    }
-
-    var primaryColor: Color {
-        colors.first!
-    }
+    let primaryColor: Color
+    let gradient: Gradient
+    var maskGradient: Gradient
 }
 
 enum ModeHeaders {
@@ -28,7 +20,12 @@ enum ModeHeaders {
         modeTip: .childModeTip,
         aboutTip: .aboutChildMode,
         headImage: Image(.child),
-        colors: [Color(.darkIndigo), Color(.lightIndigo)]
+        primaryColor: Color(.darkIndigo),
+        gradient: .init(colors: [Color(.darkIndigo), Color(.lightIndigo)]),
+        maskGradient: .init(colors: [
+            Color(hex: 0x6643F2).opacity(0),
+            Color(hex: 0x6643F2)
+        ])
     )
 
     static let loan = ModeHeader(
@@ -36,7 +33,12 @@ enum ModeHeaders {
         modeTip: .loanModeTip,
         aboutTip: .aboutLoanMode,
         headImage: Image(.loan),
-        colors: [Color(.darkBlue), Color(.lightBlue)]
+        primaryColor: Color(.darkBlue),
+        gradient: .init(colors: [Color(.darkBlue), Color(.lightBlue)]),
+        maskGradient: .init(colors: [
+            Color(hex: 0x3871EA).opacity(0),
+            Color(hex: 0x3871EA)
+        ])
     )
 
     static subscript(mode: ModeSettings.State) -> ModeHeader {

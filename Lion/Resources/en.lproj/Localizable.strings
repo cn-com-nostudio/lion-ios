@@ -6,6 +6,11 @@
   
 */
 
+"protect your privacy and data" = "Protect your privacy and data";
+"start now" = "Start";
+"click to indicate your consent" = "Click to indicate your consent";
+"and" = "and";
+
 "child mode" = "Child Mode";
 "loan mode" = "Loan Mode";
 
@@ -70,15 +75,15 @@
 
 "become senior member" = "Become senior member";
 "unlock all functions, protect your privacy" = "Unlock all functions, Protect your privacy";
-"protect your privacy" = "Protect your privacy";
+"fully protect your privacy" = "Fully protect your privacy";
 
 "12 months" = "12 months";
 "2 cups of coffee" = "2 cups of coffee";
 "limit time offer %lld%" = "Limit time offer %lld%";
 "lifetime member" = "Lifetime Memeber";
 "pay once, available for life" = "Pay once, Available for life";
-"unlock immediately" = "Unlock";
-"subscribe immediately" = "Subscribe";
+"unlock now" = "Unlock";
+"subscribe now" = "Subscribe";
 
 "quick help" = "Quick Help";
 "feedbacks and suggesctions" = "Feedbacks and Suggesctions";
@@ -155,3 +160,4 @@
 
 "oh no, authorize canceled" = "Oh No... Authorize canceled";
 "reauthorize" = "Reauthorize";
+

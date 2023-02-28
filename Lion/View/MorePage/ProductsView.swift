@@ -62,10 +62,10 @@ struct ProductsView: View {
                     }
                 } label: {
                     if selected == .lifetimeMember {
-                        Text(.unlockImmediately)
+                        Text(.unlockNow)
                             .frame(width: 352, height: 60)
                     } else {
-                        Text(.subscribeImmediately)
+                        Text(.subscribeNow)
                             .frame(width: 352, height: 60)
                     }
                 }

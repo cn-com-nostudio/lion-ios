@@ -45,7 +45,7 @@ struct ShieldAppsSettingsView: View {
                         .padding(.horizontal)
                     } else {
                         startSettingButton {
-                            viewStore.send(.willAddItem)
+                            viewStore.send(.selectNewItem)
                         }
                         .padding(.top, .two)
                     }
@@ -56,7 +56,7 @@ struct ShieldAppsSettingsView: View {
                 isPresented:
                 viewStore.binding(
                     get: { $0.selectedItem != nil },
-                    send: .deselectedItem
+                    send: .deselectItem
                 ),
                 content: {
                     IfLetStore(
@@ -68,19 +68,17 @@ struct ShieldAppsSettingsView: View {
                             ShieldAppsItemSettingsView(
                                 store: $0,
                                 cancel: {
-                                    viewStore.send(.deselectedItem)
+                                    viewStore.send(.deselectItem)
                                 },
                                 done: {
-                                    viewStore.send(.deselectedItem)
                                     if $0.isNew {
-                                        viewStore.send(.addItem($0))
+                                        viewStore.send(.willAddItem($0))
                                     } else {
-                                        viewStore.send(.updateItem($0))
+                                        viewStore.send(.willUpdateItem($0))
                                     }
                                 },
                                 delete: {
-                                    viewStore.send(.deselectedItem)
-                                    viewStore.send(.deleteItem($0))
+                                    viewStore.send(.willDeleteItem($0))
                                 }
                             )
                         }
@@ -92,7 +90,7 @@ struct ShieldAppsSettingsView: View {
                     placement: .navigationBarTrailing)
                 {
                     Button {
-                        viewStore.send(.willAddItem)
+                        viewStore.send(.selectNewItem)
                     } label: {
                         Image(systemIcon: .plus)
                     }
@@ -107,7 +105,7 @@ struct ShieldAppsSettingsView_Previews: PreviewProvider {
     static var previews: some View {
         ShieldAppsSettingsView(
             store: Store(
-                initialState: .init(isPresented: false, items: [.default, .default, .default]),
+                initialState: .init(isPresented: false, items: [.new, .new, .new]),
                 reducer: ShieldAppsSettings()
             )
         )

@@ -9,7 +9,7 @@ import SwiftUI
 extension ShieldAppsItem.State {
     @Dependency(\.uuid) static var uuid
 
-    static let `default`: Self = .init(id: uuid())
+    static var new: Self { .init(id: uuid()) }
 }
 
 struct ShieldAppsItem: ReducerProtocol {
@@ -20,7 +20,9 @@ struct ShieldAppsItem: ReducerProtocol {
         var weekdays: SortedSet<Weekday>
         var selectedApps: AppsSelection.State
 
-        @NotCoded var isNew: Bool
+        @NotCoded var isNew: Bool = true
+        @NotCoded var isUpdating: Bool = false
+        @NotCoded var isDeleting: Bool = false
 
         init(
             id: UUID,
@@ -34,7 +36,6 @@ struct ShieldAppsItem: ReducerProtocol {
             self.timeDuration = timeDuration
             self.weekdays = weekdays
             self.selectedApps = selectedApps
-            isNew = true
         }
     }
 
@@ -43,7 +44,9 @@ struct ShieldAppsItem: ReducerProtocol {
         case timeDuration(TimeDuration.Action)
         case weekday(WeekdayAction)
         case selectApps(AppsSelection.Action)
-        case editDone
+
+        case updateIsUpdating(Bool)
+        case updateIsDeleting(Bool)
     }
 
     enum WeekdayAction: Equatable {
@@ -52,11 +55,19 @@ struct ShieldAppsItem: ReducerProtocol {
     }
 
     var body: some ReducerProtocol<State, Action> {
-        Reduce { _, action in
+        Reduce { state, action in
             switch action {
 //            case let .toggleIsOn(isOn):
 //                state.isOn = isOn
 //                return .none
+
+            case let .updateIsUpdating(isOn):
+                state.isUpdating = isOn
+                return .none
+
+            case let .updateIsDeleting(isOn):
+                state.isDeleting = isOn
+                return .none
 
             default:
                 return .none

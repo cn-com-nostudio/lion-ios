@@ -111,6 +111,9 @@ struct ModeSelectionView: View {
             NavigationLink {
                 WebView(url: MoreItem.quickHelp().link)
                     .navigationTitle(.quickHelp)
+                    .onAppear {
+                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    }
             } label: {
                 VStack {
                     Image(.boat)
@@ -118,7 +121,6 @@ struct ModeSelectionView: View {
                         .frame(width: 24, height: 24)
                     Text(.quickHelp)
                 }
-                .hapticFeedback(style: .light)
             }
 
             Spacer()

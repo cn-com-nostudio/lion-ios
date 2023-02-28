@@ -12,9 +12,9 @@ extension DependencyValues {
 }
 
 struct ModeManager {
-    var denyAppInstallation: (_ isDenied: Bool) async throws -> Void
-    var denyAppRemoval: (_ isDenied: Bool) async throws -> Void
-    var setBlockAppTokens: (_ applications: Set<ApplicationToken>) async throws -> Void
+    var denyAppInstallation: (_ isDenied: Bool) throws -> Void
+    var denyAppRemoval: (_ isDenied: Bool) throws -> Void
+    var setBlockAppTokens: (_ applications: Set<ApplicationToken>) throws -> Void
 }
 
 extension ManagedSettingsStore.Name {
@@ -28,18 +28,15 @@ extension ModeManager: DependencyKey {
     static var liveValue: Self = .init(
         denyAppInstallation: { isDenied in
             guard sharedStore.application.denyAppInstallation != isDenied else { return }
-            try await center.requestAuthorization(for: .individual)
             sharedStore.application.denyAppInstallation = isDenied
         },
         denyAppRemoval: { isDenied in
             guard sharedStore.application.denyAppRemoval != isDenied else { return }
-            try await center.requestAuthorization(for: .individual)
             sharedStore.application.denyAppRemoval = isDenied
         },
         setBlockAppTokens: { appTokens in
             let applications = Set(appTokens.map(Application.init(token:)))
             guard sharedStore.application.blockedApplications != applications else { return }
-            try await center.requestAuthorization(for: .individual)
             sharedStore.application.blockedApplications = applications
         }
     )

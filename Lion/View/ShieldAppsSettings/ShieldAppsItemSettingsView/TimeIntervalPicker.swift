@@ -9,7 +9,7 @@ struct TimeDurationPicker: View {
     let store: StoreOf<TimeDuration>
 
     var body: some View {
-        WithViewStore(store) { _ in
+        WithViewStore(store) { viewStore in
             VStack(alignment: .leading) {
                 Text(.time)
                     .foregroundColor(.lion.secondary)
@@ -19,6 +19,7 @@ struct TimeDurationPicker: View {
                 VStack {
                     TimePicker(
                         name: .from,
+                        selectRange: viewStore.startRange,
                         store: store.scope(
                             state: \.start,
                             action: TimeDuration.Action.start
@@ -30,6 +31,7 @@ struct TimeDurationPicker: View {
 
                     TimePicker(
                         name: .to,
+                        selectRange: viewStore.endRange,
                         store: store.scope(
                             state: \.end,
                             action: TimeDuration.Action.end
@@ -60,6 +62,7 @@ struct TimeDurationPicker_Previews: PreviewProvider {
 
 struct TimePicker: View {
     let name: LocalizedStringKey
+    let selectRange: ClosedRange<Date>
     let store: StoreOf<TimeSelection>
 
     var body: some View {
@@ -72,7 +75,7 @@ struct TimePicker: View {
                         get: { $0.time.date() },
                         send: { TimeSelection.Action.time(.update($0)) }
                     ),
-                    in: viewStore.selectRange,
+                    in: selectRange,
                     displayedComponents: .hourAndMinute
                 )
                 .font(.lion.headline)
@@ -89,8 +92,9 @@ struct TimePicker_Previews: PreviewProvider {
     static var previews: some View {
         TimePicker(
             name: .time,
+            selectRange: .allDay,
             store: Store(
-                initialState: .init(time: .min, min: .min, max: .max),
+                initialState: .init(time: .min),
                 reducer: TimeSelection()
             )
         )

@@ -13,8 +13,8 @@ extension DependencyValues {
 }
 
 struct ShieldAppsMonitor {
-    var startMonitoringItems: ([ShieldAppsItem.State]) async throws -> Void
-    var stopMonitoringAll: () async throws -> Void
+    var startMonitoringItems: ([ShieldAppsItem.State]) throws -> Void
+    var stopMonitoringAll: () throws -> Void
 //    var startMonitoringItem: (ShieldAppsItem.State) async throws -> Void
 //    var stopMonitoringItem: (ShieldAppsItem.State) async throws -> Void
 }
@@ -25,13 +25,11 @@ extension ShieldAppsMonitor: DependencyKey {
 
     static var liveValue: Self = .init(
         startMonitoringItems: { items in
-            try await center.requestAuthorization(for: .individual)
-            try await scheduler.startMonitoring(items: items)
+            try scheduler.startMonitoring(items: items)
         },
         stopMonitoringAll: {
-            try await center.requestAuthorization(for: .individual)
             scheduler.stopMonitoringAll()
-        } // ,
+        }
 //        startMonitoringItem: { item in
 //            try await center.requestAuthorization(for: .individual)
 //            try await scheduler.startMonitoring(item: item)

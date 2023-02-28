@@ -26,21 +26,21 @@ struct ShieldAppsScheduler {
         self.center = center
     }
 
-    func startMonitoring(items: [ShieldAppsItem.State]) async throws {
+    func startMonitoring(items: [ShieldAppsItem.State]) throws {
         for item in items {
-            try await startMonitoring(item: item)
+            try startMonitoring(item: item)
         }
         print("startMonitoring(items:)")
+//        DeviceActivityCenter.MonitoringError.excessiveActivities
     }
 
-    private func startMonitoring(item: ShieldAppsItem.State) async throws {
+    private func startMonitoring(item: ShieldAppsItem.State) throws {
         for sheduleItem in item.scheduleItems {
-            try await startMonitoring(item: sheduleItem)
+            try startMonitoring(item: sheduleItem)
         }
     }
 
-    private func startMonitoring(item: ScheduleItem) async throws {
-        try await Task.sleep(for: .milliseconds(50))
+    private func startMonitoring(item: ScheduleItem) throws {
         let event = DeviceActivityEvent(
             applications: item.applications,
             threshold: DateComponents(hour: 0, second: 10)

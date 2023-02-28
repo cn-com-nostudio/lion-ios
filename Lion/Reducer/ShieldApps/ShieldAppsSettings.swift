@@ -81,7 +81,7 @@ struct ShieldAppsSettings: ReducerProtocol {
                 return .none
 
             case let .selectItem(id):
-                guard var item = state.items[id: id] else { return .none }
+                guard let item = state.items[id: id] else { return .none }
                 state.selectedItem = item
                 return .none
 

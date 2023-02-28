@@ -32,9 +32,9 @@ struct HourMinute: ReducerProtocol {
             if hour == 23, minute == 59 {
                 return .max
             } else if minute == 59 {
-                return .init(hour: hour + 1, minute: 0)
+                return .init(hour: hour + 1, minute: 14)
             } else {
-                return .init(hour: hour + 1, minute: minute + 1)
+                return .init(hour: hour, minute: minute + 15)
             }
         }
 
@@ -42,9 +42,9 @@ struct HourMinute: ReducerProtocol {
             if hour == 0, minute == 0 {
                 return .min
             } else if minute == 0 {
-                return .init(hour: hour - 1, minute: 59)
+                return .init(hour: hour - 1, minute: 45)
             } else {
-                return .init(hour: hour - 1, minute: minute - 1)
+                return .init(hour: hour, minute: minute - 15)
             }
         }
 

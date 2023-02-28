@@ -8,14 +8,14 @@ import Foundation
 extension TimeDuration.State {
     static let `default`: Self = .init(
         start: .init(
-            time: .init(hour: 9, minute: 0),
-            min: .min,
-            max: .init(hour: 18, minute: 0)
+            time: .init(hour: 9, minute: 0)
+//            min: .min,
+//            max: .init(hour: 18, minute: 0)
         ),
         end: .init(
-            time: .init(hour: 18, minute: 0),
-            min: .init(hour: 9, minute: 0),
-            max: .max
+            time: .init(hour: 18, minute: 0)
+//            min: .init(hour: 9, minute: 0),
+//            max: .max
         )
     )
 }
@@ -24,6 +24,14 @@ struct TimeDuration: ReducerProtocol {
     struct State: Equatable, Codable {
         var start: TimeSelection.State
         var end: TimeSelection.State
+
+        var startRange: ClosedRange<Date> {
+            .from(.min, to: end.time.previous)
+        }
+
+        var endRange: ClosedRange<Date> {
+            .from(start.time.next, to: .max)
+        }
     }
 
     enum Action: Equatable {
@@ -40,19 +48,31 @@ struct TimeDuration: ReducerProtocol {
             TimeSelection()
         }
 
-        Reduce { state, action in
-            switch action {
-            case .start(.time):
-                state.end.min = state.start.time.next
-                print(state.start.time)
-                return .none
-            case .end(.time):
-                print(state.end.time)
-                state.start.max = state.end.time.previous
-                return .none
-            default:
-                return .none
-            }
-        }
+//        Reduce { state, action in
+//            switch action {
+//            case .start(.time):
+//                state.end.min = state.start.time.next
+//                print(state.start.time)
+//                return .none
+//            case .end(.time):
+//                print(state.end.time)
+//                state.start.max = state.end.time.previous
+//                return .none
+//            default:
+//                return .none
+//            }
+//        }
     }
+}
+
+extension ClosedRange<Date> {
+    static func from(_ start: Date, to end: Date) -> Self {
+        start ... end
+    }
+
+    static func from(_ start: HourMinute.State, to end: HourMinute.State) -> Self {
+        start.date() ... end.date()
+    }
+
+    static let allDay = from(.min, to: .max)
 }

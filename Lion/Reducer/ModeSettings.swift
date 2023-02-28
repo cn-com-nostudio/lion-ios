@@ -85,21 +85,26 @@ struct ModeSettings: ReducerProtocol {
 
     func turnOn(_ state: State) async throws {
         if state.isShieldApps {
-            let aliveItems = state.shieldAppsSettings.items.elements // .filter(\.isOn)
-            try await shieldAppsMonitor.startMonitoringItems(aliveItems)
+            let aliveItems = state.shieldAppsSettings.items.elements
+            try shieldAppsMonitor.startMonitoringItems(aliveItems)
+        } else {
+            try shieldAppsMonitor.stopMonitoringAll()
         }
+        
         if state.isBlockApps {
-            try await modeManager.setBlockAppTokens(state.blockAppsSettings.appTokens)
+            try modeManager.setBlockAppTokens(state.blockAppsSettings.appTokens)
+        } else {
+            try modeManager.setBlockAppTokens([])
         }
-        try await modeManager.denyAppInstallation(state.isDenyAppInstallation)
-        try await modeManager.denyAppRemoval(state.isDenyAppRemoval)
+        try modeManager.denyAppInstallation(state.isDenyAppInstallation)
+        try modeManager.denyAppRemoval(state.isDenyAppRemoval)
     }
 
-    func turnOff() async throws {
-        try await shieldAppsMonitor.stopMonitoringAll()
-        try await modeManager.setBlockAppTokens([])
-        try await modeManager.denyAppInstallation(false)
-        try await modeManager.denyAppRemoval(false)
+    func turnOff(state _: State) throws {
+        try shieldAppsMonitor.stopMonitoringAll()
+        try modeManager.setBlockAppTokens([])
+        try modeManager.denyAppInstallation(false)
+        try modeManager.denyAppRemoval(false)
     }
 
     var body: some ReducerProtocol<State, Action> {
@@ -120,8 +125,8 @@ struct ModeSettings: ReducerProtocol {
             case .toggleIsOn(false):
                 guard state.isOn != false else { return .none }
                 state.isSetting = true
-                return .task {
-                    try await turnOff()
+                return .task { [state] in
+                    try turnOff(state: state)
                     return .updateIsOn(false)
                 }
 
@@ -131,20 +136,24 @@ struct ModeSettings: ReducerProtocol {
                 return .none
 
             case let .toggleIsDenyAppInstallation(isOn):
-                return .task(operation: {
-                    try await modeManager.denyAppInstallation(isOn)
+                return .task(operation: { [state] in
+                    if state.isOn {
+                        try modeManager.denyAppInstallation(isOn)
+                    }
                     return .updateIsDenyAppInstallation(isOn)
-                }, onlyWhen: state.isOn)
+                })
 
             case let .updateIsDenyAppInstallation(isOn):
                 state.isDenyAppInstallation = isOn
                 return .none
 
             case let .toggleIsDenyAppRemoval(isOn):
-                return .task(operation: {
-                    try await modeManager.denyAppRemoval(isOn)
+                return .task(operation: { [state] in
+                    if state.isOn {
+                        try modeManager.denyAppRemoval(isOn)
+                    }
                     return .updateIsDenyAppRemoval(isOn)
-                }, onlyWhen: state.isOn)
+                })
 
             case let .updateIsDenyAppRemoval(isOn):
                 state.isDenyAppRemoval = isOn
@@ -152,15 +161,19 @@ struct ModeSettings: ReducerProtocol {
 
             case .toggleIsBlockApps(true):
                 return .task(operation: { [state] in
-                    try await modeManager.setBlockAppTokens(state.blockAppsSettings.appTokens)
+                    if state.isOn {
+                        try modeManager.setBlockAppTokens(state.blockAppsSettings.appTokens)
+                    }
                     return .updateIsBlockApps(true)
-                }, onlyWhen: state.isOn)
+                })
 
             case .toggleIsBlockApps(false):
-                return .task(operation: {
-                    try await modeManager.setBlockAppTokens([])
+                return .task(operation: { [state] in
+                    if state.isOn {
+                        try modeManager.setBlockAppTokens([])
+                    }
                     return .updateIsBlockApps(false)
-                }, onlyWhen: state.isOn)
+                })
 
             case let .updateIsBlockApps(isOn):
                 state.isBlockApps = isOn
@@ -168,17 +181,20 @@ struct ModeSettings: ReducerProtocol {
 
             case .toggleIsShieldApps(true):
                 return .task(operation: { [state] in
-                    let aliveItems = state.shieldAppsSettings.items.elements // .filter(\.isOn)
-                    try await shieldAppsMonitor.startMonitoringItems(aliveItems)
+                    if state.isOn {
+                        let aliveItems = state.shieldAppsSettings.items.elements
+                        try shieldAppsMonitor.startMonitoringItems(aliveItems)
+                    }
                     return .updateIsShieldApps(true)
-                }, onlyWhen: state.isOn)
+                })
 
             case .toggleIsShieldApps(false):
-                return .task(operation: {
-                    try await shieldAppsMonitor.stopMonitoringAll()
-                    try await Task.sleep(for: .milliseconds(800))
+                return .task(operation: { [state] in
+                    if state.isOn {
+                        try shieldAppsMonitor.stopMonitoringAll()
+                    }
                     return .updateIsShieldApps(false)
-                }, onlyWhen: state.isOn)
+                })
 
             case let .updateIsShieldApps(isOn):
                 state.isShieldApps = isOn
@@ -201,54 +217,65 @@ struct ModeSettings: ReducerProtocol {
             switch action {
             case .blockAppsSettings(.update):
                 return .fireAndForget({ [state] in
-                    try await modeManager.setBlockAppTokens(state.blockAppsSettings.appTokens)
+                    try modeManager.setBlockAppTokens(state.blockAppsSettings.appTokens)
                 }, onlyWhen: state.isOn && state.isBlockApps)
 
             case let .shieldAppsSettings(.willAddItem(item)):
                 return .task(operation: { [state] in
-                    try await shieldAppsMonitor.stopMonitoringAll()
-                    try await Task.sleep(for: .milliseconds(100))
-                    var aliveItems = state.shieldAppsSettings.items
-                    aliveItems[id: item.id] = item
-                    try await shieldAppsMonitor.startMonitoringItems(aliveItems.elements)
+                    if state.isOn, state.isShieldApps {
+                        try shieldAppsMonitor.stopMonitoringAll()
+                        var aliveItems = state.shieldAppsSettings.items
+                        aliveItems[id: item.id] = item
+                        try shieldAppsMonitor.startMonitoringItems(aliveItems.elements)
+                    }
                     return .shieldAppsSettings(.addItem(item))
-                }, onlyWhen: state.isOn && state.isShieldApps)
+                })
 
             case let .shieldAppsSettings(.willUpdateItem(item)):
                 return .task(operation: { [state] in
-                    try await shieldAppsMonitor.stopMonitoringAll()
-                    try await Task.sleep(for: .milliseconds(100))
-                    var aliveItems = state.shieldAppsSettings.items
-                    aliveItems[id: item.id] = item
-                    try await shieldAppsMonitor.startMonitoringItems(aliveItems.elements)
+                    if state.isOn, state.isShieldApps {
+                        try shieldAppsMonitor.stopMonitoringAll()
+                        var aliveItems = state.shieldAppsSettings.items
+                        aliveItems[id: item.id] = item
+                        try shieldAppsMonitor.startMonitoringItems(aliveItems.elements)
+                    }
                     return .shieldAppsSettings(.updateItem(item))
-                }, onlyWhen: state.isOn && state.isShieldApps)
+                })
 
             case let .shieldAppsSettings(.willDeleteItem(item)):
                 return .task(operation: { [state] in
-                    try await shieldAppsMonitor.stopMonitoringAll()
-                    try await Task.sleep(for: .milliseconds(1000))
-                    var aliveItems = state.shieldAppsSettings.items
-                    aliveItems[id: item.id] = nil
-                    try await shieldAppsMonitor.startMonitoringItems(aliveItems.elements)
+                    if state.isOn, state.isShieldApps {
+                        try shieldAppsMonitor.stopMonitoringAll()
+                        var aliveItems = state.shieldAppsSettings.items
+                        aliveItems[id: item.id] = nil
+                        try shieldAppsMonitor.startMonitoringItems(aliveItems.elements)
+                    }
                     return .shieldAppsSettings(.deleteItem(item))
-                }, onlyWhen: state.isOn && state.isShieldApps)
+                })
 
-//            case let .shieldAppsSettings(.addItem(item)):
-//                return .fireAndForget({
-//                    try await shieldAppsMonitor.startMonitoringItem(item)
-//                }, onlyWhen: state.isOn && state.isShieldApps)
+//            case let .shieldAppsSettings(.willAddItem(item)):
+//                return .task(operation: { [state] in
+//                    if state.isOn, state.isShieldApps {
+//                        try await shieldAppsMonitor.startMonitoringItem(item)
+//                    }
+//                    return .shieldAppsSettings(.addItem(item))
+//                })
 //
-//            case let .shieldAppsSettings(.updateItem(item)):
-//                return .fireAndForget({
-////                    try await shieldAppsMonitor.stopMonitoringItem(item)
-//                    try await shieldAppsMonitor.startMonitoringItem(item)
-//                }, onlyWhen: state.isOn && state.isShieldApps)
+//            case let .shieldAppsSettings(.willUpdateItem(item)):
+//                return .task(operation: { [state] in
+//                    if state.isOn, state.isShieldApps {
+//                        try await shieldAppsMonitor.startMonitoringItem(item)
+//                    }
+//                    return .shieldAppsSettings(.updateItem(item))
+//                })
 //
-//            case let .shieldAppsSettings(.deleteItem(item)):
-//                return .fireAndForget({
-//                    try await shieldAppsMonitor.stopMonitoringItem(item)
-//                }, onlyWhen: state.isOn && state.isShieldApps)
+//            case let .shieldAppsSettings(.willDeleteItem(item)):
+//                return .task(operation: { [state] in
+//                    if state.isOn, state.isShieldApps {
+//                        try await shieldAppsMonitor.stopMonitoringItem(item)
+//                    }
+//                    return .shieldAppsSettings(.deleteItem(item))
+//                })
 
             default:
                 return .none

@@ -15,7 +15,7 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
         // Customize the shield as needed for applications.
 //        ShieldConfiguration()
         ShieldConfiguration(
-            backgroundBlurStyle: UIBlurEffect.Style.systemMaterialDark,
+            backgroundBlurStyle: UIBlurEffect.Style.extraLight,
             backgroundColor: .clear, // UIColor(Color(hex: 0xEFF4F9)),
 
             icon: UIImage(named: "cat"),

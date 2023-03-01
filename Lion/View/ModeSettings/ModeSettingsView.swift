@@ -46,6 +46,7 @@ struct ModeSettingsView: View {
                         }
                     }
                     .ignoresSafeArea(edges: .top)
+                    .scrollIndicators(.hidden)
 
                     CloseButton {
                         viewStore.send(.toggleIsPresented(false))

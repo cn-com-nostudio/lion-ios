@@ -169,6 +169,7 @@ struct MoreView: View {
                             }
                         }
                     }
+                    .scrollIndicators(.hidden)
                     .background(Color(.veryLightGreen))
 
                     CloseButton {

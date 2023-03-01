@@ -52,6 +52,7 @@ struct ShieldAppsSettingsView: View {
                     Spacer()
                 }
             }
+            .scrollIndicators(.hidden)
             .sheet(
                 isPresented:
                 viewStore.binding(

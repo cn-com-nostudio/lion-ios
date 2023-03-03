@@ -69,10 +69,9 @@ struct ModeSelectionView: View {
                 isPresented: viewStore.binding(
                     get: \.isMorePageShow,
                     send: Root.Action.toggleIsMorePageShow
-                )) {
-                    MoreView(
-                        store: store
-                    )
+                )
+            ) {
+                MoreView(store: store)
             }
         }
     }

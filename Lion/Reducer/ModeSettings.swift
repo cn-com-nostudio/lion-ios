@@ -18,11 +18,11 @@ extension ModeSettings.State {
         modeName: .child,
         isOn: false,
         isPresented: false,
-        isDenyAppRemoval: true,
-        isDenyAppInstallation: true,
-        isBlockApps: false,
+        isDenyAppRemoval: false,
+        isDenyAppInstallation: false,
+        isBlockApps: true,
         blockAppsSettings: .none,
-        isShieldApps: false,
+        isShieldApps: true,
         shieldAppsSettings: .default
     )
 
@@ -31,10 +31,10 @@ extension ModeSettings.State {
         isOn: false,
         isPresented: false,
         isDenyAppRemoval: false,
-        isDenyAppInstallation: true,
-        isBlockApps: false,
+        isDenyAppInstallation: false,
+        isBlockApps: true,
         blockAppsSettings: .none,
-        isShieldApps: false,
+        isShieldApps: true,
         shieldAppsSettings: .default
     )
 }
@@ -87,7 +87,7 @@ struct ModeSettings: ReducerProtocol {
     @Dependency(\.uuid) var uuid
     @Dependency(\.modeManager) var modeManager
     @Dependency(\.shieldAppsMonitor) var shieldAppsMonitor
-    @Dependency(\.application) var application
+//    @Dependency(\.application) var application
 
     struct CancelToken: Hashable {}
 

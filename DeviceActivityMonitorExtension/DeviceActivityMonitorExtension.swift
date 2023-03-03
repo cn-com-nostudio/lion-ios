@@ -1,6 +1,6 @@
 // DeviceActivityMonitorExtension.swift
 // Copyright (c) 2023 Nostudio
-// Created by Jerry X T Wang on 2023/2/24.
+// Created by Jerry X T Wang on 2023/3/4.
 
 import DeviceActivity
 import DeviceActivitySharing

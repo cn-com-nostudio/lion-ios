@@ -93,8 +93,8 @@ struct ModeSettings: ReducerProtocol {
 
     func turnOn(_ state: State) async throws {
         if state.isShieldApps {
-            let aliveItems = state.shieldAppsSettings.items.elements
-            try shieldAppsMonitor.startMonitoringItems(aliveItems)
+            let items = state.shieldAppsSettings.items.elements
+            try shieldAppsMonitor.startMonitoringItems(items)
         } else {
             shieldAppsMonitor.stopMonitoringAll()
         }
@@ -108,7 +108,7 @@ struct ModeSettings: ReducerProtocol {
         modeManager.denyAppRemoval(state.isDenyAppRemoval)
     }
 
-    func turnOff(state _: State) {
+    func turnOff() {
         shieldAppsMonitor.stopMonitoringAll()
         modeManager.setBlockAppTokens([])
         modeManager.denyAppInstallation(false)
@@ -141,9 +141,9 @@ struct ModeSettings: ReducerProtocol {
 
             case .toggleIsOn(false):
                 guard state.isOn != false else { return .none }
-                return .run { [state] send in
+                return .run { send in
                     await send(.updateIsSetting(true))
-                    turnOff(state: state)
+                    turnOff()
                     await send(.updateIsSetting(false))
                     await send(.updateIsOn(false))
                 }
@@ -205,8 +205,8 @@ struct ModeSettings: ReducerProtocol {
 
             case .toggleIsShieldApps(true) where state.isOn:
                 return .task(operation: { [state] in
-                    let aliveItems = state.shieldAppsSettings.items.elements
-                    try shieldAppsMonitor.startMonitoringItems(aliveItems)
+                    let items = state.shieldAppsSettings.items.elements
+                    try shieldAppsMonitor.startMonitoringItems(items)
                     return .updateIsShieldApps(true)
                 })
 
@@ -253,6 +253,7 @@ struct ModeSettings: ReducerProtocol {
                         var aliveItems = state.shieldAppsSettings.items
                         aliveItems[id: item.id] = item
                         try shieldAppsMonitor.startMonitoringItems(aliveItems.elements)
+//                        try shieldAppsMonitor.startMonitoringItem(item)
                         await send(.shieldAppsSettings(.addItem(item)))
                         await send(.shieldAppsSettings(.selectedItem(.updateIsUpdating(false))))
                     } catch {
@@ -273,6 +274,9 @@ struct ModeSettings: ReducerProtocol {
                         var aliveItems = state.shieldAppsSettings.items
                         aliveItems[id: item.id] = item
                         try shieldAppsMonitor.startMonitoringItems(aliveItems.elements)
+//                        shieldAppsMonitor.stopMonitoringItem(item)
+//                        try await Task.sleep(for: .milliseconds(1000))
+//                        try shieldAppsMonitor.startMonitoringItem(item)
                         await send(.shieldAppsSettings(.updateItem(item)))
                         await send(.shieldAppsSettings(.selectedItem(.updateIsUpdating(false))))
                     } catch {
@@ -293,6 +297,7 @@ struct ModeSettings: ReducerProtocol {
                         var aliveItems = state.shieldAppsSettings.items
                         aliveItems[id: item.id] = nil
                         try shieldAppsMonitor.startMonitoringItems(aliveItems.elements)
+//                        shieldAppsMonitor.stopMonitoringItem(item)
                         await send(.shieldAppsSettings(.deleteItem(item)))
                         await send(.shieldAppsSettings(.selectedItem(.updateIsDeleting(false))))
                     } catch {

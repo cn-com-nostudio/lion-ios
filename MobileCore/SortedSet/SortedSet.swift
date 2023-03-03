@@ -4,15 +4,15 @@
 
 import Foundation
 
-struct SortedSet<Element: Hashable & Comparable>: ExpressibleByArrayLiteral {
+public struct SortedSet<Element: Hashable & Comparable>: ExpressibleByArrayLiteral {
     private var array: [Element] = []
     private var sortOrder: SortOrder = .forward
 
-    init<S: Sequence>(_ sequence: S) where S.Iterator.Element == Element {
+    public init<S: Sequence>(_ sequence: S) where S.Iterator.Element == Element {
         array = Set(sequence).sorted(by: compare)
     }
 
-    init(arrayLiteral elements: Element...) {
+    public init(arrayLiteral elements: Element...) {
         self = .init(elements)
     }
 
@@ -23,7 +23,7 @@ struct SortedSet<Element: Hashable & Comparable>: ExpressibleByArrayLiteral {
         }
     }
 
-    mutating func insert(_ newElement: Element) {
+    public mutating func insert(_ newElement: Element) {
         guard !contains(newElement) else { return }
 
         if let index = array.firstIndex(where: { compare(newElement, $0) }) {
@@ -33,17 +33,17 @@ struct SortedSet<Element: Hashable & Comparable>: ExpressibleByArrayLiteral {
         }
     }
 
-    mutating func remove(_ element: Element) {
+    public mutating func remove(_ element: Element) {
         if let index = index(of: element) {
             array.remove(at: index)
         }
     }
 
-    func contains(_ element: Element) -> Bool {
+    public func contains(_ element: Element) -> Bool {
         array.contains { $0 == element }
     }
 
-    func contains(allIn set: Self) -> Bool {
+    public func contains(allIn set: Self) -> Bool {
         for element in set where !contains(element) {
             return false
         }
@@ -52,33 +52,33 @@ struct SortedSet<Element: Hashable & Comparable>: ExpressibleByArrayLiteral {
 }
 
 extension SortedSet: RandomAccessCollection {
-    var startIndex: Int {
+    public var startIndex: Int {
         array.startIndex
     }
 
-    var endIndex: Int {
+    public var endIndex: Int {
         array.endIndex
     }
 
-    func index(after i: Int) -> Int {
+    public func index(after i: Int) -> Int {
         array.index(after: i)
     }
 
-    func index(before i: Int) -> Int {
+    public func index(before i: Int) -> Int {
         array.index(before: i)
     }
 
-    subscript(position: Int) -> Element {
+    public subscript(position: Int) -> Element {
         array[position]
     }
 }
 
 extension SortedSet {
-    @inlinable func index(of element: Element) -> Int? {
+    func index(of element: Element) -> Int? {
         array.firstIndex(of: element)
     }
 
-    @inlinable func firstIndex(where predicate: (Element) throws -> Bool) rethrows -> Int? {
+    func firstIndex(where predicate: (Element) throws -> Bool) rethrows -> Int? {
         try array.firstIndex(where: predicate)
     }
 }

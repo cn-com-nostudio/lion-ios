@@ -3,44 +3,45 @@
 // Created by Jerry X T Wang on 2023/2/22.
 
 import ComposableArchitecture
-import Foundation
-import SwiftUI
+import DeviceActivitySharing
+import MobileCore
 
 extension ShieldAppsItem.State {
-    @Dependency(\.uuid) static var uuid
-
-    static var new: Self { .init(id: uuid()) }
+    static var new: Self { .init() }
 }
 
 struct ShieldAppsItem: ReducerProtocol {
     struct State: Equatable, Codable, Identifiable {
         let id: UUID
-//        var isOn: Bool
         var timeDuration: TimeDuration.State
         var weekdays: SortedSet<Weekday>
+
+        let selectedAppsGroupID: UUID
         var selectedApps: AppsSelection.State
 
-        @NotCoded var isNew: Bool = true
+        var isNew: Bool
         @NotCoded var isUpdating: Bool = false
         @NotCoded var isDeleting: Bool = false
 
+        @Dependency(\.uuid) static var uuid
+
         init(
-            id: UUID,
-//            isOn: Bool = false,
+            id: UUID = uuid(),
             timeDuration: TimeDuration.State = .default,
             weekdays: SortedSet<Weekday> = .everyDay,
+            selectedAppsGroupID: UUID = uuid(),
             selectedApps: AppsSelection.State = .none
         ) {
             self.id = id
-//            self.isOn = isOn
             self.timeDuration = timeDuration
             self.weekdays = weekdays
+            self.selectedAppsGroupID = selectedAppsGroupID
             self.selectedApps = selectedApps
+            isNew = true
         }
     }
 
     enum Action: Equatable {
-//        case toggleIsOn(Bool)
         case timeDuration(TimeDuration.Action)
         case weekday(WeekdayAction)
         case selectApps(AppsSelection.Action)
@@ -58,10 +59,6 @@ struct ShieldAppsItem: ReducerProtocol {
     var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
             switch action {
-//            case let .toggleIsOn(isOn):
-//                state.isOn = isOn
-//                return .none
-
             case let .updateIsUpdating(isOn):
                 state.isUpdating = isOn
                 return .none

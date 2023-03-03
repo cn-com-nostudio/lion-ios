@@ -3,9 +3,8 @@
 // Created by Jerry X T Wang on 2023/2/22.
 
 import ComposableArchitecture
-import DeviceActivity
-import FamilyControls
-import Foundation
+import DeviceActivitySharing
+import ManagedSettings
 import XCTestDynamicOverlay
 
 extension DependencyValues {
@@ -13,36 +12,38 @@ extension DependencyValues {
 }
 
 struct ShieldAppsMonitor {
-    var startMonitoringItems: ([ShieldAppsItem.State]) throws -> Void
+    var startMonitoringItems: (_ items: [ShieldAppsItem.State]) throws -> Void
     var stopMonitoringAll: () -> Void
-//    var startMonitoringItem: (ShieldAppsItem.State) async throws -> Void
-//    var stopMonitoringItem: (ShieldAppsItem.State) async throws -> Void
+//    var startMonitoringItem: (_ item: ShieldAppsItem.State) throws -> Void
+//    var stopMonitoringItem: (_ item: ShieldAppsItem.State) -> Void
 }
 
 extension ShieldAppsMonitor: DependencyKey {
-    static var scheduler = ShieldAppsScheduler()
-    static let center = AuthorizationCenter.shared
+    static let center = ActivitiesScheduler()
+    static let store: ManagedSettingsStore = .init(named: .shared)
 
     static var liveValue: Self = .init(
         startMonitoringItems: { items in
-            try scheduler.startMonitoring(items: items)
+            try center.startMonitoring(items: items.map(DailyScheduleItem.init))
         },
         stopMonitoringAll: {
-            scheduler.stopMonitoringAll()
+            center.stopMonitoringAll()
+            store.shield.applications = nil
         }
 //        startMonitoringItem: { item in
-//            try await center.requestAuthorization(for: .individual)
-//            try await scheduler.startMonitoring(item: item)
+//            try center.startMonitoring(item: DailyScheduleItem(item))
 //        },
 //        stopMonitoringItem: { item in
-//            try await center.requestAuthorization(for: .individual)
-//            scheduler.stopMonitoring(item: item)
+//            center.stopMonitoring(item: DailyScheduleItem(item))
+        ////            let originalApplications = store.shield.applications ?? []
+        ////            let remainedApplications = originalApplications.subtracting(item.selectedApps.appTokens)
+        ////            store.shield.applications = remainedApplications
 //        }
     )
 
     static let testValue: Self = .init(
         startMonitoringItems: XCTUnimplemented("\(Self.self).startMonitoringItems"),
-        stopMonitoringAll: XCTUnimplemented("\(Self.self).stopMonitoringItems")
+        stopMonitoringAll: XCTUnimplemented("\(Self.self).stopMonitoringAll")
 //        startMonitoringItem: XCTUnimplemented("\(Self.self).startMonitoringItem"),
 //        stopMonitoringItem: XCTUnimplemented("\(Self.self).stopMonitoringItem")
     )

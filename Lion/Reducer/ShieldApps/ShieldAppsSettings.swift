@@ -50,9 +50,7 @@ struct ShieldAppsSettings: ReducerProtocol {
                 return .none
 
             case let .addItem(item):
-                var copiedItem = item
-                copiedItem.isNew = false
-                state.items[id: copiedItem.id] = copiedItem
+                state.items[id: item.id] = item
                 return .task { .deselectItem }
 
             case let .updateItem(item):
@@ -68,7 +66,8 @@ struct ShieldAppsSettings: ReducerProtocol {
                 return .none
 
             case let .selectItem(id):
-                guard let item = state.items[id: id] else { return .none }
+                guard var item = state.items[id: id] else { return .none }
+                item.isNew = false
                 state.selectedItem = item
                 return .run { send in
                     await send(.selectedItem(.updateIsUpdating(false)))

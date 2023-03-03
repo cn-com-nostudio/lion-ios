@@ -50,6 +50,28 @@
                ReferencedContainer = "container:Lion.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "864B629829AF9B1D00A9027F"
+               BuildableName = "DeviceActivitySharingTests.xctest"
+               BlueprintName = "DeviceActivitySharingTests"
+               ReferencedContainer = "container:Lion.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "862B8C3529B0BB54002F8EF8"
+               BuildableName = "MobileCoreTests.xctest"
+               BlueprintName = "MobileCoreTests"
+               ReferencedContainer = "container:Lion.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

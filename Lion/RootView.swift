@@ -32,11 +32,6 @@ struct RootView: View {
             .onAppear {
                 viewStore.send(.appLaunched)
             }
-            .onChange(of: scenePhase) { newValue in
-                if newValue == .active {
-                    viewStore.send(.requestScreenTimeAccessPermission)
-                }
-            }
         }
     }
 
@@ -63,6 +58,11 @@ struct RootView: View {
             .onAppear {
                 viewStore.send(.member(.yearlyMember(.syncPurchaseStateIfNeeded)))
                 viewStore.send(.member(.lifetimeMember(.syncPurchaseStateIfNeeded)))
+            }
+            .onChange(of: scenePhase) { newValue in
+                if newValue == .active {
+                    viewStore.send(.requestScreenTimeAccessPermission)
+                }
             }
         }
     }

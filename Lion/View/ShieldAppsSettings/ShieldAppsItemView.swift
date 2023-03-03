@@ -3,6 +3,8 @@
 // Created by Jerry X T Wang on 2023/2/22.
 
 import ComposableArchitecture
+import DeviceActivitySharing
+import MobileCore
 import SwiftUI
 
 struct ShieldAppsItemView: View {

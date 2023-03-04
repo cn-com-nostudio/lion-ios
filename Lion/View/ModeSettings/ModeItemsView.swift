@@ -78,7 +78,6 @@ struct ModeItemsView: View {
                                 action: ModeSettings.Action.shieldAppsSettings
                             )
                         )
-                        .navigationBarTitleDisplayMode(.inline)
                     }
                 )
             }

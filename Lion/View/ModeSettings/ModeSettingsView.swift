@@ -52,9 +52,9 @@ struct ModeSettingsView: View {
                         viewStore.send(.toggleIsPresented(false))
                     }
                     .padding(.trailing)
+                    .statusBarHidden(true)
                 }
             }
-            .statusBar(hidden: true)
             .sheet(isPresented: viewStore.binding(
                 get: \.showDenyAppInstallationTip,
                 send: ModeSettings.Action.toggleShowDenyAppInstallationTip

@@ -62,7 +62,7 @@ struct ModeSettingsView: View {
                 DenyAppInstallationTipView {
                     viewStore.send(.toggleShowDenyAppInstallationTip(false))
                 }
-                .presentationDetents([.medium])
+                .presentationDetents([.medium, .height(360)])
             }
             .sheet(isPresented: viewStore.binding(
                 get: \.showDenyAppRemovalTip,
@@ -71,7 +71,7 @@ struct ModeSettingsView: View {
                 DenyAppRemovalTipView {
                     viewStore.send(.toggleShowDenyAppRemovalTip(false))
                 }
-                .presentationDetents([.medium])
+                .presentationDetents([.medium, .height(400)])
             }
         }
     }

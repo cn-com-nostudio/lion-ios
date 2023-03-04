@@ -13,29 +13,38 @@ struct ShieldAppsItemView: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            HStack {
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("\(viewStore.timeDuration.start.time.display) - \(viewStore.timeDuration.end.time.display)")
-                        .foregroundColor(.lion.primary)
-                        .font(.lion.title3)
-                    HStack(spacing: 0) {
-                        Text(.nOfApps(viewStore.selectedApps.appTokens.count))
-                        if let weekdaysDescriptions = viewStore.weekdays.shortDescriptions() {
-                            Text(", ")
-                            Text(weekdaysDescriptions)
-                                .lineLimit(1)
+            ZStack(alignment: .trailing) {
+                HStack {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("\(viewStore.timeDuration.start.time.display) - \(viewStore.timeDuration.end.time.display)")
+                            .foregroundColor(.lion.primary)
+                            .font(.lion.title3)
+
+                        HStack(spacing: 0) {
+                            Text(.nOfApps(viewStore.selectedApps.appTokens.count))
+                            if let weekdaysDescriptions = viewStore.weekdays.shortDescriptions() {
+                                Text(", ")
+                                Text(weekdaysDescriptions)
+                                    .lineLimit(1)
+                            }
                         }
+                        .foregroundColor(.lion.primary.opacity(0.3))
+                        .font(.lion.caption1)
                     }
-                    .foregroundColor(.lion.primary.opacity(0.3))
-                    .font(.lion.caption1)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                Spacer()
-            }
-            .padding()
-            .background(Color.lion.white)
-            .cornerRadius(16)
-            .onTapGesture {
-                tapAction()
+                .padding()
+                .background(Color.lion.white)
+                .cornerRadius(16)
+                .onTapGesture {
+                    tapAction()
+                }
+
+                Toggle("", isOn: viewStore.binding(
+                    get: \.isOn,
+                    send: ShieldAppsItem.Action.toggleIsOn))
+                    .labelsHidden()
+                    .padding(.trailing)
             }
         }
     }

@@ -3,7 +3,7 @@
 // Created by Jerry X T Wang on 2023/2/19.
 
 import ComposableArchitecture
-import Foundation
+import MobileCore
 import XCTestDynamicOverlay
 
 extension DependencyValues {
@@ -21,13 +21,13 @@ extension AppInfo: DependencyKey {
 
     static var liveValue: Self = .init(
         name: {
-            (bundle.localizedInfoDictionary?["CFBundleDisplayName"] as? String) ?? ""
+            bundle.localized.bundleDisplayName ?? ""
         },
         version: {
-            (bundle.infoDictionary?["CFBundleShortVersionString"] as? String) ?? ""
+            bundle.localized.bundleShortVersion ?? ""
         },
         buildVersion: {
-            (bundle.infoDictionary?["CFBundleVersion"] as? String) ?? ""
+            bundle.localized.bundleVersion ?? ""
         }
     )
 

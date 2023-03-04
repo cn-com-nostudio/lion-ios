@@ -7,12 +7,16 @@ import DeviceActivitySharing
 import MobileCore
 
 extension ShieldAppsItem.State {
-    static var new: Self { .init() }
+    static var new: Self {
+        let selectedApps: AppsSelection.State = .init(isPresented: true)
+        return .init(selectedApps: selectedApps)
+    }
 }
 
 struct ShieldAppsItem: ReducerProtocol {
     struct State: Equatable, Codable, Identifiable {
         let id: UUID
+        var isOn: Bool
         var timeDuration: TimeDuration.State
         var weekdays: SortedSet<Weekday>
 
@@ -20,19 +24,19 @@ struct ShieldAppsItem: ReducerProtocol {
         var selectedApps: AppsSelection.State
 
         var isNew: Bool
-        @NotCoded var isUpdating: Bool = false
-        @NotCoded var isDeleting: Bool = false
 
         @Dependency(\.uuid) static var uuid
 
         init(
             id: UUID = uuid(),
+            isOn: Bool = true,
             timeDuration: TimeDuration.State = .default,
             weekdays: SortedSet<Weekday> = .everyDay,
             selectedAppsGroupID: UUID = uuid(),
-            selectedApps: AppsSelection.State = .none
+            selectedApps: AppsSelection.State = .init(isPresented: true)
         ) {
             self.id = id
+            self.isOn = isOn
             self.timeDuration = timeDuration
             self.weekdays = weekdays
             self.selectedAppsGroupID = selectedAppsGroupID
@@ -42,13 +46,14 @@ struct ShieldAppsItem: ReducerProtocol {
     }
 
     enum Action: Equatable {
+        case toggleIsOn(Bool)
         case timeDuration(TimeDuration.Action)
         case weekday(WeekdayAction)
-        case selectApps(AppsSelection.Action)
+        case selectedApps(AppsSelection.Action)
 
-        case updateIsNew(Bool)
-        case updateIsUpdating(Bool)
-        case updateIsDeleting(Bool)
+        case deselect
+        case editDone
+        case delete
     }
 
     enum WeekdayAction: Equatable {
@@ -59,12 +64,18 @@ struct ShieldAppsItem: ReducerProtocol {
     var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
             switch action {
-            case let .updateIsUpdating(isOn):
-                state.isUpdating = isOn
+            case let .toggleIsOn(isOn):
+                state.isOn = isOn
                 return .none
 
-            case let .updateIsDeleting(isOn):
-                state.isDeleting = isOn
+            case .editDone:
+                state.isNew = false
+                /* 由于TimeIntervalPikcer和AppsPikcerButton，点击之后弹出框均为sheet方式，
+                 当你正在TimeIntervalPikcer选择时间时，此时不小心点击AppsPikcerButton区域，
+                 AppsPikcerButton的onTapGuesture会调用，selectedApps.isPresented就会变成true，
+                 此时时间显示器会dismiss，但是AppsPikcer并不会present（因为此时时间选择器还是没有完全dismiss掉）
+                 */
+                state.selectedApps.isPresented = false
                 return .none
 
             default:
@@ -76,7 +87,7 @@ struct ShieldAppsItem: ReducerProtocol {
             TimeDuration()
         }
 
-        Scope(state: \.selectedApps, action: /Action.selectApps) {
+        Scope(state: \.selectedApps, action: /Action.selectedApps) {
             AppsSelection()
         }
 

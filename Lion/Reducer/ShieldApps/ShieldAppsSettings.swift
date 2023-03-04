@@ -25,12 +25,13 @@ struct ShieldAppsSettings: ReducerProtocol {
     enum Action: Equatable {
         case toggleIsPresented(Bool)
 
-        case willAddItem(ShieldAppsItem.State)
+//        case willAddItem(ShieldAppsItem.State)
         case addItem(ShieldAppsItem.State)
-        case willUpdateItem(ShieldAppsItem.State)
+//        case willUpdateItem(ShieldAppsItem.State)
         case updateItem(ShieldAppsItem.State)
-        case willDeleteItem(ShieldAppsItem.State)
+//        case willDeleteItem(ShieldAppsItem.State)
         case deleteItem(ShieldAppsItem.State)
+//        case deleteItem
 
         case selectNewItem
         case selectItem(UUID)
@@ -38,6 +39,9 @@ struct ShieldAppsSettings: ReducerProtocol {
 
         case items(id: ShieldAppsItem.State.ID, action: ShieldAppsItem.Action)
         case selectedItem(ShieldAppsItem.Action)
+
+        case turnOnItem(ShieldAppsItem.State)
+        case turnOffItem(ShieldAppsItem.State)
     }
 
     @Dependency(\.uuid) var uuid
@@ -51,28 +55,30 @@ struct ShieldAppsSettings: ReducerProtocol {
 
             case let .addItem(item):
                 state.items[id: item.id] = item
-                return .task { .deselectItem }
+                return .task {
+                    .deselectItem
+                }
 
             case let .updateItem(item):
                 state.items[id: item.id] = item
-                return .task { .deselectItem }
+                return .task {
+                    .deselectItem
+                }
 
             case let .deleteItem(item):
                 state.items[id: item.id] = nil
-                return .task { .deselectItem }
+                return .task {
+                    .deselectItem
+                }
 
             case .selectNewItem:
                 state.selectedItem = .new
                 return .none
 
             case let .selectItem(id):
-                guard var item = state.items[id: id] else { return .none }
-                item.isNew = false
+                guard let item = state.items[id: id] else { return .none }
                 state.selectedItem = item
-                return .run { send in
-                    await send(.selectedItem(.updateIsUpdating(false)))
-                    await send(.selectedItem(.updateIsDeleting(false)))
-                }
+                return .none
 
             case .deselectItem:
                 state.selectedItem = nil
@@ -87,6 +93,34 @@ struct ShieldAppsSettings: ReducerProtocol {
         }
         .ifLet(\.selectedItem, action: /Action.selectedItem) {
             ShieldAppsItem()
+        }
+
+        Reduce { state, action in
+            switch action {
+            case .selectedItem(.deselect):
+                return .task {
+                    .deselectItem
+                }
+
+            case .selectedItem(.editDone):
+                guard let item = state.selectedItem else { return .none }
+                return .task { [state] in
+                    if state.items.contains(item) {
+                        return .updateItem(item)
+                    } else {
+                        return .addItem(item)
+                    }
+                }
+
+            case .selectedItem(.delete):
+                guard let item = state.selectedItem else { return .none }
+                return .task {
+                    .deleteItem(item)
+                }
+
+            default:
+                return .none
+            }
         }
     }
 }

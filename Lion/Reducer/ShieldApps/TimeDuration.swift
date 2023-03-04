@@ -9,13 +9,9 @@ extension TimeDuration.State {
     static let `default`: Self = .init(
         start: .init(
             time: .init(hour: 9, minute: 0)
-//            min: .min,
-//            max: .init(hour: 18, minute: 0)
         ),
         end: .init(
             time: .init(hour: 18, minute: 0)
-//            min: .init(hour: 9, minute: 0),
-//            max: .max
         )
     )
 }
@@ -47,21 +43,6 @@ struct TimeDuration: ReducerProtocol {
         Scope(state: \.end, action: /Action.end) {
             TimeSelection()
         }
-
-//        Reduce { state, action in
-//            switch action {
-//            case .start(.time):
-//                state.end.min = state.start.time.next
-//                print(state.start.time)
-//                return .none
-//            case .end(.time):
-//                print(state.end.time)
-//                state.start.max = state.end.time.previous
-//                return .none
-//            default:
-//                return .none
-//            }
-//        }
     }
 }
 

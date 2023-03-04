@@ -8,9 +8,6 @@ import SwiftUI
 
 struct ShieldAppsItemSettingsView: View {
     let store: StoreOf<ShieldAppsItem>
-    var cancel: () -> Void
-    var done: (ShieldAppsItem.State) -> Void
-    var delete: (ShieldAppsItem.State) -> Void
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -33,30 +30,20 @@ struct ShieldAppsItemSettingsView: View {
                     AppsPickerButton(
                         store: store.scope(
                             state: \.selectedApps,
-                            action: ShieldAppsItem.Action.selectApps
+                            action: ShieldAppsItem.Action.selectedApps
                         )
                     )
 
                     Spacer()
 
                     VStack(spacing: 16) {
-                        doneButton(
-                            isLoading: viewStore.isUpdating,
-                            isDisabled: viewStore.isUpdating || viewStore.isDeleting,
-                            action: {
-//                                viewStore.send(.updateIsUpdating(true))
-                                done(viewStore.state)
-                            }
-                        )
+                        doneButton {
+                            viewStore.send(.editDone)
+                        }
                         if !viewStore.isNew {
-                            deleteButton(
-                                isLoading: viewStore.isDeleting,
-                                isDisabled: viewStore.isUpdating || viewStore.isDeleting,
-                                action: {
-//                                    viewStore.send(.updateIsDeleting(true))
-                                    delete(viewStore.state)
-                                }
-                            )
+                            deleteButton {
+                                viewStore.send(.delete)
+                            }
                         }
                     }
                 }
@@ -65,24 +52,21 @@ struct ShieldAppsItemSettingsView: View {
                     ToolbarItem(
                         placement: .navigationBarLeading)
                     {
-                        Button(.cancel) { cancel() }
+                        Button(.cancel) {
+                            viewStore.send(.deselect)
+                        }
                     }
                 }
                 .padding()
                 .background(Color(.veryLightGreen))
-            }
-            .onAppear {
-                if viewStore.isNew {
-                    viewStore.send(.selectApps(.toggleIsPresented(true)))
-                }
             }
         }
     }
 
     @ViewBuilder
     func doneButton(
-        isLoading: Bool,
-        isDisabled: Bool,
+        //        isLoading: Bool,
+//        isDisabled: Bool,
         action: @escaping () -> Void
     )
         -> some View
@@ -91,24 +75,24 @@ struct ShieldAppsItemSettingsView: View {
             action()
         } label: {
             Group {
-                if isLoading {
-                    ProgressView()
-                } else {
-                    Text(.done)
-                }
+//                if isLoading {
+//                    ProgressView()
+//                } else {
+                Text(.done)
+//                }
             }
             .frame(maxWidth: .infinity)
             .frame(height: 60)
         }
         .buttonStyle(PrimaryButton())
-        .disabled(isDisabled)
-        .opacity(isDisabled ? 0.5 : 1.0)
+//        .disabled(isDisabled)
+//        .opacity(isDisabled ? 0.5 : 1.0)
     }
 
     @ViewBuilder
     func deleteButton(
-        isLoading: Bool,
-        isDisabled: Bool,
+        //        isLoading: Bool,
+//        isDisabled: Bool,
         action: @escaping () -> Void
     )
         -> some View
@@ -117,18 +101,18 @@ struct ShieldAppsItemSettingsView: View {
             action()
         } label: {
             Group {
-                if isLoading {
-                    ProgressView()
-                } else {
-                    Text(.delete)
-                }
+//                if isLoading {
+//                    ProgressView()
+//                } else {
+                Text(.delete)
+//                }
             }
             .frame(maxWidth: .infinity)
             .frame(height: 60)
         }
         .buttonStyle(DeleteButton())
-        .disabled(isDisabled)
-        .opacity(isDisabled ? 0.5 : 1.0)
+//        .disabled(isDisabled)
+//        .opacity(isDisabled ? 0.5 : 1.0)
     }
 }
 
@@ -138,10 +122,7 @@ struct ShieldAppsItemSettingsView_Previews: PreviewProvider {
             store: Store(
                 initialState: ShieldAppsItem.State(id: UUID()),
                 reducer: ShieldAppsItem()
-            ),
-            cancel: {},
-            done: { _ in },
-            delete: { _ in }
+            )
         )
         .previewDevice(PreviewDevice(rawValue: "iPhone 14"))
         .previewDisplayName("\(Self.self)")

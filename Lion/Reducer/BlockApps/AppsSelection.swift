@@ -6,14 +6,6 @@ import ComposableArchitecture
 import FamilyControls
 import ManagedSettings
 
-extension AppsSelection.State {
-    static let none: Self = .init(
-        isPresented: false,
-        appTokens: [],
-        categoryTokens: []
-    )
-}
-
 struct AppsSelection: ReducerProtocol {
     struct State: Equatable, Codable {
         @NotCoded var isPresented: Bool
@@ -21,6 +13,15 @@ struct AppsSelection: ReducerProtocol {
         var categoryTokens: Set<ActivityCategoryToken>
 
         var maxSelectAmount: Int { 50 }
+
+        init(isPresented: Bool,
+             appTokens: Set<ApplicationToken> = [],
+             categoryTokens: Set<ActivityCategoryToken> = [])
+        {
+            self.isPresented = isPresented
+            self.appTokens = appTokens
+            self.categoryTokens = categoryTokens
+        }
     }
 
     enum Action: Equatable {

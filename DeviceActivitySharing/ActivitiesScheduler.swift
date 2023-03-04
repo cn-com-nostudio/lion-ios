@@ -16,8 +16,9 @@ public struct ActivitiesScheduler {
         try startMonitoring(items: activityScheduleItems)
     }
 
-    public func stopMonitoringAll() {
-        center.stopMonitoring()
+    public func stopMonitoring(items: [DailyScheduleItem]) {
+        let activityScheduleItems = items.map(ActivityScheduleItem.init)
+        stopMonitoring(items: activityScheduleItems)
     }
 
     public func startMonitoring(item: DailyScheduleItem) throws {
@@ -42,7 +43,19 @@ public struct ActivitiesScheduler {
         )
     }
 
+    private func stopMonitoring(items: [ActivityScheduleItem]) {
+        let activities = items.map(\.activity)
+        center.stopMonitoring(activities)
+
+        activities.forEach { activity in
+            let store: ManagedSettingsStore = .store(of: activity)
+            store.clearAllSettings()
+        }
+    }
+
     private func stopMonitoring(item: ActivityScheduleItem) {
         center.stopMonitoring([item.activity])
+        let store: ManagedSettingsStore = .store(of: item.activity)
+        store.clearAllSettings()
     }
 }

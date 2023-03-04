@@ -78,7 +78,7 @@ struct AppsPicker_Previews: PreviewProvider {
     static var previews: some View {
         AppsPicker(
             store: Store(
-                initialState: .none,
+                initialState: .init(isPresented: false),
                 reducer: AppsSelection()
             )
         )

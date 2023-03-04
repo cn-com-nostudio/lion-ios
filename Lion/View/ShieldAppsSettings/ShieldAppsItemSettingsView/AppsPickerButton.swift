@@ -63,7 +63,7 @@ struct AppsPickerButton_Previews: PreviewProvider {
     static var previews: some View {
         AppsPickerButton(
             store: Store(
-                initialState: .none,
+                initialState: .init(isPresented: false),
                 reducer: AppsSelection()
             )
         )

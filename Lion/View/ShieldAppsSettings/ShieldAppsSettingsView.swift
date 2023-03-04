@@ -85,6 +85,7 @@ struct ShieldAppsSettingsView: View {
                 }
             }
             .background(Color(.veryLightGreen))
+            .statusBar(hidden: false)
         }
     }
 }

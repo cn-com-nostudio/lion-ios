@@ -56,6 +56,7 @@ struct StartPage: View {
                         }
                     }
                     .font(.caption2)
+                    .padding(.bottom, 20)
                 }
                 .padding(.horizontal, 20)
             }

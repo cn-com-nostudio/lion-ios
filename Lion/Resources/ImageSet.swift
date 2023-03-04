@@ -51,6 +51,10 @@ enum ImageSet: String {
     case hiddingCatYellow
 
     case checkYellow
+
+    case appStore
+    case blankApp
+    case placeholderApp
 }
 
 extension Image {

@@ -18,6 +18,7 @@ extension VerticalAlignment {
 
 struct ModeItemView: View {
     let item: ModeItem
+
     @Binding var isOn: Bool
     var settingsAction: (() -> Void)?
 
@@ -35,14 +36,28 @@ struct ModeItemView: View {
 
                 VStack(alignment: .leading) {
                     VStack(alignment: .leading) {
-                        Toggle(item.name, isOn: $isOn)
-                            .foregroundColor(.white)
-                            .font(.lion.title2)
-                            .alignmentGuide(.hAlignment) { $0[VerticalAlignment.center] }
+                        Group {
+                            if item.hasToggle {
+                                Toggle(item.name, isOn: $isOn)
+                            } else {
+                                HStack {
+                                    Text(item.name)
+                                        .lineLimit(1)
+                                    Spacer()
+                                }
+                            }
+                        }
+                        .foregroundColor(.white)
+                        .font(.lion.title2)
+                        .alignmentGuide(.hAlignment) {
+                            $0[VerticalAlignment.center]
+                        }
+                        .frame(height: 30)
+
                         Text(item.tip)
-                            .lineLimit(1)
                             .foregroundColor(.white.opacity(0.8))
                             .font(.lion.caption1)
+                            .lineLimit(1)
                     }
                     Spacer()
                     if item.hasSubSettings {

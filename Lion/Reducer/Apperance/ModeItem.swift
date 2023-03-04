@@ -9,6 +9,7 @@ struct ModeItem: Equatable {
     let icon: SystemIcon
     let name: LocalizedStringKey
     let tip: LocalizedStringKey
+    let hasToggle: Bool
     let hasSubSettings: Bool
     let subSettingsName: LocalizedStringKey
     let subSettingsTip: LocalizedStringKey
@@ -17,6 +18,7 @@ struct ModeItem: Equatable {
     init(icon: SystemIcon,
          title: LocalizedStringKey,
          tip: LocalizedStringKey,
+         hasToggle: Bool,
          hasSubSettings: Bool,
          subSettingsName: LocalizedStringKey,
          subSettingsTip: @autoclosure () -> LocalizedStringKey,
@@ -25,6 +27,7 @@ struct ModeItem: Equatable {
         self.icon = icon
         name = title
         self.tip = tip
+        self.hasToggle = hasToggle
         self.hasSubSettings = hasSubSettings
         self.subSettingsName = subSettingsName
         self.subSettingsTip = subSettingsTip()
@@ -37,6 +40,7 @@ enum ModeItems {
         icon: .eyeSlashFill,
         title: .denyAppRemoval,
         tip: .denyAppRemovalTip,
+        hasToggle: true,
         hasSubSettings: false,
         subSettingsName: "",
         subSettingsTip: "",
@@ -47,6 +51,7 @@ enum ModeItems {
         icon: .eyeSlashFill,
         title: .denyAppInstallation,
         tip: .denyAppInstallationTip,
+        hasToggle: true,
         hasSubSettings: false,
         subSettingsName: "",
         subSettingsTip: "",
@@ -58,6 +63,7 @@ enum ModeItems {
             icon: .eyeSlashFill,
             title: .blockApps,
             tip: .blockAppsTip,
+            hasToggle: false,
             hasSubSettings: true,
             subSettingsName: .blockAppsSettings,
             subSettingsTip: subSettingsTip(),
@@ -69,6 +75,7 @@ enum ModeItems {
         icon: .gamecontrollerFill,
         title: .shieldApps,
         tip: .shieldAppsTip,
+        hasToggle: false,
         hasSubSettings: true,
         subSettingsName: .shiledAppsSettings,
         subSettingsTip: "",

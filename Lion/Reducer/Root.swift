@@ -40,12 +40,6 @@ struct Root: ReducerProtocol {
 
         // 介绍页面是否已经读过，读过就不要show，没读过就show
         var isIntroduceRead: Bool = false
-
-        var denyAppInstallationTurnOnTimes: Int = 0
-        @NotCoded var showDenyAppInstallationTip: Bool = false
-
-        var denyAppRemovalTurnOnTimes: Int = 0
-        @NotCoded var showDenyAppRemovalTip: Bool = false
     }
 
     enum Action: Equatable {
@@ -142,23 +136,6 @@ struct Root: ReducerProtocol {
 
         Scope(state: \.member, action: /Action.member) {
             Member()
-        }
-
-        Reduce { state, action in
-            switch action {
-            case .childMode(.toggleIsDenyAppInstallation(true)):
-                state.denyAppInstallationTurnOnTimes += 1
-                state.showDenyAppInstallationTip = state.denyAppInstallationTurnOnTimes == 1
-                return .none
-
-            case .childMode(.toggleIsDenyAppRemoval(true)):
-                state.denyAppRemovalTurnOnTimes += 1
-                state.showDenyAppRemovalTip = state.denyAppRemovalTurnOnTimes == 1
-                return .none
-
-            default:
-                return .none
-            }
         }
     }
 }

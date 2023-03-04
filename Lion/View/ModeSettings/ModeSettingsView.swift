@@ -55,6 +55,24 @@ struct ModeSettingsView: View {
                 }
             }
             .statusBar(hidden: true)
+            .sheet(isPresented: viewStore.binding(
+                get: \.showDenyAppInstallationTip,
+                send: ModeSettings.Action.toggleShowDenyAppInstallationTip
+            )) {
+                DenyAppInstallationTipView {
+                    viewStore.send(.toggleShowDenyAppInstallationTip(false))
+                }
+                .presentationDetents([.medium])
+            }
+            .sheet(isPresented: viewStore.binding(
+                get: \.showDenyAppRemovalTip,
+                send: ModeSettings.Action.toggleShowDenyAppRemovalTip
+            )) {
+                DenyAppRemovalTipView {
+                    viewStore.send(.toggleShowDenyAppRemovalTip(false))
+                }
+                .presentationDetents([.medium])
+            }
         }
     }
 }

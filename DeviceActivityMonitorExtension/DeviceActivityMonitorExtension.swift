@@ -5,7 +5,6 @@
 import DeviceActivity
 import DeviceActivitySharing
 import ManagedSettings
-import MobileCore
 
 extension ManagedSettingsStore.Name {
     static let shared: Self = .init("cn.com.nostudio.lion")

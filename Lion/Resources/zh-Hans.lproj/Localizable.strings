@@ -158,3 +158,11 @@
 
 "oh no, authorize canceled" = "Oh No... 授权被取消了";
 "reauthorize" = "重新授权";
+
+
+"after cancel deny app removal, app may not back to" = "取消隐藏后，App可能回不到";
+"the original position" = "原来的位置";
+"like installing new app, it wil appear in blank area on screen" = "就像新安装应用一样，出现在屏幕空白区域。";
+"I get it" = "我知道了";
+
+"after trun on deny app installation, Appstore app will hide" = "开启后，App Store图标\n将自动隐藏";

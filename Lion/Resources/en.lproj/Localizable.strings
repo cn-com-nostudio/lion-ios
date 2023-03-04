@@ -161,3 +161,10 @@
 "oh no, authorize canceled" = "Oh No... Authorize canceled";
 "reauthorize" = "Reauthorize";
 
+"after cancel deny app removal, app may not back to" = "After cancel deny app removal, app may not back to";
+"the original position" = "the original postion";
+
+"like installing new app, it wil appear in blank area on screen" = "Like installing new app, it wil appear in blank area on screen";
+"I get it" = "Get it";
+
+"after trun on deny app installation, Appstore app will hide" = "After trun on deny app installation, Appstore app will hide";

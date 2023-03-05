@@ -55,7 +55,7 @@ struct StartPage: View {
                                 .foregroundColor(.lion.yellow)
                         }
                     }
-                    .font(.caption2)
+                    .font(.lion.caption2)
                     .padding(.bottom, 20)
                 }
                 .padding(.horizontal, 20)

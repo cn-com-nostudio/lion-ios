@@ -6,17 +6,16 @@ import ComposableArchitecture
 import SwiftUI
 
 struct ModePreview: View {
+    let root: StoreOf<Root>
     let store: StoreOf<ModeSettings>
     let header: ModeHeader
-    var action: () -> Void
 
     var body: some View {
         WithViewStore(store) { viewStore in
             ZStack(alignment: Alignment(horizontal: .center, vertical: .hAlignment)) {
                 ModePreviewWithoutImage(
                     store: store,
-                    header: header,
-                    action: action
+                    header: header
                 )
                 .frame(height: 375)
 
@@ -33,11 +32,25 @@ struct ModePreview: View {
                     send: ModeSettings.Action.toggleIsPresented
                 ),
                 content: {
-                    ModeSettingsView(
-                        store: store,
-                        header: ModeHeaders[viewStore.state],
-                        action: action
-                    )
+                    WithViewStore(root) { rootStore in
+                        ModeSettingsView(
+                            store: store,
+                            header: ModeHeaders[viewStore.state]
+                        )
+                        .fullScreenCover(
+                            isPresented: rootStore.binding(
+                                get: \.products.isMemberPurchasePresented,
+                                send: { .products(.toggleIsMemberPurchasePresented($0)) }
+                            )
+                        ) {
+                            ProductPurchaseView(
+                                store: root.scope(
+                                    state: \.products,
+                                    action: Root.Action.products
+                                )
+                            )
+                        }
+                    }
                 }
             )
         }
@@ -47,7 +60,6 @@ struct ModePreview: View {
 struct ModePreviewWithoutImage: View {
     let store: StoreOf<ModeSettings>
     let header: ModeHeader
-    var action: () -> Void
 
     private let cornerRadius: CGFloat = 32.0
 
@@ -65,13 +77,14 @@ struct ModePreviewWithoutImage: View {
 
                 VStack(alignment: .leading, spacing: .one) {
                     HStack {
-                        Text(LocalizedStringKey(viewStore.modeName))
+                        Text(LocalizedStringKey(viewStore.mode.name))
                             .font(.lion.title1)
                             .foregroundColor(header.primaryColor)
                         Spacer()
 
                         Button {
-                            action()
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                            viewStore.send(.willToggleIsOn(!viewStore.isOn))
                         } label: {
                             Group {
                                 if viewStore.isSetting {
@@ -110,12 +123,15 @@ struct ModePreviewWithoutImage: View {
 struct ModePreview_Previews: PreviewProvider {
     static var previews: some View {
         ModePreview(
+            root: Store(
+                initialState: .default,
+                reducer: Root()
+            ),
             store: Store(
                 initialState: ModeSettings.State.child,
                 reducer: ModeSettings()
             ),
-            header: ModeHeaders[.child],
-            action: {}
+            header: ModeHeaders[.child]
         )
         .previewDevice(PreviewDevice(rawValue: "iPhone 14"))
         .previewDisplayName("ModePreview")

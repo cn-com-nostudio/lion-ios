@@ -8,7 +8,7 @@ struct SettingButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration
             .label
-            .font(.callout.weight(.bold))
+            .font(.lion.caption1Bold)
             .foregroundColor(.white)
             .background(.black.opacity(0.2))
             .cornerRadius(12)

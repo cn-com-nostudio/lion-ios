@@ -102,5 +102,6 @@ struct ModeItemView_Previews: PreviewProvider {
         .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro Max"))
         .previewDisplayName("\(Self.self)")
         .environment(\.locale, .init(identifier: "zh_CN"))
+        .padding(20)
     }
 }

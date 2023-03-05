@@ -8,14 +8,24 @@ import Foundation
 import ManagedSettings
 import UIKit
 
-extension String {
-    static let child: Self = "child mode"
-    static let loan: Self = "loan mode"
+enum Mode: Codable, Equatable {
+    case child
+    case loan
+
+    var name: String {
+        switch self {
+        case .child:
+            return "child mode"
+
+        case .loan:
+            return "loan mode"
+        }
+    }
 }
 
 extension ModeSettings.State {
     static let child: Self = .init(
-        modeName: .child,
+        mode: .child,
         isOn: false,
         isPresented: false,
         isDenyAppRemoval: false,
@@ -27,7 +37,7 @@ extension ModeSettings.State {
     )
 
     static let loan: Self = .init(
-        modeName: .loan,
+        mode: .loan,
         isOn: false,
         isPresented: false,
         isDenyAppRemoval: false,
@@ -40,9 +50,11 @@ extension ModeSettings.State {
 }
 
 struct ModeSettings: ReducerProtocol {
-    struct State: Mode {
-        let modeName: String
+    struct State: Codable, Equatable {
+        let mode: Mode
         var isOn: Bool
+
+        var turnOnTimes: Int = 0
 
         @NotCoded var isSetting: Bool = false
 
@@ -65,16 +77,19 @@ struct ModeSettings: ReducerProtocol {
     }
 
     enum Action: Equatable {
+        case willToggleIsOn(Bool)
         case toggleIsOn(Bool)
         case updateIsOn(Bool)
 
         case updateIsSetting(Bool)
 
         case toggleIsPresented(Bool)
+        case updateIsPresented(Bool)
 
         case toggleIsDenyAppRemoval(Bool)
         case updateIsDenyAppRemoval(Bool)
 
+        case willToggleIsDenyAppInstallation(Bool)
         case toggleIsDenyAppInstallation(Bool)
         case updateIsDenyAppInstallation(Bool)
 
@@ -97,6 +112,7 @@ struct ModeSettings: ReducerProtocol {
     @Dependency(\.modeManager) var modeManager
     @Dependency(\.shieldAppsMonitor) var shieldAppsMonitor
 //    @Dependency(\.application) var application
+//    @Dependency(\.memberState) var memberState
 
     struct CancelToken: Hashable {}
 
@@ -129,7 +145,7 @@ struct ModeSettings: ReducerProtocol {
     var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
             switch action {
-            case let .toggleIsPresented(isPresented):
+            case let .updateIsPresented(isPresented):
                 state.isPresented = isPresented
                 return .none
 
@@ -161,6 +177,9 @@ struct ModeSettings: ReducerProtocol {
 
             case let .updateIsOn(isOn):
                 state.isOn = isOn
+                if isOn {
+                    state.turnOnTimes += 1
+                }
                 return .none
 
             case let .toggleIsDenyAppInstallation(isOn) where state.isOn:

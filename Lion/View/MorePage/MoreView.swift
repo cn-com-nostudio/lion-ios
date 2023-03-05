@@ -44,7 +44,7 @@ struct MoreView: View {
         }
     }
 
-    private func headView(store: StoreOf<Member>) -> some View {
+    private func headView(store: StoreOf<Products>) -> some View {
         WithViewStore(store) { viewStore in
             if viewStore.isMember {
                 memberView()
@@ -56,7 +56,7 @@ struct MoreView: View {
         }
     }
 
-    private func toBeAMemberView(store: StoreOf<Member>) -> some View {
+    private func toBeAMemberView(store: StoreOf<Products>) -> some View {
         VStack(spacing: 36) {
             VStack(spacing: .half) {
                 Image(.starts)
@@ -127,8 +127,8 @@ struct MoreView: View {
                         VStack(spacing: 20) {
                             headView(
                                 store: store.scope(
-                                    state: \.member,
-                                    action: Root.Action.member
+                                    state: \.products,
+                                    action: Root.Action.products
                                 )
                             )
                             .padding(.top)
@@ -153,6 +153,19 @@ struct MoreView: View {
                                 )
                             )
                             .padding(.horizontal)
+                            .fullScreenCover(
+                                isPresented: viewStore.binding(
+                                    get: \.products.isMemberPurchasePresented,
+                                    send: { .products(.toggleIsMemberPurchasePresented($0)) }
+                                )
+                            ) {
+                                ProductPurchaseView(
+                                    store: store.scope(
+                                        state: \.products,
+                                        action: Root.Action.products
+                                    )
+                                )
+                            }
 
                             VStack(spacing: 45) {
                                 footer
@@ -208,14 +221,32 @@ struct MoreItemsView: View {
                 .cornerRadius(16)
 
                 VStack(spacing: 0) {
-                    NavigationLink {
-                        PasswordLockView(
-                            store: store
-                        )
+//                    NavigationLink {
+//                        PasswordLockView(
+//                            store: store
+//                        )
+//                    } label: {
+//                        MoreItemView(
+//                            item: .passwordLock,
+//                            subTitle: viewStore.isOn ? .alreadyTurnOn : .notTurnOnYet
+//                        )
+//                    }
+                    Button {
+                        viewStore.send(.toggleIsPresented(true))
                     } label: {
                         MoreItemView(
                             item: .passwordLock,
                             subTitle: viewStore.isOn ? .alreadyTurnOn : .notTurnOnYet
+                        )
+                    }
+                    .navigationDestination(
+                        isPresented: viewStore.binding(
+                            get: \.isPresented,
+                            send: PasswordLock.Action.toggleIsPresented
+                        )
+                    ) {
+                        PasswordLockView(
+                            store: store
                         )
                     }
 

@@ -48,7 +48,7 @@ enum ModeHeaders {
     )
 
     static subscript(mode: ModeSettings.State) -> ModeHeader {
-        Self[LocalizedStringKey(mode.modeName)]
+        Self[LocalizedStringKey(mode.mode.name)]
     }
 
     private static subscript(modeName: LocalizedStringKey) -> ModeHeader {

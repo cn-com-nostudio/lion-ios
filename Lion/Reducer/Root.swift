@@ -11,7 +11,7 @@ extension Root.State {
         childMode: .child,
         loanMode: .loan,
         passwordLock: .default,
-        member: .default
+        products: .default
     )
 }
 
@@ -33,7 +33,7 @@ struct Root: ReducerProtocol {
         var childMode: ModeSettings.State
         var loanMode: ModeSettings.State
         var passwordLock: PasswordLock.State
-        var member: Member.State
+        var products: Products.State
 
         @NotCoded var needRequestScreenTimeAccessPermission: Bool = false
         @NotCoded var isMorePageShow: Bool = false
@@ -49,7 +49,7 @@ struct Root: ReducerProtocol {
         case childMode(ModeSettings.Action)
         case loanMode(ModeSettings.Action)
         case passwordLock(PasswordLock.Action)
-        case member(Member.Action)
+        case products(Products.Action)
         case syncScreenTimeAuthorizationStatus
         case requestScreenTimeAccessPermission
         case updateIsScreenTimeAccessGranted(Bool)
@@ -67,6 +67,7 @@ struct Root: ReducerProtocol {
         Reduce { state, action in
             switch action {
             case .appLaunched:
+                // TODO: Effect should not call out of effect scope.
                 state.appInfo.name = appInfo.name()
                 state.appInfo.version = appInfo.version()
                 state.appInfo.buildVersion = appInfo.buildVersion()
@@ -111,10 +112,67 @@ struct Root: ReducerProtocol {
                 state.isIntroduceRead = isRead
                 return .none
 
-            case .member(.lifetimeMember(.purchaseSucceed)),
-                 .member(.yearlyMember(.purchaseSucceed)):
+            default:
+                return .none
+            }
+        }
+
+        Reduce { state, action in
+            switch action {
+            case let .childMode(.willToggleIsOn(isOn)) where state.products.isMember || state.childMode.turnOnTimes < 10:
+                return .run { [state] send in
+                    if isOn, state.loanMode.isOn {
+                        await send(.loanMode(.toggleIsOn(false)))
+                    }
+                    await send(.childMode(.toggleIsOn(isOn)))
+                }
+
+            case .childMode(.willToggleIsOn(true)) where !(state.products.isMember || state.childMode.turnOnTimes < 10):
                 return .task {
-                    .member(.toggleIsMemberPurchasePresented(false))
+                    .products(.toggleIsMemberPurchasePresented(true))
+                }
+
+            case let .loanMode(.willToggleIsOn(isOn)) where state.products.isMember:
+                return .run { [state] send in
+                    if isOn, state.childMode.isOn {
+                        await send(.childMode(.toggleIsOn(false)))
+                    }
+                    await send(.loanMode(.toggleIsOn(isOn)))
+                }
+
+            case let .childMode(.toggleIsPresented(isOn)):
+                return .task {
+                    .childMode(.updateIsPresented(isOn))
+                }
+
+            case let .loanMode(.toggleIsPresented(isOn)) where state.products.isMember:
+                return .task {
+                    .loanMode(.updateIsPresented(isOn))
+                }
+
+            case let .childMode(.willToggleIsDenyAppInstallation(isOn)) where state.products.isMember:
+                return .task {
+                    .childMode(.toggleIsDenyAppInstallation(isOn))
+                }
+
+            case let .loanMode(.willToggleIsDenyAppInstallation(isOn)) where state.products.isMember:
+                return .task {
+                    .loanMode(.toggleIsDenyAppInstallation(isOn))
+                }
+
+            case let .passwordLock(.toggleIsPresented(isPresented)) where state.products.isMember:
+                return .task {
+                    .passwordLock(.updateIsPresented(isPresented))
+                }
+
+            case .loanMode(.willToggleIsOn),
+                 .loanMode(.toggleIsPresented),
+                 .passwordLock(.toggleIsPresented),
+                 .childMode(.willToggleIsDenyAppInstallation),
+                 .loanMode(.willToggleIsDenyAppInstallation)
+                     where !state.products.isMember:
+                return .task {
+                    .products(.toggleIsMemberPurchasePresented(true))
                 }
 
             default:
@@ -134,8 +192,8 @@ struct Root: ReducerProtocol {
             PasswordLock()
         }
 
-        Scope(state: \.member, action: /Action.member) {
-            Member()
+        Scope(state: \.products, action: /Action.products) {
+            Products()
         }
     }
 }

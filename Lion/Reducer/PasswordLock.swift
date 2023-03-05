@@ -54,9 +54,14 @@ struct PasswordLock: ReducerProtocol {
         @NotCoded var biometricPassword: String = ""
 
         @NotCoded var alert: AlertState<Action>?
+
+        @NotCoded var isPresented: Bool = false
     }
 
     enum Action: Equatable {
+        case toggleIsPresented(Bool)
+        case updateIsPresented(Bool)
+
         case toggleIsOn(Bool)
 
         case toggleUseFaceID(Bool)
@@ -134,6 +139,10 @@ struct PasswordLock: ReducerProtocol {
     var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
             switch action {
+            case let .updateIsPresented(isPresented):
+                state.isPresented = isPresented
+                return .none
+
             case let .toggleIsOn(isOn):
                 if isOn {
                     state.isPasswordSetupPresented = true

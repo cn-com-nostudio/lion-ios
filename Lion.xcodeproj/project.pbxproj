@@ -102,8 +102,8 @@
 		865E022229A61AA100B8DE82 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01A529A61AA100B8DE82 /* Root.swift */; };
 		865E022329A61AA100B8DE82 /* ModeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01A729A61AA100B8DE82 /* ModeItem.swift */; };
 		865E022429A61AA100B8DE82 /* ModeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01A829A61AA100B8DE82 /* ModeHeader.swift */; };
-		865E022529A61AA100B8DE82 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01A929A61AA100B8DE82 /* Member.swift */; };
-		865E022629A61AA100B8DE82 /* InAppPurchaseProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01AA29A61AA100B8DE82 /* InAppPurchaseProduct.swift */; };
+		865E022529A61AA100B8DE82 /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01A929A61AA100B8DE82 /* Products.swift */; };
+		865E022629A61AA100B8DE82 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01AA29A61AA100B8DE82 /* Member.swift */; };
 		865E022729A61AA100B8DE82 /* TimeSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01AC29A61AA100B8DE82 /* TimeSelection.swift */; };
 		865E022929A61AA100B8DE82 /* HourMinute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01AE29A61AA100B8DE82 /* HourMinute.swift */; };
 		865E022A29A61AA100B8DE82 /* ShieldAppsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01AF29A61AA100B8DE82 /* ShieldAppsSettings.swift */; };
@@ -143,6 +143,9 @@
 		865E024D29A61AA100B8DE82 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E01DB29A61AA100B8DE82 /* WebView.swift */; };
 		865E025629A61DFE00B8DE82 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 865E025529A61DFE00B8DE82 /* ComposableArchitecture */; };
 		865E025829A61E8000B8DE82 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 865E025729A61E8000B8DE82 /* AlertToast */; };
+		86626BC229B4525C008BF17C /* InAppPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86626BC129B4525C008BF17C /* InAppPurchase.swift */; };
+		86626BC429B46569008BF17C /* MemberPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86626BC329B46569008BF17C /* MemberPurchase.swift */; };
+		86626BC729B48161008BF17C /* TransactionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86626BC629B48161008BF17C /* TransactionObserver.swift */; };
 		868112AB29A91F7800162733 /* Limiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868112AA29A91F7800162733 /* Limiter.swift */; };
 		868112AD29A9231400162733 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868112AC29A9231300162733 /* Debouncer.swift */; };
 		869988A329AD065100CCED37 /* StartPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869988A229AD065100CCED37 /* StartPage.swift */; };
@@ -150,6 +153,7 @@
 		86B7A037295197BE00D3D34A /* LionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A036295197BE00D3D34A /* LionUITests.swift */; };
 		86B7A039295197BE00D3D34A /* LionUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B7A038295197BE00D3D34A /* LionUITestsLaunchTests.swift */; };
 		86CB364829A6363E002F434B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86CB364A29A6363E002F434B /* InfoPlist.strings */; };
+		86D006CF29B4DBB3006F4D9E /* MemberShareState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D006CE29B4DBB3006F4D9E /* MemberShareState.swift */; };
 		86E266CA29AE4752006CBBD5 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E266C929AE4752006CBBD5 /* Color+Hex.swift */; };
 		86E266CD29AE47EE006CBBD5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86E266CF29AE47EE006CBBD5 /* Localizable.strings */; };
 		86E266D229AE4961006CBBD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86E266D129AE4961006CBBD5 /* Assets.xcassets */; };
@@ -369,8 +373,8 @@
 		865E01A529A61AA100B8DE82 /* Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		865E01A729A61AA100B8DE82 /* ModeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModeItem.swift; sourceTree = "<group>"; };
 		865E01A829A61AA100B8DE82 /* ModeHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModeHeader.swift; sourceTree = "<group>"; };
-		865E01A929A61AA100B8DE82 /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
-		865E01AA29A61AA100B8DE82 /* InAppPurchaseProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppPurchaseProduct.swift; sourceTree = "<group>"; };
+		865E01A929A61AA100B8DE82 /* Products.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
+		865E01AA29A61AA100B8DE82 /* Member.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		865E01AC29A61AA100B8DE82 /* TimeSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSelection.swift; sourceTree = "<group>"; };
 		865E01AE29A61AA100B8DE82 /* HourMinute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourMinute.swift; sourceTree = "<group>"; };
 		865E01AF29A61AA100B8DE82 /* ShieldAppsSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShieldAppsSettings.swift; sourceTree = "<group>"; };
@@ -409,6 +413,9 @@
 		865E01DA29A61AA100B8DE82 /* PasswordSetupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordSetupView.swift; sourceTree = "<group>"; };
 		865E01DB29A61AA100B8DE82 /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		865E01DC29A61AA100B8DE82 /* Lion.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Lion.entitlements; sourceTree = "<group>"; };
+		86626BC129B4525C008BF17C /* InAppPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchase.swift; sourceTree = "<group>"; };
+		86626BC329B46569008BF17C /* MemberPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberPurchase.swift; sourceTree = "<group>"; };
+		86626BC629B48161008BF17C /* TransactionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionObserver.swift; sourceTree = "<group>"; };
 		868112AA29A91F7800162733 /* Limiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Limiter.swift; sourceTree = "<group>"; };
 		868112AC29A9231300162733 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		869988A229AD065100CCED37 /* StartPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPage.swift; sourceTree = "<group>"; };
@@ -423,6 +430,7 @@
 		86CB364929A6363E002F434B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		86CB364B29A63640002F434B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		86CB364C29A67C66002F434B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		86D006CE29B4DBB3006F4D9E /* MemberShareState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberShareState.swift; sourceTree = "<group>"; };
 		86E266C929AE4752006CBBD5 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		86E266CE29AE47EE006CBBD5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		86E266D029AE47F0006CBBD5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -778,8 +786,8 @@
 				865E01A429A61AA100B8DE82 /* MoreItem.swift */,
 				865E01A529A61AA100B8DE82 /* Root.swift */,
 				865E01A629A61AA100B8DE82 /* Apperance */,
-				865E01A929A61AA100B8DE82 /* Member.swift */,
-				865E01AA29A61AA100B8DE82 /* InAppPurchaseProduct.swift */,
+				865E01A929A61AA100B8DE82 /* Products.swift */,
+				865E01AA29A61AA100B8DE82 /* Member.swift */,
 				865E01AB29A61AA100B8DE82 /* ShieldApps */,
 				865E01B229A61AA100B8DE82 /* PasswordLock.swift */,
 				865E01B329A61AA100B8DE82 /* ModeSettings.swift */,
@@ -801,6 +809,10 @@
 				865E019E29A61AA100B8DE82 /* Application.swift */,
 				865E019F29A61AA100B8DE82 /* KeyboardNotifiable.swift */,
 				868112AC29A9231300162733 /* Debouncer.swift */,
+				86626BC129B4525C008BF17C /* InAppPurchase.swift */,
+				86626BC329B46569008BF17C /* MemberPurchase.swift */,
+				86626BC629B48161008BF17C /* TransactionObserver.swift */,
+				86D006CE29B4DBB3006F4D9E /* MemberShareState.swift */,
 			);
 			path = Dependecy;
 			sourceTree = "<group>";
@@ -1519,7 +1531,7 @@
 				865E01E029A61AA100B8DE82 /* Alignment.swift in Sources */,
 				865E01F729A61AA100B8DE82 /* URL+SystemSettings.swift in Sources */,
 				865E023529A61AA100B8DE82 /* ModeSelectionView.swift in Sources */,
-				865E022529A61AA100B8DE82 /* Member.swift in Sources */,
+				865E022529A61AA100B8DE82 /* Products.swift in Sources */,
 				865E024729A61AA100B8DE82 /* MoreView.swift in Sources */,
 				865E01EB29A61AA100B8DE82 /* Array+Extension.swift in Sources */,
 				865E01E229A61AA100B8DE82 /* PaddingUnit.swift in Sources */,
@@ -1540,6 +1552,7 @@
 				865E022A29A61AA100B8DE82 /* ShieldAppsSettings.swift in Sources */,
 				865E021929A61AA100B8DE82 /* AppInfo.swift in Sources */,
 				865E01E129A61AA100B8DE82 /* LionApp.swift in Sources */,
+				86626BC729B48161008BF17C /* TransactionObserver.swift in Sources */,
 				865E01FF29A61AA100B8DE82 /* DefaultValuable.swift in Sources */,
 				865E01F129A61AA100B8DE82 /* Serializer.swift in Sources */,
 				865E023C29A61AA100B8DE82 /* SuggestionModeItems.swift in Sources */,
@@ -1552,6 +1565,7 @@
 				86A00FE929B2E7E200B4C908 /* DenyAppRemovalTipView.swift in Sources */,
 				865E020329A61AA100B8DE82 /* Caching.swift in Sources */,
 				865E01F329A61AA100B8DE82 /* SafeNamespace.swift in Sources */,
+				86626BC229B4525C008BF17C /* InAppPurchase.swift in Sources */,
 				865E01F529A61AA100B8DE82 /* LionNamespace.swift in Sources */,
 				865E020829A61AA100B8DE82 /* SettingButton.swift in Sources */,
 				865E01E429A61AA100B8DE82 /* FontSet.swift in Sources */,
@@ -1567,6 +1581,7 @@
 				865E020A29A61AA100B8DE82 /* PinGroup.swift in Sources */,
 				865E01FA29A61AA100B8DE82 /* String+Range.swift in Sources */,
 				865E023A29A61AA100B8DE82 /* ModeSettingsView.swift in Sources */,
+				86626BC429B46569008BF17C /* MemberPurchase.swift in Sources */,
 				865E020F29A61AA100B8DE82 /* View+Feedback.swift in Sources */,
 				865E01FD29A61AA100B8DE82 /* SortedDescriptor.swift in Sources */,
 				865E024429A61AA100B8DE82 /* TimeIntervalPicker.swift in Sources */,
@@ -1591,6 +1606,7 @@
 				865E024829A61AA100B8DE82 /* ProductsView.swift in Sources */,
 				865E021729A61AA100B8DE82 /* ScreenTimeAuth.swift in Sources */,
 				865E021629A61AA100B8DE82 /* BiometricIDAuth.swift in Sources */,
+				86D006CF29B4DBB3006F4D9E /* MemberShareState.swift in Sources */,
 				865E01F429A61AA100B8DE82 /* SystemSettingsNamespace.swift in Sources */,
 				865E021029A61AA100B8DE82 /* PrimaryButton.swift in Sources */,
 				865E01ED29A61AA100B8DE82 /* Directory.swift in Sources */,
@@ -1608,7 +1624,7 @@
 				865E01F029A61AA100B8DE82 /* StringSerializer.swift in Sources */,
 				865E022F29A61AA100B8DE82 /* RootView.swift in Sources */,
 				865E021C29A61AA100B8DE82 /* Application.swift in Sources */,
-				865E022629A61AA100B8DE82 /* InAppPurchaseProduct.swift in Sources */,
+				865E022629A61AA100B8DE82 /* Member.swift in Sources */,
 				868112AB29A91F7800162733 /* Limiter.swift in Sources */,
 				865E022029A61AA100B8DE82 /* Mode.swift in Sources */,
 				865E023F29A61AA100B8DE82 /* ShieldAppsSettingsView.swift in Sources */,

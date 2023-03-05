@@ -9,7 +9,7 @@ struct SuggestionModeItems: View {
 
     var body: some View {
         VStack {
-            Text(LocalizedStringKey(mode.modeName))
+            Text(LocalizedStringKey(mode.mode.name))
                 .font(.lion.title2)
                 .foregroundColor(.lion.primary)
             VStack {
@@ -76,7 +76,7 @@ struct SuggestionModeItems_Previews: PreviewProvider {
     }
 }
 
-extension Mode {
+extension ModeSettings.State {
     var itemsOn: [ModeItem] {
         var items: [ModeItem] = []
         if isDenyAppRemoval {

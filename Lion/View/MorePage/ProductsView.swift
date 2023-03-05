@@ -12,7 +12,7 @@ struct ProductsView: View {
         case lifetimeMember
     }
 
-    let store: StoreOf<Member>
+    let store: StoreOf<Products>
 
     @State private var selected: SelectedProduct = .lifetimeMember
     @State private var isProductPurchasePresented: Bool = false
@@ -24,7 +24,7 @@ struct ProductsView: View {
                     InAppPurchaseProductView(
                         store: store.scope(
                             state: \.yearlyMember,
-                            action: Member.Action.yearlyMember
+                            action: Products.Action.yearlyMember
                         ),
                         displayName: .twelveMonths,
                         description: .twoCupsOfCoffee,
@@ -37,7 +37,7 @@ struct ProductsView: View {
                         InAppPurchaseProductView(
                             store: store.scope(
                                 state: \.lifetimeMember,
-                                action: Member.Action.lifetimeMember
+                                action: Products.Action.lifetimeMember
                             ),
                             displayName: .lifetimeMember,
                             description: .payOnceAvailableForLife,
@@ -70,12 +70,12 @@ struct ProductsView: View {
                     }
                 }
                 .buttonStyle(PrimaryButton())
-                .opacity(viewStore.isPurchasing ? 0.3 : 1.0)
-                .disabled(viewStore.isPurchasing)
+                .opacity(viewStore.isLoading ? 0.3 : 1.0)
+                .disabled(viewStore.isLoading)
             }
             .foregroundColor(.lion.white)
             .toast(isPresenting: viewStore.binding(
-                get: \.isPurchasing,
+                get: \.isLoading,
                 send: { _ in .none }
             ), alert: {
                 AlertToast(type: .loading)
@@ -85,7 +85,7 @@ struct ProductsView: View {
 }
 
 struct InAppPurchaseProductView: View {
-    let store: StoreOf<InAppPurchaseProduct>
+    let store: StoreOf<Member>
     let displayName: LocalizedStringKey
     let description: LocalizedStringKey
     let isSelected: Bool
@@ -120,15 +120,9 @@ struct InAppPurchaseProductView: View {
                         }
                     }
                 }
-//                .toast(isPresenting: viewStore.binding(
-//                    get: \.isPurchasing,
-//                    send: { _ in .none }
-//                ), alert: {
-//                    AlertToast(type: .loading)
-//                })
                 .onAppear {
                     viewStore.send(.loadProduct)
-                    viewStore.send(.syncPurchaseStateIfNeeded)
+                    viewStore.send(.syncIsAvaliable)
                 }
         }
     }

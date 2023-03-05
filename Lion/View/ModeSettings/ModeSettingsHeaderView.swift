@@ -46,7 +46,6 @@ struct CloseButton_Previews: PreviewProvider {
 struct ModeSettingsHeaderView: View {
     let header: ModeHeader
     let store: StoreOf<ModeSettings>
-    var action: () -> Void
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -76,7 +75,8 @@ struct ModeSettingsHeaderView: View {
                             .foregroundColor(.white)
                         Spacer()
                         Button {
-                            action()
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                            viewStore.send(.willToggleIsOn(!viewStore.isOn))
                         } label: {
                             Group {
                                 if viewStore.isSetting {
@@ -119,8 +119,7 @@ struct ModeSettingsHeaderView_Previews: PreviewProvider {
                 store: Store(
                     initialState: .child,
                     reducer: ModeSettings()
-                ),
-                action: {}
+                )
             )
             .aspectRatio(0.975, contentMode: .fit)
         }

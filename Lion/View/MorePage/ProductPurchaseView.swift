@@ -6,7 +6,7 @@ import ComposableArchitecture
 import SwiftUI
 
 struct ProductPurchaseView: View {
-    let store: StoreOf<Member>
+    let store: StoreOf<Products>
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -22,11 +22,6 @@ struct ProductPurchaseView: View {
                             )
                             .ignoresSafeArea()
                         }
-//                        ZStack(alignment: .bottom) {
-//                            .ignoresSafeArea()
-//                            footer
-//                        }
-//                        .frame(height: 240)
                     }
                     closeButton {
                         viewStore.send(.toggleIsMemberPurchasePresented(false))
@@ -50,38 +45,41 @@ struct ProductPurchaseView: View {
     }
 
     private var footer: some View {
-        VStack(spacing: 14) {
-            ProductsView(store: store)
+        WithViewStore(store) { viewStore in
+            VStack(spacing: 14) {
+                ProductsView(store: store)
 
-            HStack(spacing: 16) {
-                NavigationLink {
-                    WebView(url: MoreItem.userLisence().link)
-                        .navigationTitle(.userLisence)
-                } label: {
-                    Text(.userLisence)
+                HStack(spacing: 16) {
+                    NavigationLink {
+                        WebView(url: MoreItem.userLisence().link)
+                            .navigationTitle(.userLisence)
+                    } label: {
+                        Text(.userLisence)
+                    }
+
+                    NavigationLink {
+                        WebView(url: MoreItem.privacyPolicy().link)
+                            .navigationTitle(.privacyPolicy)
+                    } label: {
+                        Text(.privacyPolicy)
+                    }
+
+                    Spacer()
+
+                    Button {
+                        viewStore.send(.syncMemberState)
+                    } label: {
+                        // TODO: Localized
+                        Text("恢复购买")
+                    }
                 }
-
-                NavigationLink {
-                    WebView(url: MoreItem.privacyPolicy().link)
-                        .navigationTitle(.privacyPolicy)
-                } label: {
-                    Text(.privacyPolicy)
-                }
-
-                Spacer()
-
-                Button {
-                    // TO DO: Resume purchase.
-                } label: {
-                    Text("恢复购买")
-                }
+                .font(.lion.caption2)
+                .foregroundColor(.lion.white)
+                .padding(.horizontal, 20)
             }
-            .font(.lion.caption2)
-            .foregroundColor(.lion.white)
-            .padding(.horizontal, 20)
+            .padding(.top)
+            .padding(.top)
         }
-        .padding(.top)
-        .padding(.top)
     }
 }
 
@@ -90,7 +88,7 @@ struct ProductPurchaseView_Previews: PreviewProvider {
         ProductPurchaseView(
             store: Store(
                 initialState: .default,
-                reducer: Member()
+                reducer: Products()
             )
         )
         .previewDevice(PreviewDevice(rawValue: "iPhone 14"))

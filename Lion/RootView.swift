@@ -42,22 +42,21 @@ struct RootView: View {
                     store: store
                 )
             }
-            .fullScreenCover(
-                isPresented: viewStore.binding(
-                    get: \.member.isMemberPurchasePresented,
-                    send: { .member(.toggleIsMemberPurchasePresented($0)) }
-                )
-            ) {
-                ProductPurchaseView(
-                    store: store.scope(
-                        state: \.member,
-                        action: Root.Action.member
-                    )
-                )
-            }
+//            .fullScreenCover(
+//                isPresented: viewStore.binding(
+//                    get: \.products.isMemberPurchasePresented,
+//                    send: { .products(.toggleIsMemberPurchasePresented($0)) }
+//                )
+//            ) {
+//                ProductPurchaseView(
+//                    store: store.scope(
+//                        state: \.products,
+//                        action: Root.Action.products
+//                    )
+//                )
+//            }
             .onAppear {
-                viewStore.send(.member(.yearlyMember(.syncPurchaseStateIfNeeded)))
-                viewStore.send(.member(.lifetimeMember(.syncPurchaseStateIfNeeded)))
+                viewStore.send(.products(.syncMemberState))
             }
             .onChange(of: scenePhase) { newValue in
                 if newValue == .active {

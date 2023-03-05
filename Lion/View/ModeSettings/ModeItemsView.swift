@@ -50,7 +50,7 @@ struct ModeItemsView: View {
                     item: ModeItems.denyAppInstallation,
                     isOn: viewStore.binding(
                         get: \.isDenyAppInstallation,
-                        send: ModeSettings.Action.toggleIsDenyAppInstallation
+                        send: ModeSettings.Action.willToggleIsDenyAppInstallation
                     )
                 )
 

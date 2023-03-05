@@ -21,40 +21,41 @@ struct ModeSelectionView: View {
                     PagingView(config: .init(margin: 50, spacing: 30)) {
                         Group {
                             ModePreview(
+                                root: store,
                                 store: store.scope(
                                     state: \.childMode,
                                     action: Root.Action.childMode
                                 ),
-                                header: ModeHeaders[viewStore.childMode],
-                                action: {
-                                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                                    if viewStore.loanMode.isOn {
-                                        viewStore.send(.loanMode(.toggleIsOn(false)))
-                                    }
-                                    viewStore.send(.childMode(.toggleIsOn(!viewStore.childMode.isOn)))
-                                }
+                                header: ModeHeaders[viewStore.childMode]
                             )
 
                             ModePreview(
+                                root: store,
                                 store: store.scope(
                                     state: \.loanMode,
                                     action: Root.Action.loanMode
                                 ),
-                                header: ModeHeaders[viewStore.loanMode],
-                                action: {
-                                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                                    if viewStore.childMode.isOn {
-                                        viewStore.send(.childMode(.toggleIsOn(false)))
-                                    }
-                                    viewStore.send(.loanMode(.toggleIsOn(!viewStore.loanMode.isOn)))
-                                }
+                                header: ModeHeaders[viewStore.loanMode]
                             )
+                            .fullScreenCover(
+                                isPresented: viewStore.binding(
+                                    get: \.products.isMemberPurchasePresented,
+                                    send: { .products(.toggleIsMemberPurchasePresented($0)) }
+                                )
+                            ) {
+                                ProductPurchaseView(
+                                    store: store.scope(
+                                        state: \.products,
+                                        action: Root.Action.products
+                                    )
+                                )
+                            }
                         }
                     }
 
                     VStack {
-                        topBar(isMember: viewStore.member.isMember) {
-                            viewStore.send(.member(.toggleIsMemberPurchasePresented(true)))
+                        topBar(isMember: viewStore.products.isMember) {
+                            viewStore.send(.products(.toggleIsMemberPurchasePresented(true)))
                         }
                         .padding(.horizontal, 20)
                         Spacer()

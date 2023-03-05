@@ -12,19 +12,34 @@ struct CloseButton: View {
         Button(
             action: action,
             label: {
-                Color.white
-                    .opacity(0.08)
+                Color.black
+                    .opacity(0.2)
                     .blur(radius: 0.55)
                     .frame(width: 40, height: 40)
                     .cornerRadius(20)
                     .overlay {
                         Image(systemIcon: .xmark)
                             .resizable()
-                            .foregroundColor(.white.opacity(0.6))
+                            .foregroundColor(.white)
                             .frame(width: 16, height: 16)
+                            .font(.lion.largeTitle)
                     }
             }
         )
+    }
+}
+
+struct CloseButton_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            CloseButton(action: {})
+                .aspectRatio(0.975, contentMode: .fit)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.blue)
+        .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro Max"))
+        .previewDisplayName("\(Self.self)")
+        .environment(\.locale, .init(identifier: "zh_CN"))
     }
 }
 
@@ -36,7 +51,19 @@ struct ModeSettingsHeaderView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             ZStack(alignment: .bottom) {
-                ModeHeaderView(model: header)
+                Group {
+                    header.primaryColor
+                        .padding(.top, -500)
+                    LinearGradient(
+                        stops: header.gradient,
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                    header.headImage
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding(.bottom, 58)
+                }
 
                 VStack(alignment: .leading, spacing: 0) {
                     Text(header.modeTip)
@@ -74,7 +101,7 @@ struct ModeSettingsHeaderView: View {
                 .padding(.bottom, 30)
                 .background {
                     LinearGradient(
-                        gradient: header.maskGradient,
+                        stops: header.maskGradient,
                         startPoint: .top,
                         endPoint: .bottom
                     )

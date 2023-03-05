@@ -76,6 +76,7 @@ struct ModeItemView: View {
                                 label: {
                                     Text(item.subSettingsName)
                                         .padding(12)
+                                        .frame(height: 36)
                                 }
                             )
                             .buttonStyle(SettingButton())

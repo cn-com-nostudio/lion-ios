@@ -55,7 +55,7 @@ struct ModePreviewWithoutImage: View {
         WithViewStore(store) { viewStore in
             VStack {
                 LinearGradient(
-                    gradient: header.gradient,
+                    stops: header.gradient,
                     startPoint: .top,
                     endPoint: .bottom
                 )
@@ -98,7 +98,7 @@ struct ModePreviewWithoutImage: View {
             }
             .background(Color.lion.white)
             .cornerRadius(cornerRadius)
-            .overlay(
+            .background(
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .stroke(.white, lineWidth: 5)
                     .shadow(radius: 15, x: 0, y: 5.0)

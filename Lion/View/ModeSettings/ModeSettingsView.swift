@@ -22,7 +22,7 @@ struct ModeSettingsView: View {
                                 store: store,
                                 action: action
                             )
-                            .aspectRatio(1, contentMode: .fit)
+                            .frame(height: 420)
 
                             VStack(alignment: .leading) {
                                 NavigationLink {

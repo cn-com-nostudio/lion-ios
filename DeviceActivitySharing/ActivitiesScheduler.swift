@@ -1,6 +1,6 @@
 // ActivitiesScheduler.swift
 // Copyright (c) 2023 Nostudio
-// Created by Jerry X T Wang on 2023/3/1.
+// Created by Jerry X T Wang on 2023/3/5.
 
 import DeviceActivity
 import ManagedSettings

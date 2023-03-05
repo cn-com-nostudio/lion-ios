@@ -10,8 +10,8 @@ struct ModeHeader: Equatable {
     let aboutTip: LocalizedStringKey
     let headImage: Image
     let primaryColor: Color
-    let gradient: Gradient
-    var maskGradient: Gradient
+    let gradient: [Gradient.Stop]
+    var maskGradient: [Gradient.Stop]
 }
 
 enum ModeHeaders {
@@ -21,11 +21,14 @@ enum ModeHeaders {
         aboutTip: .aboutChildMode,
         headImage: Image(.child),
         primaryColor: Color(.darkIndigo),
-        gradient: .init(colors: [Color(.darkIndigo), Color(.lightIndigo)]),
-        maskGradient: .init(colors: [
-            Color(hex: 0x6643F2).opacity(0),
-            Color(hex: 0x6643F2)
-        ])
+        gradient: [
+            .init(color: Color(.darkIndigo), location: 0.0),
+            .init(color: Color(.lightIndigo), location: 1.0)
+        ],
+        maskGradient: [
+            .init(color: Color(.darkIndigo).opacity(0), location: 0.0),
+            .init(color: Color(.darkIndigo), location: 0.57)
+        ]
     )
 
     static let loan = ModeHeader(
@@ -34,11 +37,14 @@ enum ModeHeaders {
         aboutTip: .aboutLoanMode,
         headImage: Image(.loan),
         primaryColor: Color(.darkBlue),
-        gradient: .init(colors: [Color(.darkBlue), Color(.lightBlue)]),
-        maskGradient: .init(colors: [
-            Color(hex: 0x3871EA).opacity(0),
-            Color(hex: 0x3871EA)
-        ])
+        gradient: [
+            .init(color: Color(.darkBlue), location: 0.0),
+            .init(color: Color(.lightBlue), location: 1.0)
+        ],
+        maskGradient: [
+            .init(color: Color(.darkBlue).opacity(0), location: 0.0),
+            .init(color: Color(.darkBlue), location: 0.57)
+        ]
     )
 
     static subscript(mode: ModeSettings.State) -> ModeHeader {

@@ -119,7 +119,7 @@ struct Root: ReducerProtocol {
 
         Reduce { state, action in
             switch action {
-            case let .childMode(.willToggleIsOn(isOn)) where state.products.isMember || state.childMode.turnOnTimes < 10:
+            case let .childMode(.willToggleIsOn(isOn)) where state.products.isMember || state.childMode.turnOnTimes < 20:
                 return .run { [state] send in
                     if isOn, state.loanMode.isOn {
                         await send(.loanMode(.toggleIsOn(false)))
@@ -127,7 +127,7 @@ struct Root: ReducerProtocol {
                     await send(.childMode(.toggleIsOn(isOn)))
                 }
 
-            case .childMode(.willToggleIsOn(true)) where !(state.products.isMember || state.childMode.turnOnTimes < 10):
+            case .childMode(.willToggleIsOn) where !(state.products.isMember || state.childMode.turnOnTimes < 20):
                 return .task {
                     .products(.toggleIsMemberPurchasePresented(true))
                 }

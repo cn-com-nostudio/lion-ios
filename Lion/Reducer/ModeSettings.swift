@@ -177,9 +177,7 @@ struct ModeSettings: ReducerProtocol {
 
             case let .updateIsOn(isOn):
                 state.isOn = isOn
-                if isOn {
-                    state.turnOnTimes += 1
-                }
+                state.turnOnTimes += 1
                 return .none
 
             case let .toggleIsDenyAppInstallation(isOn) where state.isOn:

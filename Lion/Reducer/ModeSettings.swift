@@ -105,7 +105,7 @@ struct ModeSettings: ReducerProtocol {
             let items = state.shieldAppsSettings.items.elements.filter(\.isOn)
             try shieldAppsMonitor.startMonitoringItems(items)
         } else {
-            let items = state.shieldAppsSettings.items.elements.filter(\.isOn)
+            let items = state.shieldAppsSettings.items.elements
             shieldAppsMonitor.stopMonitoringItems(items)
         }
 
@@ -119,7 +119,7 @@ struct ModeSettings: ReducerProtocol {
     }
 
     func turnOff(_ state: State) {
-        let items = state.shieldAppsSettings.items.elements.filter(\.isOn)
+        let items = state.shieldAppsSettings.items.elements
         shieldAppsMonitor.stopMonitoringItems(items)
         modeManager.setBlockAppTokens([])
         modeManager.denyAppInstallation(false)
@@ -223,7 +223,7 @@ struct ModeSettings: ReducerProtocol {
 
             case .toggleIsShieldApps(false) where state.isOn:
                 return .task(operation: { [state] in
-                    let items = state.shieldAppsSettings.items.elements.filter(\.isOn)
+                    let items = state.shieldAppsSettings.items.elements
                     shieldAppsMonitor.stopMonitoringItems(items)
                     return .updateIsShieldApps(false)
                 })

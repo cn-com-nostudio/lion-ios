@@ -1,6 +1,6 @@
 // IntroduceView.swift
 // Copyright (c) 2023 Nostudio
-// Created by Jerry X T Wang on 2023/2/20.
+// Created by Jerry X T Wang on 2023/3/7.
 
 import ComposableArchitecture
 import SwiftUI
@@ -75,13 +75,15 @@ struct IntroduceView: View {
                 }
             } else {
                 ZStack(alignment: .bottom) {
-                    PagingView(
-                        page: $pageIndex
-                    ) {
-                        ForEach(introduces) { introduce in
-                            IntroducePage(introduce: introduce)
+                    TabView(selection: $pageIndex) {
+                        ForEach(introduces.indices, id: \.self) { index in
+                            IntroducePage(introduce: introduces[index])
+                                .tag(index)
                         }
                     }
+                    .ignoresSafeArea()
+                    .tabViewStyle(.page)
+                    .animation(.easeInOut, value: pageIndex)
 
                     HStack {
                         indexIndicator

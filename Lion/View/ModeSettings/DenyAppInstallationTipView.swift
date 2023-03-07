@@ -16,8 +16,10 @@ struct DenyAppInstallationTipView: View {
             Spacer().frame(height: 24)
 
             Text(.afterTrunOnDenyAppInstallationAppstoreWillHide)
+                .multilineTextAlignment(.center)
                 .foregroundColor(.lion.primary)
                 .font(.lion.title2)
+                .lineSpacing(5)
 
             Spacer().frame(height: 42)
 

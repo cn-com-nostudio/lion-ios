@@ -26,13 +26,11 @@ struct DenyAppRemovalTipView: View {
 
             VStack(spacing: 42) {
                 VStack(spacing: 8) {
-                    Text(.afterCancelDenyAppRemovalAppMayNotBackTo)
+                    Text(.afterCancelDenyAppRemovalAppMayNotBackToTheOriginalPosition)
                         .foregroundColor(.lion.primary)
                         .font(.lion.title2)
-
-                    Text(.theOriginalPosition)
-                        .foregroundColor(.lion.primary)
-                        .font(.lion.title2)
+                        .multilineTextAlignment(.center)
+                        .lineSpacing(5)
 
                     Text(.likeInstallingNewAppItWillAppearInBlankAreaOnScreen)
                         .foregroundColor(.lion.secondary)

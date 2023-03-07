@@ -63,11 +63,12 @@ struct ModeSettingsView: View {
                 .presentationDetents([.medium, .height(360)])
             }
             .sheet(isPresented: viewStore.binding(
-                get: \.showDenyAppRemovalTip,
-                send: ModeSettings.Action.toggleShowDenyAppRemovalTip
+                get: \.showBlockAppTip,
+                send: ModeSettings.Action.toggleShowBlockAppTip
             )) {
                 DenyAppRemovalTipView {
-                    viewStore.send(.toggleShowDenyAppRemovalTip(false))
+                    viewStore.send(.toggleShowBlockAppTip(false))
+                    viewStore.send(.blockAppsSettings(.updateIsPresented(true)))
                 }
                 .presentationDetents([.medium, .height(400)])
             }

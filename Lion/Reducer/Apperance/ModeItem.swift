@@ -7,6 +7,7 @@ import SwiftUI
 
 struct ModeItem: Equatable {
     let icon: SystemIcon
+    let iconSize: CGFloat
     let name: LocalizedStringKey
     let tip: LocalizedStringKey
     let hasToggle: Bool
@@ -16,6 +17,7 @@ struct ModeItem: Equatable {
     let gradient: Gradient
 
     init(icon: SystemIcon,
+         iconSize: CGFloat,
          title: LocalizedStringKey,
          tip: LocalizedStringKey,
          hasToggle: Bool,
@@ -25,6 +27,7 @@ struct ModeItem: Equatable {
          gradient: Gradient)
     {
         self.icon = icon
+        self.iconSize = iconSize
         name = title
         self.tip = tip
         self.hasToggle = hasToggle
@@ -37,7 +40,8 @@ struct ModeItem: Equatable {
 
 enum ModeItems {
     static let denyAppRemoval = ModeItem(
-        icon: .eyeSlashFill,
+        icon: .trashSlashFill,
+        iconSize: 18,
         title: .denyAppRemoval,
         tip: .denyAppRemovalTip,
         hasToggle: true,
@@ -48,7 +52,8 @@ enum ModeItems {
     )
 
     static let denyAppInstallation = ModeItem(
-        icon: .eyeSlashFill,
+        icon: .hourglass,
+        iconSize: 22,
         title: .denyAppInstallation,
         tip: .denyAppInstallationTip,
         hasToggle: true,
@@ -61,6 +66,7 @@ enum ModeItems {
     static func blockApps(subSettingsTip: @autoclosure () -> LocalizedStringKey) -> ModeItem {
         ModeItem(
             icon: .eyeSlashFill,
+            iconSize: 18,
             title: .blockApps,
             tip: .blockAppsTip,
             hasToggle: false,
@@ -73,6 +79,7 @@ enum ModeItems {
 
     static let shieldApps = ModeItem(
         icon: .gamecontrollerFill,
+        iconSize: 18,
         title: .shieldApps,
         tip: .shieldAppsTip,
         hasToggle: false,

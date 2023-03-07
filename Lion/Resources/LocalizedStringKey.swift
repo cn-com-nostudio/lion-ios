@@ -135,8 +135,7 @@ extension LocalizedStringKey {
 
     static let allowAccess: Self = "allow access"
 
-    static let afterCancelDenyAppRemovalAppMayNotBackTo: Self = "after cancel deny app removal, app may not back to"
-    static let theOriginalPosition: Self = "the original position"
+    static let afterCancelDenyAppRemovalAppMayNotBackToTheOriginalPosition: Self = "after cancel deny app removal, app may not back to the original position"
     static let likeInstallingNewAppItWillAppearInBlankAreaOnScreen: Self = "like installing new app, it wil appear in blank area on screen"
     static let iGetIt: Self = "I get it"
 

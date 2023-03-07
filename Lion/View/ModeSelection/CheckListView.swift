@@ -20,10 +20,10 @@ struct CheckListView: View {
                         name: .denyAppInstallation,
                         isChecked: viewStore.isDenyAppInstallation
                     )
-                    CheckListRow(
-                        name: .blockWebs,
-                        isChecked: false
-                    )
+//                    CheckListRow(
+//                        name: .blockWebs,
+//                        isChecked: false
+//                    )
                 }
 
                 VStack(alignment: .leading, spacing: 6) {

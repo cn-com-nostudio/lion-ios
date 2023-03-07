@@ -30,9 +30,10 @@ struct ModeItemView: View {
                 endPoint: .bottom
             )
             HStack(alignment: .hAlignment, spacing: 10) {
-                Image(systemIcon: .eyeSlashFill)
+                Image(systemIcon: item.icon)
                     .foregroundColor(.white)
                     .alignmentGuide(.hAlignment) { $0[VerticalAlignment.center] }
+                    .font(.system(size: item.iconSize))
 
                 VStack(alignment: .leading) {
                     VStack(alignment: .leading) {

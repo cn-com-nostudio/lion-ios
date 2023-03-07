@@ -14,7 +14,7 @@
 "child mode" = "带娃模式";
 "loan mode" = "出借模式";
 
-"deny app removal" = "禁止删除";
+"deny app removal" = "禁止删除 App";
 "deny app installation" = "禁止安装 App";
 "block apps" = "隐藏 App";
 "shield apps" = "游戏防沉迷";
@@ -81,7 +81,7 @@
 "limit time offer %lld%" = "限时%lld%优惠";
 "lifetime member" = "终身会员";
 "pay once, available for life" = "一次付费，终身可用";
-"unlock now" = "立刻解锁";
+"unlock now" = "立即解锁";
 "subscribe now" = "开始订阅";
 
 "quick help" = "快速上手";
@@ -160,8 +160,7 @@
 "reauthorize" = "重新授权";
 
 
-"after cancel deny app removal, app may not back to" = "取消隐藏后，App可能回不到";
-"the original position" = "原来的位置";
+"after cancel deny app removal, app may not back to the original position" = "取消隐藏后，App可能回不到\n原来的位置";
 "like installing new app, it wil appear in blank area on screen" = "就像新安装应用一样，出现在屏幕空白区域。";
 "I get it" = "我知道了";
 

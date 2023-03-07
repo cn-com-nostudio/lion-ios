@@ -26,19 +26,23 @@ struct AppsSelection: ReducerProtocol {
 
     enum Action: Equatable {
         case toggleIsPresented(Bool)
+        case updateIsPresented(Bool)
         case update(FamilyActivitySelection)
     }
 
     var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
             switch action {
-            case let .toggleIsPresented(isPresented):
+            case let .updateIsPresented(isPresented):
                 state.isPresented = isPresented
                 return .none
 
             case let .update(selection):
                 state.categoryTokens = selection.categoryTokens
                 state.appTokens = selection.applicationTokens
+                return .none
+
+            default:
                 return .none
             }
         }

@@ -52,13 +52,13 @@ struct AppsPicker: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button(.cancel) {
-                            viewStore.send(.toggleIsPresented(false))
+                            viewStore.send(.updateIsPresented(false))
                         }
                     }
 
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(.done) {
-                            viewStore.send(.toggleIsPresented(false))
+                            viewStore.send(.updateIsPresented(false))
                             viewStore.send(.update(selection))
                         }
                         .fontWeight(.semibold)

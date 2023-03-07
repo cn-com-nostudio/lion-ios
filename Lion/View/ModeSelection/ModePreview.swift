@@ -113,7 +113,7 @@ struct ModePreviewWithoutImage: View {
             .cornerRadius(cornerRadius)
             .background(
                 RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(.white, lineWidth: 5)
+                    .stroke(.white, lineWidth: 10)
                     .shadow(radius: 15, x: 0, y: 5.0)
             )
         }

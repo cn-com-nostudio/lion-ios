@@ -72,8 +72,8 @@ struct ModeSettings: ReducerProtocol {
         var denyAppInstallationTurnOnTimes: Int = 0
         @NotCoded var showDenyAppInstallationTip: Bool = false
 
-        var denyAppRemovalTurnOnTimes: Int = 0
-        @NotCoded var showDenyAppRemovalTip: Bool = false
+        var blockAppTimes: Int = 0
+        @NotCoded var showBlockAppTip: Bool = false
     }
 
     enum Action: Equatable {
@@ -103,7 +103,7 @@ struct ModeSettings: ReducerProtocol {
         case shieldAppsSettings(ShieldAppsSettings.Action)
 
         case toggleShowDenyAppInstallationTip(Bool)
-        case toggleShowDenyAppRemovalTip(Bool)
+        case toggleShowBlockAppTip(Bool)
 
         case none
     }
@@ -325,18 +325,22 @@ struct ModeSettings: ReducerProtocol {
                     .toggleShowDenyAppInstallationTip(state.denyAppInstallationTurnOnTimes == 1)
                 }
 
-            case .toggleIsDenyAppRemoval(true):
-                state.denyAppRemovalTurnOnTimes += 1
+            case .blockAppsSettings(.toggleIsPresented(true)):
+                state.blockAppTimes += 1
                 return .task { [state] in
-                    .toggleShowDenyAppRemovalTip(state.denyAppRemovalTurnOnTimes == 1)
+                    if state.blockAppTimes == 1 {
+                        return .toggleShowBlockAppTip(true)
+                    } else {
+                        return .blockAppsSettings(.updateIsPresented(true))
+                    }
                 }
 
             case let .toggleShowDenyAppInstallationTip(isOn):
                 state.showDenyAppInstallationTip = isOn
                 return .none
 
-            case let .toggleShowDenyAppRemovalTip(isOn):
-                state.showDenyAppRemovalTip = isOn
+            case let .toggleShowBlockAppTip(isOn):
+                state.showBlockAppTip = isOn
                 return .none
 
             default:

@@ -6,6 +6,7 @@
   
 */
 
-"CFBundleDisplayName" = "Hidding Cat111";
+"CFBundleDisplayName" = "Hidding Cat";
 
 "NSFaceIDUsageDescription" = "Grant FaceID access";
+

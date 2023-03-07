@@ -27,7 +27,7 @@ struct ModeItemsView: View {
                 .sheet(
                     isPresented: viewStore.binding(
                         get: \.blockAppsSettings.isPresented,
-                        send: { .blockAppsSettings(.toggleIsPresented($0)) }
+                        send: { .blockAppsSettings(.updateIsPresented($0)) }
                     )
                 ) {
                     AppsPicker(

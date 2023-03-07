@@ -43,12 +43,12 @@ struct AppsPickerButton: View {
                     .cornerRadius(16)
             }
             .onTapGesture {
-                viewStore.send(.toggleIsPresented(true))
+                viewStore.send(.updateIsPresented(true))
             }
             .sheet(
                 isPresented: viewStore.binding(
                     get: \.isPresented,
-                    send: AppsSelection.Action.toggleIsPresented
+                    send: AppsSelection.Action.updateIsPresented
                 )
             ) {
                 AppsPicker(store: store)
